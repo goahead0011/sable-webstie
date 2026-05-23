@@ -1,0 +1,50 @@
+.detail {
+  width: min(var(--content-max), calc(100vw - 40px));
+  margin: 0 auto;
+  padding: 25px 0 96px;
+}
+
+.hero {
+  width: 100%;
+  height: 560px;
+}
+
+.copy {
+  display: grid;
+  gap: 10px;
+  max-width: 520px;
+  padding: 24px 0 56px;
+}
+
+.copy p,
+.copy h1 {
+  margin: 0;
+}
+
+.copy h1,
+.related h2 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.copy a:hover,
+.copy a:focus-visible {
+  font-weight: 700;
+  outline: none;
+}
+
+.related h2 {
+  margin: 0 0 18px;
+}
+
+@media (max-width: 767px) {
+  .detail {
+    width: calc(100vw - 40px);
+    padding-top: 20px;
+  }
+
+  .hero {
+    height: auto;
+    aspect-ratio: 4 / 5;
+  }
+}

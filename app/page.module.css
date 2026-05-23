@@ -1,0 +1,14 @@
+.home {
+  min-height: calc(100vh - var(--header-height));
+}
+
+.videoPlaceholder {
+  height: min(732px, calc(100vh - var(--header-height)));
+  background: var(--color-video);
+}
+
+@media (max-width: 767px) {
+  .videoPlaceholder {
+    min-height: 520px;
+  }
+}

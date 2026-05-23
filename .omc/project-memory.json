@@ -1,0 +1,439 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1779538094449,
+  "projectRoot": "/Users/fredogden/Desktop/sable-website",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "next",
+        "version": "16.2.6",
+        "category": "fullstack"
+      },
+      {
+        "name": "react",
+        "version": "19.0.0",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.0.0",
+        "category": "frontend"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run lint > /tmp/l6.log 2>&1; echo \"LINT_EXIT=$?\"; npm run typecheck > /tmp/tc6.log 2>&1; echo \"TYPECHECK_EXIT=$?\"; npm run build > /tmp/b6.log 2>&1; echo \"BUILD_EXIT=$?\"; tail -2 /tmp/b6.log",
+    "testCommand": null,
+    "lintCommand": "npm run lint",
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "lint": "eslint . --max-warnings=0",
+      "typecheck": "tsc --noEmit"
+    }
+  },
+  "conventions": {
+    "namingStyle": "camelCase",
+    "importStyle": "ES modules",
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "app",
+      "components",
+      "lib"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "app": {
+      "path": "app",
+      "purpose": "Application code",
+      "fileCount": 5,
+      "lastAccessed": 1779538094248,
+      "keyFiles": [
+        "layout.tsx",
+        "not-found.tsx",
+        "page.module.css",
+        "page.tsx"
+      ]
+    },
+    "components": {
+      "path": "components",
+      "purpose": "UI components",
+      "fileCount": 1,
+      "lastAccessed": 1779538094249,
+      "keyFiles": []
+    },
+    "data": {
+      "path": "data",
+      "purpose": "Data files",
+      "fileCount": 4,
+      "lastAccessed": 1779538094255,
+      "keyFiles": [
+        "articles.ts",
+        "brands.ts",
+        "products.ts",
+        "styling.ts"
+      ]
+    },
+    "lib": {
+      "path": "lib",
+      "purpose": "Library code",
+      "fileCount": 4,
+      "lastAccessed": 1779538094257,
+      "keyFiles": [
+        "cart.ts",
+        "filters.ts",
+        "format.ts",
+        "search.ts"
+      ]
+    },
+    "styles": {
+      "path": "styles",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1779538094258,
+      "keyFiles": [
+        "globals.css"
+      ]
+    },
+    "types": {
+      "path": "types",
+      "purpose": "Type definitions",
+      "fileCount": 1,
+      "lastAccessed": 1779538094259,
+      "keyFiles": [
+        "domain.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "components/layout/Header.tsx",
+      "accessCount": 15,
+      "lastAccessed": 1779546924746,
+      "type": "file"
+    },
+    {
+      "path": "components/layout/SearchOverlay.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1779544087847,
+      "type": "file"
+    },
+    {
+      "path": "components/product/ProductCard.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1779542623153,
+      "type": "file"
+    },
+    {
+      "path": "components/product/ProductGrid.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1779542488772,
+      "type": "file"
+    },
+    {
+      "path": "components/cart/CartProvider.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1779540697172,
+      "type": "file"
+    },
+    {
+      "path": "styles/globals.css",
+      "accessCount": 3,
+      "lastAccessed": 1779542493667,
+      "type": "file"
+    },
+    {
+      "path": "AGENTS.md",
+      "accessCount": 2,
+      "lastAccessed": 1779539867875,
+      "type": "file"
+    },
+    {
+      "path": "app/layout.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1779540698274,
+      "type": "file"
+    },
+    {
+      "path": "app/page.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1779546566852,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 1,
+      "lastAccessed": 1779539050746,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.json",
+      "accessCount": 1,
+      "lastAccessed": 1779539051387,
+      "type": "file"
+    },
+    {
+      "path": "next.config.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779539051811,
+      "type": "file"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "accessCount": 1,
+      "lastAccessed": 1779539052414,
+      "type": "file"
+    },
+    {
+      "path": "app/not-found.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539057851,
+      "type": "file"
+    },
+    {
+      "path": "types/domain.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779539058268,
+      "type": "file"
+    },
+    {
+      "path": "lib/cart.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779539058772,
+      "type": "file"
+    },
+    {
+      "path": "lib/filters.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779539059736,
+      "type": "file"
+    },
+    {
+      "path": "lib/format.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779539060240,
+      "type": "file"
+    },
+    {
+      "path": "lib/search.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779539060791,
+      "type": "file"
+    },
+    {
+      "path": "data/articles.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779539061317,
+      "type": "file"
+    },
+    {
+      "path": "data/brands.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779539061828,
+      "type": "file"
+    },
+    {
+      "path": "data/products.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779539062479,
+      "type": "file"
+    },
+    {
+      "path": "data/styling.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779539062870,
+      "type": "file"
+    },
+    {
+      "path": "components/cart/CartView.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539073465,
+      "type": "file"
+    },
+    {
+      "path": "components/cart/CheckoutMock.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539073995,
+      "type": "file"
+    },
+    {
+      "path": "components/brand/BrandDirectory.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539074493,
+      "type": "file"
+    },
+    {
+      "path": "components/editorial/ArticleGrid.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539075563,
+      "type": "file"
+    },
+    {
+      "path": "components/editorial/LookbookGrid.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539076119,
+      "type": "file"
+    },
+    {
+      "path": "components/product/ProductDetail.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539077130,
+      "type": "file"
+    },
+    {
+      "path": "components/product/ProductListingPage.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539078780,
+      "type": "file"
+    },
+    {
+      "path": "components/ui/PlaceholderImage.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539079440,
+      "type": "file"
+    },
+    {
+      "path": "app/brands/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539079771,
+      "type": "file"
+    },
+    {
+      "path": "app/brands/[slug]/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539080316,
+      "type": "file"
+    },
+    {
+      "path": "app/cart/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539081532,
+      "type": "file"
+    },
+    {
+      "path": "app/checkout/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539081918,
+      "type": "file"
+    },
+    {
+      "path": "app/information/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539082448,
+      "type": "file"
+    },
+    {
+      "path": "app/life/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539082985,
+      "type": "file"
+    },
+    {
+      "path": "app/login/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539083551,
+      "type": "file"
+    },
+    {
+      "path": "app/magazine/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539083986,
+      "type": "file"
+    },
+    {
+      "path": "app/magazine/[slug]/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539085382,
+      "type": "file"
+    },
+    {
+      "path": "app/men/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539085523,
+      "type": "file"
+    },
+    {
+      "path": "app/new-in/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539086097,
+      "type": "file"
+    },
+    {
+      "path": "app/products/[slug]/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539086560,
+      "type": "file"
+    },
+    {
+      "path": "app/sale/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539087098,
+      "type": "file"
+    },
+    {
+      "path": "app/search/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539087633,
+      "type": "file"
+    },
+    {
+      "path": "app/styling/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539088098,
+      "type": "file"
+    },
+    {
+      "path": "app/styling/[slug]/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539089147,
+      "type": "file"
+    },
+    {
+      "path": "app/women/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779539089273,
+      "type": "file"
+    },
+    {
+      "path": "app/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1779539138755,
+      "type": "file"
+    },
+    {
+      "path": "components/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1779539150351,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

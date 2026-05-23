@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"echo \\\"=== HTTP status + size from :3000 ===\\\"; curl -s -o /tmp/home.html -w \\\"HTTP %{http_code}, %{size_download} bytes\\\\n\\\" http://localhost:3000/; echo \\\"=== does it contain nav at all?...",
+  "error": "Exit code 1\n=== HTTP status + size from :3000 ===\nHTTP 000, 0 bytes\n=== does it contain nav at all? ===\nugrep: warning: /tmp/home.html: No such file or directory\n=== first 400 chars ===\nhead: /tmp/home.html: No such file or directory",
+  "timestamp": "2026-05-23T14:32:25.675Z",
+  "retry_count": 1
+}

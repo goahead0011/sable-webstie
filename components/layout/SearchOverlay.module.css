@@ -1,0 +1,81 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.bar {
+  position: relative;
+  z-index: 2;
+  height: 86px;
+  background: #ffffff;
+}
+
+.input {
+  position: absolute;
+  left: max(70px, var(--page-gutter));
+  right: max(70px, var(--page-gutter));
+  bottom: 22px;
+  height: 28px;
+  border: 0;
+  border-bottom: 1px solid var(--color-text);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text);
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(25, 25, 25, 0.75);
+}
+
+.submit,
+.close {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.submit {
+  right: max(70px, var(--page-gutter));
+  bottom: 30px;
+}
+
+.close {
+  top: 22px;
+  right: max(70px, var(--page-gutter));
+}
+
+.submit:hover,
+.submit:focus-visible,
+.close:hover,
+.close:focus-visible {
+  font-weight: 700;
+  outline: none;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 86px 0 0;
+  z-index: 1;
+  border: 0;
+  background: rgba(25, 25, 25, 0.58);
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .input {
+    left: 20px;
+    right: 86px;
+  }
+
+  .submit {
+    right: 20px;
+  }
+
+  .close {
+    right: 20px;
+  }
+}

@@ -1,0 +1,98 @@
+.card {
+  width: 320px;
+}
+
+.imageButton {
+  display: block;
+  width: 320px;
+  height: 400px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.imageButton:focus-visible {
+  outline: 1px solid var(--color-text);
+  outline-offset: 4px;
+}
+
+.image {
+  width: 320px;
+  height: 400px;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  max-height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  opacity: 0;
+  line-height: 1.25;
+  transition: max-height var(--motion-fast) ease, opacity var(--motion-fast) ease, padding-top var(--motion-fast) ease;
+}
+
+.card:hover .meta,
+.card:focus-within .meta,
+.expanded .meta {
+  max-height: 52px;
+  padding-top: 7px;
+  opacity: 1;
+}
+
+.name {
+  min-width: 0;
+}
+
+.name span {
+  margin-right: 4px;
+}
+
+.name strong {
+  font-weight: 700;
+}
+
+.price {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+@media (max-width: 1179px) {
+  .card,
+  .imageButton,
+  .image {
+    width: 100%;
+  }
+
+  .imageButton,
+  .image {
+    height: auto;
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (max-width: 767px) {
+  .meta {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .card:hover .meta {
+    max-height: 0;
+    padding-top: 0;
+    opacity: 0;
+  }
+
+  .card:focus-within .meta,
+  .expanded .meta {
+    max-height: 70px;
+    padding-top: 8px;
+    opacity: 1;
+  }
+
+  .price {
+    text-align: left;
+  }
+}

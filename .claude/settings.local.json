@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(curl -s http://localhost:3000/brands)",
+      "Bash(npm run *)",
+      "Bash(echo \"LINT_EXIT=$?\")",
+      "Bash(echo \"BUILD_EXIT=$?\")",
+      "Read(//tmp/**)",
+      "Bash(echo \"---exit $?---\")",
+      "Bash(echo \"TYPECHECK_EXIT=$?\")",
+      "Bash(node -e \"const f='.omc/prd.json';const p=require\\('./'+f\\);p.stories.forEach\\(s=>s.passes=true\\);require\\('fs'\\).writeFileSync\\(f,JSON.stringify\\(p,null,2\\)\\);console.log\\('PRD: all stories passes=true \\('+p.stories.length+'\\)'\\)\")",
+      "mcp__plugin_oh-my-claudecode_t__state_list_active",
+      "mcp__plugin_oh-my-claudecode_t__state_clear",
+      "Bash(echo \"=== files ===\"; ls -1 components/layout/BrandMegaMenu.tsx components/layout/BrandMegaMenu.module.css 2>&1 *)",
+      "Bash(mkdir -p _backup/figma-pass-__TRACKED_VAR__)",
+      "Bash(cp components/layout/Header.tsx components/layout/Header.module.css components/layout/BrandMegaMenu.tsx components/layout/BrandMegaMenu.module.css components/layout/SearchOverlay.tsx components/layout/SearchOverlay.module.css components/product/ProductCard.module.css components/product/ProductGrid.module.css app/page.tsx app/page.module.css styles/globals.css _backup/figma-pass-__TRACKED_VAR__/)",
+      "mcp__figma__get_variable_defs",
+      "mcp__figma__get_metadata",
+      "mcp__figma__get_design_context",
+      "Bash(curl -s -o /tmp/home.html -w \"HTTP %{http_code}, %{size_download} bytes\\\\n\" http://localhost:3000/)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=\"sable\" -c user.email=\"content@peakstudio.kr\" commit -q -m \"Checkpoint before Figma finishing pass\")"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  }
+}
