@@ -50,26 +50,34 @@ export default function Header() {
       <header className={styles.header}>
         <div className={styles.inner}>
           <Link className={styles.logo} href="/" aria-label="sable home">
-            sable
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className={styles.logoMark} src="/sable-logo.svg" alt="sable" width={104} height={20} />
           </Link>
 
-          <nav className={styles.desktopNav} aria-label="Primary">
+          {/* main nav (left group) — plain div, not <nav>, so the BrandMegaMenu
+              panel's <nav aria-label="Brands"> is the header's only nav landmark
+              and the absolute panel stays anchored to .header (mainNav is static). */}
+          <div className={styles.mainNav}>
             <BrandMegaMenu triggerClassName={styles.navButton} />
             {navItems.map((item) => (
-              <Link key={item.key} href={item.href} className={styles.navLink}>
+              <Link key={item.key} href={item.href} className={styles.navLink} data-label={item.label}>
                 {item.label}
               </Link>
             ))}
-            <button className={styles.navButton} type="button" onClick={() => setSearchOpen(true)}>
+          </div>
+
+          {/* utility nav (right group) — pushed to the content edge via margin-left:auto */}
+          <div className={styles.utilityNav}>
+            <button className={styles.navButton} type="button" data-label="search" onClick={() => setSearchOpen(true)}>
               search
             </button>
-            <Link className={styles.navLink} href="/login">
+            <Link className={styles.navLink} href="/login" data-label="login">
               login
             </Link>
-            <Link className={styles.navLink} href="/cart">
+            <Link className={styles.navLink} href="/cart" data-label={`cart${cartCount > 0 ? ` ${cartCount}` : ""}`}>
               cart{cartCount > 0 ? ` ${cartCount}` : ""}
             </Link>
-          </nav>
+          </div>
 
           <div className={styles.mobileActions}>
             <button className={styles.mobileTextButton} type="button" onClick={() => setSearchOpen(true)}>
@@ -96,8 +104,9 @@ export default function Header() {
         inert={!drawerOpen}
       >
         <div className={styles.drawerTop}>
-          <Link className={styles.drawerLogo} href="/" onClick={() => setDrawerOpen(false)}>
-            sable
+          <Link className={styles.drawerLogo} href="/" onClick={() => setDrawerOpen(false)} aria-label="sable home">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className={styles.logoMark} src="/sable-logo.svg" alt="sable" width={104} height={20} />
           </Link>
           <button className={styles.closeButton} type="button" onClick={() => setDrawerOpen(false)}>
             close

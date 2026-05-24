@@ -13,9 +13,9 @@
 
 .input {
   position: absolute;
-  left: max(70px, var(--page-gutter));
-  right: max(70px, var(--page-gutter));
-  bottom: 22px;
+  left: 70px;
+  right: 104px;
+  bottom: 24px;
   height: 28px;
   border: 0;
   border-bottom: 1px solid var(--color-text);
@@ -26,34 +26,48 @@
 }
 
 .input::placeholder {
-  color: rgba(25, 25, 25, 0.75);
+  color: rgba(0, 0, 0, 0.75);
 }
 
 .submit,
 .close {
   position: absolute;
+  right: 70px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
+  padding: 0;
   background: transparent;
+  color: var(--color-text);
   cursor: pointer;
-  font-size: 14px;
-}
-
-.submit {
-  right: max(70px, var(--page-gutter));
-  bottom: 30px;
 }
 
 .close {
   top: 22px;
-  right: max(70px, var(--page-gutter));
 }
 
-.submit:hover,
+.submit {
+  bottom: 24px;
+}
+
+.icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.submit:hover .icon,
+.submit:focus-visible .icon,
+.close:hover .icon,
+.close:focus-visible .icon {
+  stroke-width: 1.6;
+}
+
 .submit:focus-visible,
-.close:hover,
 .close:focus-visible {
-  font-weight: 700;
-  outline: none;
+  outline: 1px solid var(--color-text);
+  outline-offset: 3px;
 }
 
 .backdrop {
@@ -61,20 +75,17 @@
   inset: 86px 0 0;
   z-index: 1;
   border: 0;
-  background: rgba(25, 25, 25, 0.58);
+  background: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
 
 @media (max-width: 767px) {
   .input {
     left: 20px;
-    right: 86px;
+    right: 56px;
   }
 
-  .submit {
-    right: 20px;
-  }
-
+  .submit,
   .close {
     right: 20px;
   }

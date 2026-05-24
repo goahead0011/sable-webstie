@@ -21,7 +21,15 @@
       "Bash(curl -s -o /tmp/home.html -w \"HTTP %{http_code}, %{size_download} bytes\\\\n\" http://localhost:3000/)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git -c user.name=\"sable\" -c user.email=\"content@peakstudio.kr\" commit -q -m \"Checkpoint before Figma finishing pass\")"
+      "Bash(git -c user.name=\"sable\" -c user.email=\"content@peakstudio.kr\" commit -q -m \"Checkpoint before Figma finishing pass\")",
+      "mcp__figma__get_screenshot",
+      "Bash(curl -s -o fig-search.png \"https://www.figma.com/api/mcp/asset/f59e4af8-7697-4c6d-bc39-3619b771c67a\")",
+      "Bash(curl -s -o fig-card.png \"https://www.figma.com/api/mcp/asset/f220a7de-5b9d-4654-a24d-587c385db502\")",
+      "Bash(curl -s -o fig-grid.png \"https://www.figma.com/api/mcp/asset/5ae51ef9-ac94-4316-bdb4-7dd17b44d8fb\")",
+      "Bash(mkdir -p _backup/consistency-__TRACKED_VAR__)",
+      "Bash(cp styles/globals.css components/layout/Header.tsx components/layout/Header.module.css components/layout/BrandMegaMenu.module.css components/brand/BrandDirectory.tsx components/brand/BrandDirectory.module.css _backup/consistency-__TRACKED_VAR__/)",
+      "Bash(mkdir -p _backup/header-invariant-__TRACKED_VAR__)",
+      "Bash(cp styles/globals.css components/layout/Header.tsx components/layout/Header.module.css components/layout/BrandMegaMenu.tsx _backup/header-invariant-__TRACKED_VAR__/)"
     ],
     "additionalDirectories": [
       "/tmp"

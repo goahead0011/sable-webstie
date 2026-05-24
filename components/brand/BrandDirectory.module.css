@@ -1,10 +1,6 @@
-.directory {
-  width: min(var(--content-max), calc(100vw - 40px));
-  margin: 0 auto;
-  padding-top: 25px;
-  padding-bottom: 96px;
-}
-
+/* Outer container (width, top offset, centering) is provided by the shared
+   .page-content class. This module owns only the brand directory grid, which
+   is a 5-column directory layout — distinct from the product catalog grid. */
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -30,11 +26,6 @@
 }
 
 @media (max-width: 767px) {
-  .directory {
-    width: calc(100vw - 40px);
-    padding-top: 20px;
-  }
-
   .grid {
     grid-template-columns: 1fr;
     row-gap: 12px;

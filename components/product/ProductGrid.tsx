@@ -21,7 +21,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
           return null;
         }
 
-        return <ProductCard key={product.id} product={product} brand={brand} />;
+        return <ProductCard key={product.id} product={product} />;
       })}
     </div>
   );

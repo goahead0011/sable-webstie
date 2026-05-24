@@ -2,10 +2,10 @@
   display: grid;
   grid-template-columns: 560px minmax(280px, 1fr);
   gap: 56px;
-  width: min(var(--content-max), calc(100vw - 40px));
+  width: min(var(--content-max), calc(100vw - 2 * var(--page-gutter)));
   margin: 0 auto;
-  padding-top: 25px;
-  padding-bottom: 96px;
+  padding-top: var(--page-top);
+  padding-bottom: var(--utility-page-bottom);
 }
 
 .image {
@@ -116,7 +116,6 @@
   .detail {
     grid-template-columns: 1fr;
     gap: 24px;
-    width: calc(100vw - 40px);
     padding-top: 20px;
   }
 }

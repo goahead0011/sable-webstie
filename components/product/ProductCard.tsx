@@ -5,15 +5,14 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import PlaceholderImage from "@/components/ui/PlaceholderImage";
 import { formatPrice } from "@/lib/format";
-import type { Brand, Product } from "@/types/domain";
+import type { Product } from "@/types/domain";
 import styles from "@/components/product/ProductCard.module.css";
 
 type ProductCardProps = {
   product: Product;
-  brand: Brand;
 };
 
-export default function ProductCard({ product, brand }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   const [expanded, setExpanded] = useState(false);
   const router = useRouter();
   const href = `/products/${product.slug}`;
@@ -36,8 +35,7 @@ export default function ProductCard({ product, brand }: ProductCardProps) {
       </button>
       <div className={styles.meta}>
         <Link className={styles.name} href={href}>
-          <span>{product.name}</span>
-          <strong>{brand.name}</strong>
+          {product.name}
         </Link>
         <span className={styles.price}>{formatPrice(product.price)}</span>
       </div>

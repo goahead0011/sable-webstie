@@ -44,14 +44,9 @@
 
 .name {
   min-width: 0;
-}
-
-.name span {
-  margin-right: 4px;
-}
-
-.name strong {
-  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .price {

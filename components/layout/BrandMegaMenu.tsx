@@ -143,6 +143,7 @@ export default function BrandMegaMenu({ triggerClassName }: BrandMegaMenuProps) 
         ref={triggerRef}
         type="button"
         className={triggerClassName}
+        data-label="brands"
         aria-haspopup="true"
         aria-expanded={isOpen}
         aria-controls={PANEL_ID}

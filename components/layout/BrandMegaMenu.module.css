@@ -23,7 +23,7 @@
   grid-template-columns: repeat(5, 1fr);
   column-gap: 48px;
   row-gap: 14px;
-  width: min(var(--content-max), calc(100vw - 40px));
+  width: min(var(--content-max), calc(100vw - 2 * var(--page-gutter)));
   margin: 0 auto;
   padding-top: 20px;
   align-content: start;

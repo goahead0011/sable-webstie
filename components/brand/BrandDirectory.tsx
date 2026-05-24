@@ -4,7 +4,7 @@ import styles from "@/components/brand/BrandDirectory.module.css";
 
 export default function BrandDirectory() {
   return (
-    <section className={styles.directory} aria-labelledby="brand-directory-title">
+    <section className="page-content" aria-labelledby="brand-directory-title">
       <h1 id="brand-directory-title" className="sr-only">
         Brands
       </h1>

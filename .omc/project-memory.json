@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npm run lint > /tmp/l6.log 2>&1; echo \"LINT_EXIT=$?\"; npm run typecheck > /tmp/tc6.log 2>&1; echo \"TYPECHECK_EXIT=$?\"; npm run build > /tmp/b6.log 2>&1; echo \"BUILD_EXIT=$?\"; tail -2 /tmp/b6.log",
+    "buildCommand": "{ npm run lint > /tmp/l12.log 2>&1; echo \"LINT_EXIT=$?\"; npm run typecheck > /tmp/tc12.log 2>&1; echo \"TYPECHECK_EXIT=$?\"; npm run build > /tmp/b12.log 2>&1; echo \"BUILD_EXIT=$?\"; }",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -136,26 +136,38 @@
   "hotPaths": [
     {
       "path": "components/layout/Header.tsx",
-      "accessCount": 15,
-      "lastAccessed": 1779546924746,
+      "accessCount": 21,
+      "lastAccessed": 1779555758136,
+      "type": "file"
+    },
+    {
+      "path": "styles/globals.css",
+      "accessCount": 12,
+      "lastAccessed": 1779555755259,
       "type": "file"
     },
     {
       "path": "components/layout/SearchOverlay.tsx",
-      "accessCount": 9,
-      "lastAccessed": 1779544087847,
+      "accessCount": 10,
+      "lastAccessed": 1779548202846,
       "type": "file"
     },
     {
       "path": "components/product/ProductCard.tsx",
-      "accessCount": 8,
-      "lastAccessed": 1779542623153,
+      "accessCount": 9,
+      "lastAccessed": 1779548200431,
       "type": "file"
     },
     {
       "path": "components/product/ProductGrid.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1779548200926,
+      "type": "file"
+    },
+    {
+      "path": "components/brand/BrandDirectory.tsx",
       "accessCount": 4,
-      "lastAccessed": 1779542488772,
+      "lastAccessed": 1779551722330,
       "type": "file"
     },
     {
@@ -165,21 +177,15 @@
       "type": "file"
     },
     {
-      "path": "styles/globals.css",
+      "path": "app/layout.tsx",
       "accessCount": 3,
-      "lastAccessed": 1779542493667,
+      "lastAccessed": 1779553280169,
       "type": "file"
     },
     {
       "path": "AGENTS.md",
       "accessCount": 2,
       "lastAccessed": 1779539867875,
-      "type": "file"
-    },
-    {
-      "path": "app/layout.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1779540698274,
       "type": "file"
     },
     {
@@ -282,12 +288,6 @@
       "path": "components/cart/CheckoutMock.tsx",
       "accessCount": 1,
       "lastAccessed": 1779539073995,
-      "type": "file"
-    },
-    {
-      "path": "components/brand/BrandDirectory.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1779539074493,
       "type": "file"
     },
     {

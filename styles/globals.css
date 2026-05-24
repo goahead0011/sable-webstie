@@ -7,10 +7,26 @@
   --color-video: #d9d9d9;
   --header-height: 69px;
   --content-max: 1000px;
-  --page-gutter: clamp(20px, calc((100vw - var(--content-max)) / 2), 140px);
+  /* Per-side page inset; the single source for page/header content width. */
+  --page-gutter: 20px;
+  /* Header nav spacing (Figma: logo->brands ~48, item ~28, utility ~32). */
+  --nav-logo-gap: 48px;
+  --nav-item-gap: 28px;
+  --nav-util-gap: 32px;
+  /* Vertical rhythm. */
+  --page-top: 25px;
+  --utility-page-top: 74px;
+  --utility-page-bottom: 96px;
   --font-sans: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --motion-fast: 160ms;
   --motion-medium: 220ms;
+}
+
+/* Single source of truth for centered page content width. */
+.page-content,
+.utility-page {
+  width: min(var(--content-max), calc(100vw - 2 * var(--page-gutter)));
+  margin: 0 auto;
 }
 
 * {
@@ -23,6 +39,10 @@ html {
   font-family: var(--font-sans);
   font-size: 14px;
   letter-spacing: 0;
+  /* Reserve the scrollbar gutter on every route so the centered header (.inner
+     margin:0 auto) never shifts horizontally between scrolling pages (catalog,
+     home) and short pages (login, information, cart, checkout). */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -54,9 +74,7 @@ main {
 }
 
 .page-content {
-  width: min(var(--content-max), calc(100vw - 40px));
-  margin: 0 auto;
-  padding-top: 25px;
+  padding-top: var(--page-top);
 }
 
 .sr-only {
@@ -72,9 +90,7 @@ main {
 }
 
 .utility-page {
-  width: min(var(--content-max), calc(100vw - 40px));
-  margin: 0 auto;
-  padding: 74px 0 96px;
+  padding: var(--utility-page-top) 0 var(--utility-page-bottom);
 }
 
 .utility-title {
@@ -102,21 +118,9 @@ main {
   margin-bottom: 24px;
 }
 
-@media (max-width: 1179px) {
-  :root {
-    --page-gutter: 24px;
-  }
-}
-
 @media (max-width: 767px) {
   :root {
     --header-height: 64px;
-    --page-gutter: 20px;
-  }
-
-  .page-content,
-  .utility-page {
-    width: calc(100vw - 40px);
   }
 
   .article-hero {

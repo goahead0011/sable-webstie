@@ -23,3 +23,12 @@ next-env.d.ts
 
 # local backups (safety copies, not source)
 /_backup
+
+# local AI / workflow files
+_backup/
+.omc/
+.omx/
+
+# env
+.env
+.env.local
