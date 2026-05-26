@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { brands } from "@/data/brands";
+import { brandMenuOrder, getBrandById } from "@/data/brands";
 import { useCart } from "@/components/cart/CartProvider";
 import BrandMegaMenu from "@/components/layout/BrandMegaMenu";
 import SearchOverlay from "@/components/layout/SearchOverlay";
@@ -128,11 +128,17 @@ export default function Header() {
             <Link href="/brands" onClick={() => setDrawerOpen(false)}>
               all brands
             </Link>
-            {brands.map((brand) => (
-              <Link key={brand.id} href={`/brands/${brand.slug}`} onClick={() => setDrawerOpen(false)}>
-                {brand.name}
-              </Link>
-            ))}
+            {brandMenuOrder.map((id) => {
+              const brand = getBrandById(id);
+              if (!brand) {
+                return null;
+              }
+              return (
+                <Link key={brand.id} href={`/brands/${brand.slug}`} onClick={() => setDrawerOpen(false)}>
+                  {brand.name}
+                </Link>
+              );
+            })}
           </div>
           {navItems.map((item) => (
             <Link key={item.key} href={item.href} onClick={() => setDrawerOpen(false)}>
