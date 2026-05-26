@@ -15,7 +15,7 @@ export function searchProducts(query: string): Product[] {
     const brandName = brandNameById.get(product.brandId) ?? "";
     const categories = product.categories.join(" ");
 
-    return [product.name, brandName, product.audience, categories]
+    return [product.name, brandName, product.audience, product.productType, categories]
       .join(" ")
       .toLowerCase()
       .includes(term);
@@ -24,5 +24,5 @@ export function searchProducts(query: string): Product[] {
 
 export function getSearchLabel(product: Product) {
   const brand = getBrandById(product.brandId);
-  return `${product.name} ${brand?.name ?? ""} ${product.categories.join(" ")}`;
+  return `${product.name} ${brand?.name ?? ""} ${product.productType} ${product.categories.join(" ")}`;
 }

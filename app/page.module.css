@@ -1,14 +1,24 @@
 .home {
+  position: relative;
   min-height: calc(100vh - var(--header-height));
-}
-
-.videoPlaceholder {
-  height: min(732px, calc(100vh - var(--header-height)));
+  min-height: calc(100svh - var(--header-height));
+  overflow: hidden;
   background: var(--color-video);
 }
 
+.heroImage {
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (max-width: 1039px) {
+  .heroImage {
+    object-position: 68% center;
+  }
+}
+
 @media (max-width: 767px) {
-  .videoPlaceholder {
-    min-height: 520px;
+  .heroImage {
+    object-position: 72% center;
   }
 }

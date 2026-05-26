@@ -1,7 +1,11 @@
-export type Audience = "women" | "men" | "life" | "unisex";
+export type Audience = "women" | "men" | "life" | "unisex" | "TBD";
 
 export type ProductCategory =
   | "new-in"
+  | "women"
+  | "men"
+  | "life"
+  | "sale"
   | "outerwear"
   | "tops"
   | "bottoms"
@@ -9,6 +13,20 @@ export type ProductCategory =
   | "bags"
   | "accessories"
   | "home";
+
+export type ProductType =
+  | "top"
+  | "shirt"
+  | "jacket"
+  | "dress"
+  | "skirt"
+  | "pants"
+  | "bag"
+  | "shoes"
+  | "accessory"
+  | "TBD";
+
+export type ProductStatus = "ready" | "needs-details" | "needs-image-match";
 
 export type Product = {
   id: string;
@@ -18,12 +36,15 @@ export type Product = {
   brandSlug: string;
   categories: ProductCategory[];
   audience: Audience;
+  productType: ProductType;
   price: number;
   compareAtPrice?: number;
   isNew?: boolean;
   isSale?: boolean;
   description: string;
   sizes: string[];
+  sourceImage: string;
+  status: ProductStatus;
   placeholderTone?: "light" | "medium";
   relatedProductIds?: string[];
   /** Processed storefront image (public path). Falls back to a placeholder when absent. */

@@ -32,5 +32,5 @@ export function getFeaturedProducts(): Product[] {
 }
 
 export function isAudience(value: string): value is Audience {
-  return value === "women" || value === "men" || value === "life" || value === "unisex";
+  return value === "women" || value === "men" || value === "life" || value === "unisex" || value === "TBD";
 }
