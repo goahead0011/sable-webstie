@@ -25,7 +25,12 @@ export default function ProductDetail({ product, brand }: ProductDetailProps) {
 
   return (
     <section className={styles.detail}>
-      <PlaceholderImage tone={product.placeholderTone} label={product.name} className={styles.image} />
+      {product.image ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img className={styles.image} src={product.image} alt={product.name} />
+      ) : (
+        <PlaceholderImage tone={product.placeholderTone} label={product.name} className={styles.image} />
+      )}
       <div className={styles.info}>
         <Link href={`/brands/${brand.slug}`} className={styles.brand}>
           {brand.name}

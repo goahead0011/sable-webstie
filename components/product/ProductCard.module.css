@@ -18,8 +18,12 @@
 }
 
 .image {
+  display: block;
   width: 320px;
   height: 400px;
+  /* The processed image is already 4:5 with baked-in padding, so cover fills
+     the equally-4:5 card with no crop. Harmless on the placeholder <div>. */
+  object-fit: cover;
 }
 
 .meta {

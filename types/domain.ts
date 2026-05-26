@@ -1,6 +1,7 @@
 export type Audience = "women" | "men" | "life" | "unisex";
 
 export type ProductCategory =
+  | "new-in"
   | "outerwear"
   | "tops"
   | "bottoms"
@@ -14,6 +15,7 @@ export type Product = {
   slug: string;
   name: string;
   brandId: string;
+  brandSlug: string;
   categories: ProductCategory[];
   audience: Audience;
   price: number;
@@ -24,6 +26,8 @@ export type Product = {
   sizes: string[];
   placeholderTone?: "light" | "medium";
   relatedProductIds?: string[];
+  /** Processed storefront image (public path). Falls back to a placeholder when absent. */
+  image?: string;
 };
 
 export type Brand = {
@@ -33,6 +37,7 @@ export type Brand = {
   country?: string;
   description?: string;
   featured?: boolean;
+  website?: string;
 };
 
 export type Article = {

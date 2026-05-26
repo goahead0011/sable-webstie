@@ -10,6 +10,9 @@
   color: var(--color-muted);
 }
 
+/* Content-density reflow, kept in lockstep with ProductCard's own 1179px
+   switch to fluid cards (the card is out of scope for this pass). Independent
+   of the container baseline, which --layout-width already keeps consistent. */
 @media (max-width: 1179px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

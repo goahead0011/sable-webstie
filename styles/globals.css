@@ -9,6 +9,10 @@
   --content-max: 1000px;
   /* Per-side page inset; the single source for page/header content width. */
   --page-gutter: 20px;
+  /* THE shared content container. Header, BrandMegaMenu, page-content,
+     product/brand listings all consume this one token so their left/right
+     edges and centering can never drift apart across viewports. */
+  --layout-width: min(var(--content-max), calc(100vw - 2 * var(--page-gutter)));
   /* Header nav spacing (Figma: logo->brands ~48, item ~28, utility ~32). */
   --nav-logo-gap: 48px;
   --nav-item-gap: 28px;
@@ -25,7 +29,7 @@
 /* Single source of truth for centered page content width. */
 .page-content,
 .utility-page {
-  width: min(var(--content-max), calc(100vw - 2 * var(--page-gutter)));
+  width: var(--layout-width);
   margin: 0 auto;
 }
 

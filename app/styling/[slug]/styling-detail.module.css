@@ -1,5 +1,5 @@
 .detail {
-  width: min(var(--content-max), calc(100vw - 40px));
+  width: var(--layout-width);
   margin: 0 auto;
   padding: 25px 0 96px;
 }
@@ -39,7 +39,7 @@
 
 @media (max-width: 767px) {
   .detail {
-    width: calc(100vw - 40px);
+    /* width already collapses to 100vw - 2*gutter via --layout-width */
     padding-top: 20px;
   }
 

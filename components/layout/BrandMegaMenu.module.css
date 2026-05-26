@@ -1,6 +1,6 @@
-/* Full-width panel anchored beneath the header bar. Geometry mirrors the
-   Brands mega-menu Figma frame (node 22:20, 1280px canvas): four content-width
-   columns, 160px gaps, 140/143px side padding, 20/40px top/bottom padding. */
+/* Full-width backdrop anchored beneath the header bar; the brand columns
+   themselves live in .inner, which shares the exact --layout-width container as
+   the header and every page so column 1's left edge lines up with the logo. */
 .panel {
   position: absolute;
   top: var(--header-height);
@@ -20,14 +20,19 @@
   transform: translateY(0);
 }
 
+/* Same centered container as the header — no extra side padding — so the four
+   brand columns span exactly the page content width and align to its edges.
+   Equal 1fr tracks with a fixed column-gap keep the gap regular at every
+   viewport (it never collapses on vw the way the old frame-absolute padding
+   did). Vertical padding only; horizontal position comes from the container. */
 .inner {
-  display: flex;
-  align-items: flex-start;
-  gap: 160px;
-  width: 100%;
-  max-width: 1280px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 48px;
+  align-items: start;
+  width: var(--layout-width);
   margin: 0 auto;
-  padding: 20px 143px 40px 140px;
+  padding: 20px 0 40px;
   color: var(--color-text);
   font-size: 14px;
   font-weight: 400;
@@ -36,6 +41,7 @@
 .brandColumn {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   white-space: nowrap;
 }
 
@@ -63,17 +69,10 @@
   outline: none;
 }
 
-/* Desktop widths below the 1280 frame: shrink the wide Figma gaps/padding
-   proportionally so the columns never overflow before the mobile cut-off. */
-@media (max-width: 1279px) {
-  .inner {
-    gap: 6vw;
-    padding-left: 5vw;
-    padding-right: 5vw;
-  }
-}
-
-@media (max-width: 1179px) {
+/* Mirror the header's desktop->mobile cut-off. Below 1040px the shared
+   container shrinks below its 1000px design width, so the desktop modal is
+   retired in favour of the mobile drawer's Brands accordion. */
+@media (max-width: 1039px) {
   .panel {
     display: none;
   }

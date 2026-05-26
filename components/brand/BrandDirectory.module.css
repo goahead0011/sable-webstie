@@ -18,6 +18,8 @@
   outline: none;
 }
 
+/* Content-density reflow point, independent of the container baseline that
+   --layout-width keeps consistent with the header and Brands modal. */
 @media (max-width: 1179px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
