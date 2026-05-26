@@ -104,10 +104,6 @@ export default function Header() {
         inert={!drawerOpen}
       >
         <div className={styles.drawerTop}>
-          <Link className={styles.drawerLogo} href="/" onClick={() => setDrawerOpen(false)} aria-label="sable home">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className={styles.logoMark} src="/sable-logo.svg" alt="sable" width={104} height={20} />
-          </Link>
           <button className={styles.closeButton} type="button" onClick={() => setDrawerOpen(false)}>
             close
           </button>
