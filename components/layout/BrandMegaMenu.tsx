@@ -2,8 +2,42 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useReducer, useRef } from "react";
-import { brands } from "@/data/brands";
+import { getBrandById } from "@/data/brands";
 import styles from "@/components/layout/BrandMegaMenu.module.css";
+
+// Curated display set + column layout taken from the Brands mega-menu Figma
+// frame (node 22:20). The mega menu mirrors the frame exactly — it is not the
+// full directory (that lives at /brands). Each entry is a brand id resolved to
+// its real slug so links stay intact; column order is the frame's reading order.
+//
+// Brands are bucketed by leading initial: items in a group sit tight together,
+// and the blank line the frame shows whenever the initial changes is rendered
+// as margin between groups (see .brandGroup in the stylesheet) — not <br />.
+type BrandGroup = { initial: string; brandIds: readonly string[] };
+
+const MENU_COLUMNS: readonly (readonly BrandGroup[])[] = [
+  [
+    { initial: "A", brandIds: ["abelia-edoward-goucha", "av-vattev"] },
+    { initial: "C", brandIds: ["commission"] },
+    { initial: "E", brandIds: ["edward-cuming"] },
+    { initial: "G", brandIds: ["gabriela-coll-garments", "gimaguas"] }
+  ],
+  [
+    { initial: "H", brandIds: ["helmut-lang", "hodakova"] },
+    { initial: "J", brandIds: ["johanna-parv"] },
+    { initial: "K", brandIds: ["kiko-kostadinov"] },
+    { initial: "L", brandIds: ["lea-boberg"] }
+  ],
+  [
+    { initial: "M", brandIds: ["mainline", "meta-campania-collective"] },
+    { initial: "N", brandIds: ["natasha-zinko"] },
+    { initial: "P", brandIds: ["paloma-wool"] }
+  ],
+  [
+    { initial: "S", brandIds: ["super-yaya"] },
+    { initial: "U", brandIds: ["umber-postpast"] }
+  ]
+];
 
 // Two orthogonal facts so "pinned AND pointer-inside" is representable:
 // - visible: opened by hover (pointer)
@@ -167,18 +201,29 @@ export default function BrandMegaMenu({ triggerClassName }: BrandMegaMenuProps) 
         onBlur={handleBlur}
       >
         <div className={styles.inner}>
-          <Link href="/brands" className={styles.allBrands} onClick={handleNavigate}>
-            all brands
-          </Link>
-          {brands.map((brand) => (
-            <Link
-              key={brand.id}
-              href={`/brands/${brand.slug}`}
-              className={styles.link}
-              onClick={handleNavigate}
-            >
-              {brand.name}
-            </Link>
+          {MENU_COLUMNS.map((column) => (
+            <div key={column[0].initial} className={styles.brandColumn}>
+              {column.map((group) => (
+                <div key={group.initial} className={styles.brandGroup}>
+                  {group.brandIds.map((id) => {
+                    const brand = getBrandById(id);
+                    if (!brand) {
+                      return null;
+                    }
+                    return (
+                      <Link
+                        key={brand.id}
+                        href={`/brands/${brand.slug}`}
+                        className={styles.brandLink}
+                        onClick={handleNavigate}
+                      >
+                        {brand.name}
+                      </Link>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
           ))}
         </div>
       </nav>

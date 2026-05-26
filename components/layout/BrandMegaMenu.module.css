@@ -1,10 +1,12 @@
+/* Full-width panel anchored beneath the header bar. Geometry mirrors the
+   Brands mega-menu Figma frame (node 22:20, 1280px canvas): four content-width
+   columns, 160px gaps, 140/143px side padding, 20/40px top/bottom padding. */
 .panel {
   position: absolute;
   top: var(--header-height);
   left: 0;
   right: 0;
   z-index: 35;
-  min-height: 230px;
   background: var(--color-page);
   opacity: 0;
   pointer-events: none;
@@ -19,32 +21,56 @@
 }
 
 .inner {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  column-gap: 48px;
-  row-gap: 14px;
-  width: min(var(--content-max), calc(100vw - 2 * var(--page-gutter)));
+  display: flex;
+  align-items: flex-start;
+  gap: 160px;
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
-  padding-top: 20px;
-  align-content: start;
+  padding: 20px 143px 40px 140px;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 400;
 }
 
-.allBrands {
-  grid-column: 1 / -1;
-  font-weight: 700;
+.brandColumn {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+/* One alphabet bucket. Items inside sit tight (line-height only). The frame
+   leaves a blank line whenever the leading initial changes, so every group
+   after the first gets one line of top margin — the first group gets none. */
+.brandGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandGroup + .brandGroup {
+  margin-top: 17px;
+}
+
+.brandLink {
+  font-weight: 400;
   line-height: 1.2;
+  color: var(--color-text);
 }
 
-.link {
-  line-height: 1.2;
-}
-
-.link:hover,
-.link:focus-visible,
-.allBrands:hover,
-.allBrands:focus-visible {
+.brandLink:hover,
+.brandLink:focus-visible {
   font-weight: 700;
   outline: none;
+}
+
+/* Desktop widths below the 1280 frame: shrink the wide Figma gaps/padding
+   proportionally so the columns never overflow before the mobile cut-off. */
+@media (max-width: 1279px) {
+  .inner {
+    gap: 6vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
 }
 
 @media (max-width: 1179px) {

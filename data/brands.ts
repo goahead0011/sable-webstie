@@ -1,6 +1,7 @@
 import type { Brand } from "@/types/domain";
 
 export const brands: Brand[] = [
+  { id: "abelia-edoward-goucha", slug: "abelia-edoward-goucha", name: "Abelia Edoward Goucha" },
   {
     id: "av-vattev",
     slug: "a-v-vattev",
@@ -51,7 +52,9 @@ export const brands: Brand[] = [
   },
   { id: "rier", slug: "rier", name: "Rier" },
   { id: "sunflower", slug: "sunflower", name: "Sunflower" },
+  { id: "super-yaya", slug: "super-yaya", name: "Super Yaya" },
   { id: "toogood", slug: "toogood", name: "Toogood" },
+  { id: "umber-postpast", slug: "umber-postpast", name: "Umber Postpast" },
   { id: "vein", slug: "vein", name: "Vein" }
 ];
 

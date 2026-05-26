@@ -29,6 +29,12 @@ _backup/
 .omc/
 .omx/
 
-# env
+# env / secrets — never commit credentials or private keys
 .env
-.env.local
+.env.*
+!.env.example
+*.key
+*.pfx
+*.p12
+secrets.json
+credentials.json
