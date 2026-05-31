@@ -1,23 +1,14 @@
 // Cutout product image pipeline.
 //
-// Manual cutout PNGs live in assets/cutouts/<brand-slug>/<product name>.png,
-// where the FILE NAME is the product name. This script normalises each cutout
-// to a consistent transparent storefront image and derives a human product
-// name + url slug from the file name (it does NOT renumber to 001/002).
+// Source images live in assets/cutouts/<brand>/<product?>/<image>.
+// Files directly inside a brand folder are single-image products. Nested
+// folders are multi-image products: Front/Topview becomes the storefront
+// image and Back/Sideview becomes the hover image when available.
 //
-// Output: public/products/<brand-slug>/<product-slug>.webp
-// Manifest: data/product-images.ts  (brandSlug, productName, productSlug, imagePath)
+// Output: public/products/<brand-slug>/<source-relative-path>.webp
+// Manifest: data/product-images.ts
 //
-// Originals in assets/cutouts/ are only ever READ — never modified or deleted.
-//
-//   npm run process:cutouts
-//
-// Output spec (Figma 4:5 product card, transparent cutouts):
-//   format      webp (alpha preserved — never flattened, never JPG)
-//   size        960x1200  (4:5)
-//   fit         contain   (garment never cropped)
-//   background  transparent  (padding stays see-through)
-//   quality     85
+// Source files are only ever read. Dimensions are preserved exactly.
 
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
@@ -30,18 +21,8 @@ const ROOT = path.resolve(SCRIPT_DIR, "..");
 const INPUT_DIR = path.join(ROOT, "assets", "cutouts");
 const OUTPUT_DIR = path.join(ROOT, "public", "products");
 const MANIFEST_FILE = path.join(ROOT, "data", "product-images.ts");
-
 const SUPPORTED_EXT = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif"]);
 
-const OUTPUT = {
-  width: 960,
-  height: 1200,
-  quality: 85,
-  // Fully transparent padding for the contain fit.
-  background: { r: 0, g: 0, b: 0, alpha: 0 }
-};
-
-// Strip any run of trailing image extensions, e.g. "dress.jpg.png" -> "dress".
 function stripExtensions(fileName) {
   let name = fileName;
   let ext = path.extname(name).toLowerCase();
@@ -52,17 +33,6 @@ function stripExtensions(fileName) {
   return name;
 }
 
-// "Flora-Knit-Top" / "FLORA KNIT TOP" -> "Flora Knit Top".
-// Separators (-, _) become spaces; each word's first letter is capitalised.
-function toProductName(base) {
-  return base
-    .replace(/[_-]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .replace(/\S+/g, (word) => word.toLowerCase().replace(/[a-z]/, (c) => c.toUpperCase()));
-}
-
-// "Flora Knit Top" -> "flora-knit-top".
 function slugify(value) {
   return value
     .normalize("NFKD")
@@ -71,80 +41,152 @@ function slugify(value) {
     .replace(/^-+|-+$/g, "");
 }
 
-async function listCutouts(dir) {
-  const entries = await readdir(dir, { withFileTypes: true });
-  return entries
-    .filter((entry) => entry.isFile() && SUPPORTED_EXT.has(path.extname(entry.name).toLowerCase()))
-    .map((entry) => entry.name)
-    .sort((a, b) => a.localeCompare(b, "en"));
+function stripCatalogMetadata(value) {
+  return value
+    .replace(/_(?:women|men|man|unisex)_(?:upper|outer|pants|skirt|skirts|skrts|dress|shoes|bag|belts)$/i, "")
+    .replace(/_(?:women|men|man|unisex)$/i, "")
+    .replace(/_(?:upper|outer|pants|skirt|skirts|skrts|dress|shoes|bag|belts)$/i, "")
+    .replace(/_바지$/u, "")
+    .trim();
 }
 
-async function processBrand(brandSlug) {
-  const sourceDir = path.join(INPUT_DIR, brandSlug);
-  const files = await listCutouts(sourceDir);
-  if (files.length === 0) {
-    return [];
+function toProductName(value) {
+  return stripCatalogMetadata(value)
+    .replace(/^_+|_+$/g, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\S+/g, (word) => word.toLowerCase().replace(/[a-z]/, (letter) => letter.toUpperCase()));
+}
+
+function toBrandSlug(folderName) {
+  return slugify(folderName);
+}
+
+function isImageFile(name) {
+  return SUPPORTED_EXT.has(path.extname(name).toLowerCase());
+}
+
+function isPreferredPrimary(fileName) {
+  return /(?:^|[_ -])(front|topview)$/i.test(stripExtensions(fileName));
+}
+
+function isPreferredHover(fileName) {
+  return /(?:^|[_ -])(back|sideview)$/i.test(stripExtensions(fileName));
+}
+
+function imagePreference(fileName, matcher) {
+  const base = stripExtensions(fileName);
+  if (matcher(fileName)) {
+    return /(?:^|[_ -])front$/i.test(base) || /(?:^|[_ -])back$/i.test(base) ? 0 : 1;
+  }
+  return 2;
+}
+
+function publicUrl(brandSlug, relativePath) {
+  return `/products/${brandSlug}/${relativePath.split(path.sep).map(encodeURIComponent).join("/")}`;
+}
+
+async function listEntries(dir) {
+  return (await readdir(dir, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name, "en"));
+}
+
+async function convertImage(sourceFile, outputFile) {
+  await mkdir(path.dirname(outputFile), { recursive: true });
+  await sharp(sourceFile).webp({ quality: 85 }).toFile(outputFile);
+}
+
+async function processProductFiles({ brandSlug, sourceDir, relativeDir = "", productBase, files }) {
+  const imageFiles = files.filter((file) => isImageFile(file.name));
+  if (imageFiles.length === 0) {
+    return null;
   }
 
-  const outDir = path.join(OUTPUT_DIR, brandSlug);
-  // Replace only this brand's OUTPUT folder. assets/ is never touched.
-  await rm(outDir, { recursive: true, force: true });
-  await mkdir(outDir, { recursive: true });
+  const converted = [];
+  for (const file of imageFiles) {
+    const outputName = `${stripExtensions(file.name).trim()}.webp`;
+    const relativeOutput = path.join(relativeDir, outputName);
+    await convertImage(path.join(sourceDir, file.name), path.join(OUTPUT_DIR, brandSlug, relativeOutput));
+    converted.push({ sourceName: file.name, relativeOutput });
+  }
 
-  const entries = [];
-  const usedSlugs = new Map();
+  const primary =
+    converted
+      .filter((image) => isPreferredPrimary(image.sourceName))
+      .sort((a, b) => imagePreference(a.sourceName, isPreferredPrimary) - imagePreference(b.sourceName, isPreferredPrimary))[0] ??
+    converted.find((image) => !isPreferredHover(image.sourceName)) ??
+    converted[0];
+  const hover = converted
+    .filter((image) => isPreferredHover(image.sourceName))
+    .sort((a, b) => imagePreference(a.sourceName, isPreferredHover) - imagePreference(b.sourceName, isPreferredHover))[0];
+  const cleanBase = stripCatalogMetadata(productBase);
 
-  for (const fileName of files) {
-    const base = stripExtensions(fileName);
-    const productName = toProductName(base);
+  return {
+    brandSlug,
+    productName: toProductName(cleanBase),
+    productSlug: slugify(cleanBase) || "item",
+    imagePath: publicUrl(brandSlug, primary.relativeOutput),
+    ...(hover ? { hoverImagePath: publicUrl(brandSlug, hover.relativeOutput) } : {})
+  };
+}
 
-    // Keep product slugs unique within the brand (-2, -3 on collision).
-    let productSlug = slugify(base) || "item";
-    const seen = usedSlugs.get(productSlug) ?? 0;
-    usedSlugs.set(productSlug, seen + 1);
-    if (seen > 0) {
-      productSlug = `${productSlug}-${seen + 1}`;
+async function processBrand(folderName) {
+  const brandSlug = toBrandSlug(folderName);
+  const brandDir = path.join(INPUT_DIR, folderName);
+  const entries = await listEntries(brandDir);
+  const products = [];
+
+  for (const entry of entries) {
+    if (entry.isFile() && isImageFile(entry.name)) {
+      const product = await processProductFiles({
+        brandSlug,
+        sourceDir: brandDir,
+        productBase: stripExtensions(entry.name),
+        files: [entry]
+      });
+      if (product) {
+        products.push(product);
+      }
     }
 
-    const outName = `${productSlug}.webp`;
-    const imagePath = `/products/${brandSlug}/${outName}`;
-
-    try {
-      await sharp(path.join(sourceDir, fileName))
-        .resize(OUTPUT.width, OUTPUT.height, {
-          fit: "contain",
-          background: OUTPUT.background
-        })
-        .webp({ quality: OUTPUT.quality })
-        .toFile(path.join(outDir, outName));
-
-      entries.push({ brandSlug, productName, productSlug, imagePath });
-    } catch (error) {
-      console.warn(`  ! skipped ${brandSlug}/${fileName}: ${error.message}`);
+    if (entry.isDirectory()) {
+      const productDir = path.join(brandDir, entry.name);
+      const product = await processProductFiles({
+        brandSlug,
+        sourceDir: productDir,
+        relativeDir: entry.name,
+        productBase: entry.name,
+        files: await listEntries(productDir)
+      });
+      if (product) {
+        products.push(product);
+      }
     }
   }
 
-  return entries;
+  return products;
 }
 
 function renderManifest(entries) {
   const rows = entries
-    .map(
-      (entry) =>
+    .map((entry) => {
+      const hover = entry.hoverImagePath ? `, hoverImagePath: ${JSON.stringify(entry.hoverImagePath)}` : "";
+      return (
         `  { brandSlug: ${JSON.stringify(entry.brandSlug)}, productName: ${JSON.stringify(entry.productName)}, ` +
-        `productSlug: ${JSON.stringify(entry.productSlug)}, imagePath: ${JSON.stringify(entry.imagePath)} }`
-    )
+        `productSlug: ${JSON.stringify(entry.productSlug)}, imagePath: ${JSON.stringify(entry.imagePath)}${hover} }`
+      );
+    })
     .join(",\n");
 
   return (
-    "// AUTO-GENERATED by scripts/process-cutout-images.mjs — do not edit by hand.\n" +
-    `// Processed cutout images (transparent WebP, ${OUTPUT.width}x${OUTPUT.height}, 4:5).\n` +
-    "// Product name + slug are derived from each source file name.\n\n" +
+    "// AUTO-GENERATED by scripts/process-cutout-images.mjs - do not edit by hand.\n" +
+    "// Transparent WebP storefront images. Source dimensions are preserved.\n\n" +
     "export type ProductImage = {\n" +
     "  brandSlug: string;\n" +
     "  productName: string;\n" +
     "  productSlug: string;\n" +
     "  imagePath: string;\n" +
+    "  hoverImagePath?: string;\n" +
     "};\n\n" +
     "export const productImages: ProductImage[] = [\n" +
     `${rows}\n` +
@@ -154,34 +196,26 @@ function renderManifest(entries) {
 
 async function main() {
   if (!existsSync(INPUT_DIR)) {
-    console.error(`assets/cutouts/ not found at ${INPUT_DIR}`);
-    process.exit(1);
+    throw new Error(`assets/cutouts/ not found at ${INPUT_DIR}`);
   }
 
-  const dirents = await readdir(INPUT_DIR, { withFileTypes: true });
-  const brandSlugs = dirents
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name)
-    .sort((a, b) => a.localeCompare(b, "en"));
-
-  const allEntries = [];
-  for (const brandSlug of brandSlugs) {
-    const entries = await processBrand(brandSlug);
-    if (entries.length > 0) {
-      allEntries.push(...entries);
-      console.log(`✓ ${brandSlug}: ${entries.length} cutout(s)`);
-    } else {
-      console.log(`· ${brandSlug}: no cutouts, skipped`);
-    }
+  if (path.dirname(OUTPUT_DIR) !== path.join(ROOT, "public")) {
+    throw new Error(`Refusing to replace unexpected output directory: ${OUTPUT_DIR}`);
   }
 
-  await mkdir(path.dirname(MANIFEST_FILE), { recursive: true });
-  await writeFile(MANIFEST_FILE, renderManifest(allEntries), "utf8");
+  await rm(OUTPUT_DIR, { recursive: true, force: true });
+  await mkdir(OUTPUT_DIR, { recursive: true });
 
-  console.log(
-    `\nDone. ${allEntries.length} product image(s) across ${brandSlugs.length} brand folder(s).` +
-      `\nManifest: ${path.relative(ROOT, MANIFEST_FILE)}`
-  );
+  const brandFolders = (await listEntries(INPUT_DIR)).filter((entry) => entry.isDirectory()).map((entry) => entry.name);
+  const products = [];
+  for (const folderName of brandFolders) {
+    const brandProducts = await processBrand(folderName);
+    products.push(...brandProducts);
+    console.log(`${toBrandSlug(folderName)}: ${brandProducts.length} product image set(s)`);
+  }
+
+  await writeFile(MANIFEST_FILE, renderManifest(products), "utf8");
+  console.log(`Done. ${products.length} product image set(s), original dimensions preserved.`);
 }
 
 main().catch((error) => {

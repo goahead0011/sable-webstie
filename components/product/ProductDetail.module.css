@@ -11,6 +11,7 @@
 .image {
   width: 560px;
   aspect-ratio: 4 / 5;
+  object-fit: contain;
 }
 
 .info {

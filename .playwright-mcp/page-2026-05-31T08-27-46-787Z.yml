@@ -1,0 +1,120 @@
+- generic [ref=e5]:
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e48]:
+        - application "Figma Design 1개의 항목 선택됨" [active] [ref=e56]
+        - status [ref=e57]: 현재 보드에 대한 스크린 리더 지원이 비활성화되어 있습니다. 접근성 설정에서 사용 설정하려면 Ctrl+K을(를) 누르고, 접근성 설정을 입력한 후 Enter 키를 누릅니다. 사용 가능한 키보드 단축키를 보려면 Ctrl+Shift+물음표을(를) 입력하세요.
+        - generic:
+          - generic:
+            - generic:
+              - region "캔버스 댓글 영역":
+                - button "새 댓글 만들기"
+        - generic:
+          - region "왼쪽 사이드바":
+            - generic [ref=e58]:
+              - button "메인 메뉴" [ref=e59]:
+                - img
+              - button "자삼통일(이)라는 파일의 UI 확장" [ref=e60]:
+                - generic:
+                  - generic:
+                    - generic:
+                      - button "자삼통일, 파일 이름": 자삼통일
+                      - generic: 파일 이름
+                - generic:
+                  - generic:
+                    - status
+                - generic:
+                  - img
+        - generic [ref=e63]:
+          - button "멀티플레이어 도구" [ref=e67]:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - img
+                    - generic:
+                      - generic:
+                        - img
+            - img [ref=e70]
+          - button "77%, 확대/축소 및 보기 옵션" [ref=e74]:
+            - generic [ref=e75]:
+              - generic [ref=e76]: 77%
+              - img [ref=e78]
+          - generic [ref=e81]:
+            - generic [ref=e82]:
+              - button "프레젠테이션" [ref=e83]:
+                - generic:
+                  - img
+              - button "프로토타입 보기" [ref=e84]:
+                - generic:
+                  - img
+            - button "공유하기" [ref=e86]:
+              - generic:
+                - generic:
+                  - generic: 공유하기
+      - generic:
+        - generic:
+          - generic:
+            - region "애플리케이션 도구 모음":
+              - generic [ref=e87]:
+                - toolbar "편집기" [ref=e89]:
+                  - generic [ref=e91]:
+                    - generic:
+                      - generic [ref=e94]:
+                        - generic [ref=e95]:
+                          - button "이동" [ref=e96]:
+                            - img
+                          - button "손 도구" [pressed] [ref=e97]:
+                            - img
+                          - button "댓글" [ref=e98]:
+                            - img
+                        - group "프레임" [ref=e100]:
+                          - button "프레임" [ref=e101]:
+                            - img
+                          - button "영역 도구" [ref=e102]:
+                            - generic:
+                              - img
+                        - group "직사각형" [ref=e103]:
+                          - button "직사각형" [ref=e104]:
+                            - img
+                          - button "모양 도구" [ref=e105]:
+                            - generic:
+                              - img
+                        - group "펜" [ref=e106]:
+                          - button "펜" [ref=e107]:
+                            - img
+                          - button "창작 도구" [ref=e108]:
+                            - generic:
+                              - img
+                        - button "텍스트" [ref=e109]:
+                          - img
+                        - button "작업" [ref=e110]:
+                          - img
+                      - text: 요청이 전송되었습니다
+                  - generic [ref=e115]:
+                    - checkbox "Dev Mode" [ref=e117]
+                    - img [ref=e119]
+                - generic [ref=e121]:
+                  - generic [ref=e122]: 댓글 달기, 편집, 검사 등의 기능을 이용하려면 가입하세요.
+                  - generic [ref=e123]:
+                    - button "가입" [ref=e124]:
+                      - generic:
+                        - generic:
+                          - generic: 가입
+                    - button "Google 계정으로 계속하기" [ref=e127]:
+                      - generic:
+                        - generic:
+                          - img
+                        - generic: 계속
+    - region "도움말/확대/축소 도구 모음" [ref=e27]:
+      - toolbar "도움말/확대/축소 도구 모음" [ref=e29]:
+        - button "도움말" [ref=e31]:
+          - img
+  - generic:
+    - status
+    - group [ref=e129]:
+      - alert [ref=e131]
+      - alert [ref=e133]
+    - region "쿠키 관리 또는 옵트 아웃" [ref=e146]:
+      - link "쿠키 관리 또는 옵트 아웃" [ref=e147]:
+        - /url: /ko-kr/consent-preferences/

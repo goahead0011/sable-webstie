@@ -49,6 +49,8 @@ export type Product = {
   relatedProductIds?: string[];
   /** Processed storefront image (public path). Falls back to a placeholder when absent. */
   image?: string;
+  /** Optional alternate storefront image shown when a product card is hovered. */
+  hoverImage?: string;
 };
 
 export type Brand = {

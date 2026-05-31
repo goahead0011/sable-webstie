@@ -1,4 +1,5 @@
 import { getBrandBySlug } from "@/data/brands";
+import newCatalogProductsData from "@/data/new-products.json";
 import { productImages } from "@/data/product-images";
 import type { Audience, Product, ProductCategory, ProductStatus, ProductType } from "@/types/domain";
 
@@ -12,8 +13,11 @@ type CatalogProductInput = {
   sizes?: readonly string[];
   description?: string;
   sourceImage: string;
+  imageProductSlug?: string;
   status: ProductStatus;
 };
+
+type NewCatalogProductInput = Omit<CatalogProductInput, "categories">;
 
 type ProductImageKey = `${string}/${string}`;
 
@@ -66,15 +70,31 @@ function getProductSlug(entry: CatalogProductInput, index: number) {
   return productSlug ? `${entry.brandSlug}-${productSlug}` : `${entry.brandSlug}-${String(index + 1).padStart(3, "0")}`;
 }
 
-const imagePathByKey = new Map<ProductImageKey, string>(
-  productImages.map((image) => [imageKey(image.brandSlug, image.productSlug), image.imagePath])
-);
+function getDefaultCategories(audience: Audience): readonly ProductCategory[] {
+  if (audience === "women") {
+    return NEW_IN_WOMEN;
+  }
 
-function getImagePath(brandSlug: string, sourceImage: string) {
-  return imagePathByKey.get(imageKey(brandSlug, getImageProductSlug(sourceImage)));
+  if (audience === "men") {
+    return NEW_IN_MEN;
+  }
+
+  return NEW_IN;
 }
 
-const catalogProducts = [
+function getImageLookupSlug(entry: CatalogProductInput) {
+  return entry.imageProductSlug ?? getImageProductSlug(entry.sourceImage);
+}
+
+const imageByKey = new Map<ProductImageKey, (typeof productImages)[number]>(
+  productImages.map((image) => [imageKey(image.brandSlug, image.productSlug), image])
+);
+
+function getProductImage(entry: CatalogProductInput) {
+  return imageByKey.get(imageKey(entry.brandSlug, getImageLookupSlug(entry)));
+}
+
+const baseCatalogProducts = [
   {
     name: "Ordinary Shirt Chino",
     brandSlug: "abelia-edoward-goucha",
@@ -539,15 +559,28 @@ const catalogProducts = [
   }
 ] satisfies readonly CatalogProductInput[];
 
-export const products: Product[] = catalogProducts.map((entry, index) => {
+const newCatalogProducts = (newCatalogProductsData as NewCatalogProductInput[]).map(
+  (entry): CatalogProductInput => ({
+    ...entry,
+    categories: getDefaultCategories(entry.audience)
+  })
+);
+
+const catalogProducts: readonly CatalogProductInput[] = [...baseCatalogProducts, ...newCatalogProducts];
+
+export const products: Product[] = catalogProducts.flatMap((entry, index) => {
+  if (entry.brandSlug === "natasha-zinko") {
+    return [];
+  }
+
   const brand = getBrandBySlug(entry.brandSlug);
-  const image = getImagePath(entry.brandSlug, entry.sourceImage);
+  const image = getProductImage(entry);
 
   if (!brand) {
     throw new Error(`Unknown brand slug in product catalog: ${entry.brandSlug}`);
   }
 
-  return {
+  return [{
     id: `p-${String(index + 1).padStart(3, "0")}`,
     slug: getProductSlug(entry, index),
     name: entry.name,
@@ -563,14 +596,16 @@ export const products: Product[] = catalogProducts.map((entry, index) => {
     sizes: [...(entry.sizes ?? DEFAULT_SIZES)],
     sourceImage: entry.sourceImage,
     status: entry.status,
-    ...(image ? { image } : {})
-  };
+    ...(image ? { image: image.imagePath } : {}),
+    ...(image?.hoverImagePath ? { hoverImage: image.hoverImagePath } : {})
+  }];
 });
 
-const usedImageKeys = new Set(catalogProducts.map((entry) => imageKey(entry.brandSlug, getImageProductSlug(entry.sourceImage))));
+const visibleCatalogProducts = catalogProducts.filter((entry) => entry.brandSlug !== "natasha-zinko");
+const usedImageKeys = new Set(visibleCatalogProducts.map((entry) => imageKey(entry.brandSlug, getImageLookupSlug(entry))));
 
-export const missingProductImages = catalogProducts
-  .filter((entry) => !getImagePath(entry.brandSlug, entry.sourceImage))
+export const missingProductImages = visibleCatalogProducts
+  .filter((entry) => !getProductImage(entry))
   .map((entry) => `${entry.brandSlug}: ${entry.name} (${entry.sourceImage})`);
 
 export const unusedProductImages = productImages

@@ -21,9 +21,38 @@
   display: block;
   width: 320px;
   height: 400px;
-  /* The processed image is already 4:5 with baked-in padding, so cover fills
-     the equally-4:5 card with no crop. Harmless on the placeholder <div>. */
-  object-fit: cover;
+  object-fit: contain;
+}
+
+.imageFrame {
+  position: relative;
+  display: block;
+  width: 320px;
+  height: 400px;
+}
+
+.imageFrame .image {
+  position: absolute;
+  inset: 0;
+}
+
+.primaryImage,
+.hoverImage {
+  transition: opacity var(--motion-fast) ease;
+}
+
+.hoverImage {
+  opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .primaryImage {
+    opacity: 0;
+  }
+
+  .card:hover .hoverImage {
+    opacity: 1;
+  }
 }
 
 .meta {
@@ -61,14 +90,19 @@
 @media (max-width: 1179px) {
   .card,
   .imageButton,
-  .image {
+  .image,
+  .imageFrame {
     width: 100%;
   }
 
   .imageButton,
-  .image {
+  .imageFrame {
     height: auto;
     aspect-ratio: 4 / 5;
+  }
+
+  .image {
+    height: 100%;
   }
 }
 

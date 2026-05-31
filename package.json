@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run audit:images",
     "build": "next build",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
+    "audit:images": "node scripts/audit-product-images.mjs",
     "process:cutouts": "node scripts/process-cutout-images.mjs"
   },
   "dependencies": {

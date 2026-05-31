@@ -31,12 +31,18 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <article className={`${styles.card} ${expanded ? styles.expanded : ""}`}>
       <button className={styles.imageButton} type="button" onClick={handleImageClick} aria-label={`View ${product.name}`}>
-        {product.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img className={styles.image} src={product.image} alt={product.name} loading="lazy" />
-        ) : (
-          <PlaceholderImage tone={product.placeholderTone} label={product.name} className={styles.image} />
-        )}
+        <span className={styles.imageFrame}>
+          {product.image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img className={`${styles.image} ${styles.primaryImage}`} src={product.image} alt={product.name} loading="lazy" />
+          ) : (
+            <PlaceholderImage tone={product.placeholderTone} label={product.name} className={styles.image} />
+          )}
+          {product.hoverImage ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img className={`${styles.image} ${styles.hoverImage}`} src={product.hoverImage} alt="" loading="lazy" />
+          ) : null}
+        </span>
       </button>
       <div className={styles.meta}>
         <Link className={styles.name} href={href}>

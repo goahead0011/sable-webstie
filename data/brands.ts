@@ -8,10 +8,10 @@ export const brands: Brand[] = [
     website: "https://abeliaedowardgoucha.com/"
   },
   {
-    id: "natasha-zinko",
-    slug: "natasha-zinko",
-    name: "Natasha Zinko",
-    website: "https://natashazinko.com"
+    id: "camiel-fortgens",
+    slug: "camiel-fortgens",
+    name: "Camiel Fortgens",
+    website: "https://www.camielfortgens.com"
   },
   { id: "gimaguas", slug: "gimaguas", name: "Gimaguas", website: "https://gimaguas.com" },
   {
@@ -58,7 +58,7 @@ export type BrandGroup = { initial: string; brandIds: readonly string[] };
 export const brandMenuColumns: readonly (readonly BrandGroup[])[] = [
   [
     { initial: "A", brandIds: ["abelia-edoward-goucha", "a-v-vattev"] },
-    { initial: "C", brandIds: ["commission"] },
+    { initial: "C", brandIds: ["camiel-fortgens", "commission"] },
     { initial: "E", brandIds: ["edward-cuming"] },
     { initial: "G", brandIds: ["gabriela-coll-garments", "gimaguas"] }
   ],
@@ -70,7 +70,6 @@ export const brandMenuColumns: readonly (readonly BrandGroup[])[] = [
   ],
   [
     { initial: "M", brandIds: ["mainline", "meta-campania-collective"] },
-    { initial: "N", brandIds: ["natasha-zinko"] },
     { initial: "P", brandIds: ["paloma-wool", "ponder-er"] }
   ],
   [
