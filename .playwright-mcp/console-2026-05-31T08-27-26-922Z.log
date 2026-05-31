@@ -36,3 +36,4 @@
     at async g.validate (https://www.figma.com/webpack-artifacts/assets/4513-8a442a42ee435913.min.js.br:1397:5067)
     at async h.fetchObject (https://www.figma.com/webpack-artifacts/assets/4513-8a442a42ee435913.min.js.br:238:181065)
     at async f (https://www.figma.com/webpack-artifacts/assets/4513-8a442a42ee435913.min.js.br:238:160424)
+[ 3820522ms] [LOG] [Livegraph] Connection closed. Code: 4001, reason: connection_lifetime @ https://www.figma.com/webpack-artifacts/assets/vendor-core-1830223d6f0ba72d.min.js.br:53

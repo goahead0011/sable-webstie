@@ -3,7 +3,9 @@
 // Source images live in assets/cutouts/<brand>/<product?>/<image>.
 // Files directly inside a brand folder are single-image products. Nested
 // folders are multi-image products: Front/Topview becomes the storefront
-// image and Back/Sideview becomes the hover image when available.
+// image and Back/Sideview becomes the hover image when available. If no
+// Back/Sideview file exists but the folder still has 2+ images, the next
+// non-primary image is used as the hover so every multi-image product hovers.
 //
 // Output: public/products/<brand-slug>/<source-relative-path>.webp
 // Manifest: data/product-images.ts
@@ -116,9 +118,11 @@ async function processProductFiles({ brandSlug, sourceDir, relativeDir = "", pro
       .sort((a, b) => imagePreference(a.sourceName, isPreferredPrimary) - imagePreference(b.sourceName, isPreferredPrimary))[0] ??
     converted.find((image) => !isPreferredHover(image.sourceName)) ??
     converted[0];
-  const hover = converted
-    .filter((image) => isPreferredHover(image.sourceName))
-    .sort((a, b) => imagePreference(a.sourceName, isPreferredHover) - imagePreference(b.sourceName, isPreferredHover))[0];
+  const hover =
+    converted
+      .filter((image) => isPreferredHover(image.sourceName))
+      .sort((a, b) => imagePreference(a.sourceName, isPreferredHover) - imagePreference(b.sourceName, isPreferredHover))[0] ??
+    converted.find((image) => image !== primary);
   const cleanBase = stripCatalogMetadata(productBase);
 
   return {
