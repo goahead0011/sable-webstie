@@ -18,11 +18,35 @@ Do not modify Header, BrandMegaMenu, SearchOverlay, ProductGrid layout, Cart log
 - Prices are integer KRW values. Display formatting belongs to the UI.
 - ponder.er must use the slug `ponder-er`.
 - All products are included in `new-in` by default.
-- Explicit `Women` and `Men` filename metadata adds the corresponding collection. `Unisex` stays in `new-in` only.
+- Explicit `Women` and `Men` filename metadata adds the corresponding collection.
+- `Unisex` products appear on **both** the Women and Men listing pages (matched by audience), and remain in `new-in`.
 - Nested product folder suffixes such as `_Women_Skirt`, `_Men_Outer`, and `_Unisex_Pants` are metadata. Remove them from display names and store them as audience and product type.
 - Source cutout filenames must not be renamed or deleted.
 - Web storefront images are generated as WebP without resizing.
 - For nested image folders, `Front` or `Topview` is the representative image. `Back` or `Sideview` is shown on product-card hover when present.
+- Single-image products (one source photo) keep showing that same image on hover — the card never goes blank. The hover swap only happens when a product has 2+ images.
+
+## Category Filter Groups
+
+The Women and Men nav items open a hover modal (same behaviour as the Brands modal) that filters the listing by clothing type via `?category=<group>`. Fine-grained `Product Type` values are collapsed into the largest sensible buckets:
+
+| Group key (`?category=`) | Label | Product Types included |
+|---|---|---|
+| `outerwear` | Outer | jacket (incl. coats, blazers, bombers) |
+| `tops` | Top | top, shirt |
+| `bottoms` | Bottom | pants (incl. jeans, shorts, trousers) |
+| `dress` | Dress | dress |
+| `skirt` | Skirt | skirt |
+| `shoes` | Shoes | shoes |
+| `bags` | Bag | bag |
+| `accessories` | Accessories | accessory (incl. belts) |
+
+Rules for the menus:
+
+- Every menu starts with **All** (no filter; links to the bare `/women` or `/men`).
+- A group is shown only when that collection has at least one matching product, so menus never offer an empty filter.
+- Women and Men do not have to share the same groups. With the current catalog: **Women** shows All · Outer · Top · Bottom · Dress · Skirt · Shoes · Bag · Accessories, and **Men** shows All · Outer · Top · Bottom · Shoes · Bag (no Dress/Skirt/Accessories — none exist for men yet).
+- `Product Type = TBD` items have no group and only appear under **All**.
 
 ---
 

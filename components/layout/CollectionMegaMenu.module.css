@@ -1,0 +1,58 @@
+/* Mirrors BrandMegaMenu: a full-width panel anchored beneath the header bar,
+   with its content aligned to the shared --layout-width container. The Women
+   and Men nav items reuse this to offer an "All + clothing type" filter menu. */
+.panel {
+  position: absolute;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  z-index: 35;
+  background: var(--color-page);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity var(--motion-fast) ease, transform var(--motion-fast) ease;
+}
+
+.panelOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 12px;
+  width: var(--layout-width);
+  margin: 0 auto;
+  padding: 20px 0 40px;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.categoryLink {
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.categoryLink:hover,
+.categoryLink:focus-visible {
+  font-weight: 700;
+  outline: none;
+}
+
+.categoryLinkActive {
+  font-weight: 700;
+}
+
+/* Mirror the header's desktop->mobile cut-off; below 1040px the mobile drawer
+   takes over (see Header.module.css and BrandMegaMenu.module.css). */
+@media (max-width: 1039px) {
+  .panel {
+    display: none;
+  }
+}

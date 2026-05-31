@@ -46,11 +46,13 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .card:hover .primaryImage {
+  /* Only fade the primary out when a distinct hover image exists. Single-image
+     products keep showing their one image on hover instead of going blank. */
+  .card.hasHover:hover .primaryImage {
     opacity: 0;
   }
 
-  .card:hover .hoverImage {
+  .card.hasHover:hover .hoverImage {
     opacity: 1;
   }
 }

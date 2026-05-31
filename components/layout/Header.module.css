@@ -189,6 +189,26 @@
   color: var(--color-muted);
 }
 
+/* Women/Men groups in the mobile drawer: the collection link followed by its
+   indented clothing-type filters (the desktop hover menu is hidden < 1040px). */
+.drawerGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.drawerCategories {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drawerCategories a {
+  display: block;
+  padding: 3px 0 3px 16px;
+  color: var(--color-muted);
+}
+
 /* Desktop nav is laid out for the full 1000px content container. Below
    1040px (--content-max + 2 * --page-gutter) that container starts shrinking,
    so the desktop nav would compress — switch to the mobile drawer instead of

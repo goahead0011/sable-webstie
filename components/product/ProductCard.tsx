@@ -29,7 +29,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   }
 
   return (
-    <article className={`${styles.card} ${expanded ? styles.expanded : ""}`}>
+    <article className={`${styles.card} ${product.hoverImage ? styles.hasHover : ""} ${expanded ? styles.expanded : ""}`}>
       <button className={styles.imageButton} type="button" onClick={handleImageClick} aria-label={`View ${product.name}`}>
         <span className={styles.imageFrame}>
           {product.image ? (

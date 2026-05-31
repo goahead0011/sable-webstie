@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 import { brandMenuOrder, getBrandById } from "@/data/brands";
 import { useCart } from "@/components/cart/CartProvider";
 import BrandMegaMenu from "@/components/layout/BrandMegaMenu";
+import CollectionMegaMenu from "@/components/layout/CollectionMegaMenu";
 import SearchOverlay from "@/components/layout/SearchOverlay";
+import type { CategoryMenuItem } from "@/lib/filters";
 import styles from "@/components/layout/Header.module.css";
 
 const navItems = [
@@ -19,7 +22,41 @@ const navItems = [
   { label: "information", href: "/information", key: "information" }
 ];
 
-export default function Header() {
+type HeaderProps = {
+  womenCategories: CategoryMenuItem[];
+  menCategories: CategoryMenuItem[];
+};
+
+// Desktop Women/Men hover menus. Split out so the useSearchParams() call sits
+// behind a Suspense boundary and never forces the whole tree to client-render.
+function CollectionMenus({ womenCategories, menCategories }: HeaderProps) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category") ?? undefined;
+
+  return (
+    <>
+      <CollectionMegaMenu
+        label="women"
+        baseHref="/women"
+        categories={womenCategories}
+        isActiveCollection={pathname === "/women"}
+        activeCategory={category}
+        triggerClassName={styles.navLink}
+      />
+      <CollectionMegaMenu
+        label="men"
+        baseHref="/men"
+        categories={menCategories}
+        isActiveCollection={pathname === "/men"}
+        activeCategory={category}
+        triggerClassName={styles.navLink}
+      />
+    </>
+  );
+}
+
+export default function Header({ womenCategories, menCategories }: HeaderProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -59,11 +96,39 @@ export default function Header() {
               and the absolute panel stays anchored to .header (mainNav is static). */}
           <div className={styles.mainNav}>
             <BrandMegaMenu triggerClassName={styles.navButton} />
-            {navItems.map((item) => (
-              <Link key={item.key} href={item.href} className={styles.navLink} data-label={item.label}>
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              // The women slot renders both Women and Men hover menus; the men
+              // slot is skipped so order stays new in › women › men › life …
+              if (item.key === "men") {
+                return null;
+              }
+
+              if (item.key === "women") {
+                return (
+                  <Suspense
+                    key="collection-menus"
+                    fallback={
+                      <>
+                        <Link href="/women" className={styles.navLink} data-label="women">
+                          women
+                        </Link>
+                        <Link href="/men" className={styles.navLink} data-label="men">
+                          men
+                        </Link>
+                      </>
+                    }
+                  >
+                    <CollectionMenus womenCategories={womenCategories} menCategories={menCategories} />
+                  </Suspense>
+                );
+              }
+
+              return (
+                <Link key={item.key} href={item.href} className={styles.navLink} data-label={item.label}>
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* utility nav (right group) — pushed to the content edge via margin-left:auto */}
@@ -136,11 +201,33 @@ export default function Header() {
               );
             })}
           </div>
-          {navItems.map((item) => (
-            <Link key={item.key} href={item.href} onClick={() => setDrawerOpen(false)}>
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            if (item.key === "women" || item.key === "men") {
+              const categories = item.key === "women" ? womenCategories : menCategories;
+              return (
+                <div key={item.key} className={styles.drawerGroup}>
+                  <Link href={item.href} onClick={() => setDrawerOpen(false)}>
+                    {item.label}
+                  </Link>
+                  <div className={styles.drawerCategories}>
+                    {categories
+                      .filter((category) => category.key !== "all")
+                      .map((category) => (
+                        <Link key={category.key} href={category.href} onClick={() => setDrawerOpen(false)}>
+                          {category.label}
+                        </Link>
+                      ))}
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <Link key={item.key} href={item.href} onClick={() => setDrawerOpen(false)}>
+                {item.label}
+              </Link>
+            );
+          })}
           <Link href="/login" onClick={() => setDrawerOpen(false)}>
             login
           </Link>
