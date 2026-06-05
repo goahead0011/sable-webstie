@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { brandMenuOrder, getBrandById } from "@/data/brands";
+import { useAccount } from "@/components/account/AccountProvider";
 import { useCart } from "@/components/cart/CartProvider";
 import BrandMegaMenu from "@/components/layout/BrandMegaMenu";
 import CollectionMegaMenu from "@/components/layout/CollectionMegaMenu";
@@ -60,8 +61,10 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const { profile } = useAccount();
   const { items } = useCart();
   const cartCount = items.reduce((total, item) => total + item.quantity, 0);
+  const accountLabel = profile ? "account" : "login";
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -136,8 +139,8 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
             <button className={styles.navButton} type="button" data-label="search" onClick={() => setSearchOpen(true)}>
               search
             </button>
-            <Link className={styles.navLink} href="/login" data-label="login">
-              login
+            <Link className={styles.navLink} href="/login" data-label={accountLabel}>
+              {accountLabel}
             </Link>
             <Link className={styles.navLink} href="/cart" data-label={`cart${cartCount > 0 ? ` ${cartCount}` : ""}`}>
               cart{cartCount > 0 ? ` ${cartCount}` : ""}
@@ -229,7 +232,7 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
             );
           })}
           <Link href="/login" onClick={() => setDrawerOpen(false)}>
-            login
+            {accountLabel}
           </Link>
           <Link href="/cart" onClick={() => setDrawerOpen(false)}>
             cart{cartCount > 0 ? ` ${cartCount}` : ""}

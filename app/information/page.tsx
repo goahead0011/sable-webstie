@@ -3,11 +3,10 @@ export default function InformationPage() {
     <section className="utility-page">
       <h1 className="utility-title">Information</h1>
       <p className="utility-copy">
-        sable is a quiet select-shop MVP for browsing brands, styling edits, and product placeholders before
-        production imagery and commerce systems are connected.
+        sable is a quiet select shop for browsing brands, styling edits, and considered objects.
       </p>
       <p className="utility-copy">
-        Customer service, delivery, returns, and brand storytelling content can be expanded here in a later pass.
+        Customer service, delivery, returns, and brand storytelling content will continue to live here.
       </p>
     </section>
   );

@@ -78,54 +78,56 @@ Rules for the menus:
 
 | Brand Slug | Product Name | Price KRW | Audience | Product Type | Categories | Sizes | Description | Image Source | Status |
 |---|---|---:|---|---|---|---|---|---|---|
-| abelia-edoward-goucha | Ordinary Shirt Chino | 870000 | TBD | shirt | new-in | TBD | TODO | assets/cutouts/abelia-edoward-goucha/ordinary shirt chino.png | needs-details |
-| abelia-edoward-goucha | Sun Hoodie | 432000 | TBD | top | new-in | TBD | TODO | assets/cutouts/abelia-edoward-goucha/sun hoodie.png | needs-details |
-| gimaguas | Bailarina Wedges Black Silueta 01 | 630000 | TBD | shoes | new-in | TBD | TODO | assets/cutouts/gimaguas/bailarina-wedges-black_silueta_01.jpg.png | needs-details |
-| gimaguas | Ingrid Mini Dress Black Silueta | 231000 | TBD | dress | new-in | TBD | TODO | assets/cutouts/gimaguas/ingrid-mini-dress_black_silueta.jpg.png | needs-details |
+| abelia-edoward-goucha | Ordinary Shirt Chino | 870000 | unisex | shirt | new-in | 2, 3 | A boxy-silhouette casual shirt crafted from crisp cotton katsuragi twill, featuring twin front pockets.
+The placket, pleats, and sleeve gauntlets (the slit at the cuffs) are uniquely designed inside-out. While there’s no deep secret behind this playful detail, it’s completely functional and ready for everyday wear. | assets/cutouts/abelia-edoward-goucha/ordinary shirt chino.png | needs-details |
+| abelia-edoward-goucha | Sun Hoodie | 432000 | unisex | top | new-in | 2, 3 | A versatile, lightweight summer hoodie. It features zippered front pockets and interior pockets, offering a fully reversible design.
+Crafted from a high-performance knit fabric that provides UV protection, moisture-wicking, a cool-to-the-touch feel, and is conveniently machine washable. | assets/cutouts/abelia-edoward-goucha/sun hoodie.png | ready |
+| gimaguas | Bailarina Wedges Black Silueta 01 | 630000 | women | shoes | new-in, women | 36, 37, 38, 39, 40, 41 | Women's ballerina shoes featuring a soft faded-leather finish, a round toe, and a 7.5cm wedge heel. | assets/cutouts/gimaguas/bailarina-wedges-black_silueta_01.jpg.png | needs-details |
+| gimaguas | Ingrid Mini Dress Black Silueta | 231000 | women | dress | new-in, women | XS, S, M, L, XL | Black semi-sheer mini dress with a gathered crew neckline, soft pleats and three-quarter sleeves in lightweight textured cotton; regular fit. | assets/cutouts/gimaguas/ingrid-mini-dress_black_silueta.jpg.png | ready |
 | gimaguas | Daria Top | 213000 | women | top | new-in, women | xs, s, m, l, xl | Black asymmetrical t-shirt with ruched shoulder and draped hem. | assets/cutouts/gimaguas/daria-top_black_silueta.jpg.png | ready |
-| gimaguas | Luis Ls Polo Grey Silueta | 290000 | TBD | shirt | new-in | TBD | TODO | assets/cutouts/gimaguas/luis-ls-polo_grey_silueta.jpg.png | needs-details |
-| gimaguas | Daniel Jacket Grey Silueta | 621000 | TBD | jacket | new-in | TBD | TODO | assets/cutouts/gimaguas/daniel-jacket_grey_silueta.png | needs-details |
-| gabriela-coll-garments | No.297 Leather Small Crossed Bag, Black | 1070000 | TBD | bag | new-in | TBD | TODO | assets/cutouts/gabriela-coll-garments/No.297 Leather Small Crossed Bag, Black.png | needs-details |
-| gabriela-coll-garments | No.216 Ripstop Hooded Zipper Jacket, Off Black | 1480000 | TBD | jacket | new-in | TBD | TODO | assets/cutouts/gabriela-coll-garments/No.216 Ripstop Hooded Zipper Jacket, Off Black.png | needs-details |
-| gabriela-coll-garments | No.317 Organic Cotton Fleece Top, Black | 545000 | TBD | top | new-in | TBD | TODO | assets/cutouts/gabriela-coll-garments/No.317 Organic Cotton Fleece Top, Black.png | needs-details |
-| gabriela-coll-garments | No.304 Linen Wrap Skirt, Black | 845000 | TBD | skirt | new-in | TBD | TODO | assets/cutouts/gabriela-coll-garments/No.304 Linen Wrap Skirt, Black.png | needs-details |
-| umber-postpast | Cotton Organza Layered Midi Dress | 520000 | TBD | dress | new-in | TBD | TODO | assets/cutouts/umber-postpast/COTTON ORGANZA LAYERED MIDI DRESS.jpg.png | needs-details |
-| umber-postpast | Natural Dyed Silk Trench Coat | 1550000 | TBD | jacket | new-in | TBD | TODO | assets/cutouts/umber-postpast/NATURAL DYED SILK TRENCH COAT.png | needs-details |
-| umber-postpast | Wool Gauze Boat-Neck Long Dress | 650000 | TBD | dress | new-in | TBD | TODO | assets/cutouts/umber-postpast/WOOL GAUZE BOAT-NECK LONG DRESS.png | needs-details |
-| ponder-er | DASH Crossbody Denim Bag (Blue) | 530000 | TBD | bag | new-in | TBD | TODO | assets/cutouts/ponder-er/_DASH_ Crossbody Denim Bag (Blue)~mv2.jpg.png | needs-details |
-| ponder-er | VOYA Faux-Shearling Jacket (Black) | 870000 | TBD | jacket | new-in | TBD | TODO | assets/cutouts/ponder-er/_VOYA_ Faux-Shearling Jacket (Black).png | needs-details |
-| ponder-er | RAVEL Spiral Smocked Denim Skirt (White) | 570000 | TBD | skirt | new-in | TBD | TODO | assets/cutouts/ponder-er/_RAVEL_ Spiral Smocked Denim Skirt (White).png | needs-details |
-| paloma-wool | Simulet, Brown | 345000 | TBD | TBD | new-in | TBD | TODO | assets/cutouts/paloma-wool/Simulet, Brown.png | needs-details |
-| paloma-wool | Lonati, Denim | 469000 | TBD | TBD | new-in | TBD | TODO | assets/cutouts/paloma-wool/Lonati, Denim.png | needs-details |
-| paloma-wool | Penelope Ii, Black | 249000 | TBD | TBD | new-in | TBD | TODO | assets/cutouts/paloma-wool/Penelope Ii, Black.png | needs-details |
-| edward-cuming | Thong Sandal Mens | 791000 | men | shoes | new-in, men | TBD | TODO | assets/cutouts/edward-cuming/Thong Sandal Mens .jpg.png | needs-details |
-| edward-cuming | Bottom Heavy Top Heavy Bomber | 1115000 | TBD | jacket | new-in | TBD | TODO | assets/cutouts/edward-cuming/Bottom Heavy Top Heavy Bomber .png | needs-details |
-| edward-cuming | Drop Dart Volume Jean | 776000 | TBD | pants | new-in | TBD | TODO | assets/cutouts/edward-cuming/Drop Dart Volume Jean .png | needs-details |
-| edward-cuming | Encompassing Vortex Skirt | 880000 | TBD | skirt | new-in | TBD | TODO | assets/cutouts/edward-cuming/Encompassing Vortex Skirt.png | needs-details |
-| helmut-lang | FUNNEL NECK PULLOVER | 229000 | TBD | top | new-in | TBD | TODO | assets/cutouts/helmut-lang/FUNNEL NECK PULLOVER.png | needs-details |
-| helmut-lang | CHINO PANT | 450000 | TBD | pants | new-in | TBD | TODO | assets/cutouts/helmut-lang/CHINO PANT.png | needs-details |
-| helmut-lang | KNOT SHIRT DRESS | 870000 | TBD | dress | new-in | TBD | TODO | assets/cutouts/helmut-lang/KNOT SHIRT DRESS.png | needs-details |
-| helmut-lang | TWISTED SHIRT DRESS | 850000 | TBD | dress | new-in | TBD | TODO | assets/cutouts/helmut-lang/TWISTED SHIRT DRESS.png | needs-details |
-| kiko-kostadinov | SARGO SHOES UMBER | 1140000 | TBD | shoes | new-in | TBD | TODO | assets/cutouts/kiko-kostadinov/SARGO SHOES UMBER.png | needs-details |
-| kiko-kostadinov | OSTRO CANVAS SHOES BEECH ORANGE | 1150000 | TBD | shoes | new-in | TBD | TODO | assets/cutouts/kiko-kostadinov/OSTRO CANVAS SHOES BEECH ORANGE.png | needs-details |
-| kiko-kostadinov | KIKO KOSTADINOV X DR. MARTENS THE TOE BOX SHOE MOSS GREEN | 479000 | TBD | shoes | new-in | TBD | TODO | assets/cutouts/kiko-kostadinov/KIKO KOSTADINOV X DR. MARTENS THE TOE BOX SHOE MOSS GREEN.png | needs-details |
-| kiko-kostadinov | RETICELLA BALLERINA SAPPHIRE | 980000 | TBD | shoes | new-in | TBD | TODO | assets/cutouts/kiko-kostadinov/RETICELLA BALLERINA SAPPHIRE.png | needs-details |
-| meta-campania-collective | Jacket | 1200000 | TBD | jacket | new-in | TBD | TODO | assets/cutouts/meta-campania-collective/jacket.png.png | needs-details |
-| mainline | Ilya | 460000 | TBD | TBD | new-in | TBD | TODO | assets/cutouts/mainline/ilya.png | needs-details |
-| commission | Dress | 1250000 | TBD | dress | new-in | TBD | TODO | assets/cutouts/commission/dress.png | needs-details |
-| commission | Curve Flap Jacket, Heather Grey | 1000000 | TBD | jacket | new-in | TBD | TODO | assets/cutouts/commission/Curve Flap Jacket, Heather Grey.png | needs-details |
-| johanna-parv | Skirt Capris, Black | 544800 | TBD | skirt | new-in | TBD | TODO | assets/cutouts/johanna-parv/Skirt Capris, Black.png | needs-details |
-| johanna-parv | Cover Skirt, Khaki | 748000 | TBD | skirt | new-in | TBD | TODO | assets/cutouts/johanna-parv/Cover Skirt, Khaki.png | needs-details |
-| a-v-vattev | O'KEEFFE STUDDED T-SHIRT BLACK | 202000 | TBD | top | new-in | TBD | TODO | assets/cutouts/a-v-vattev/O'KEEFFE STUDDED T-SHIRT BLACK.png.png | needs-details |
-| a-v-vattev | SCARF SHIRT PATCHWORK BLACK | 620000 | TBD | shirt | new-in | TBD | TODO | assets/cutouts/a-v-vattev/SCARF SHIRT PATCHWORK BLACK.png | needs-details |
-| super-yaya | SYY X PUMA SPEEDCAT II - BLACK | 155000 | TBD | shoes | new-in | TBD | TODO | assets/cutouts/super-yaya/SYY X PUMA SPEEDCAT II - BLACK.png | needs-details |
-| super-yaya | Winona Knit Polo Tee, Brown Purple | 1100000 | TBD | top | new-in | TBD | TODO | assets/cutouts/super-yaya/Winona Knit Polo Tee, Brown Purple.png | needs-details |
-| lea-boberg | SC Shirt | 879000 | TBD | shirt | new-in | TBD | TODO | assets/cutouts/lea-boberg/sc shirt.jpg.png | needs-details |
-| a-v-vattev | VIPER SHEER GREY | 482000 | TBD | top | new-in | XS, S, M, L, XL | Classic semi-sheer knit in light organic cotton with lace-up front fastening and a slightly loose boxy fit. 100% cotton. | assets/cutouts/a-v-vattev/VIPER SHEER GREY.png | ready |
-| a-v-vattev | VIPER VEST BLACK | 464000 | TBD | top | new-in | XS, S, M, L, XL | Classic black vest with lace-up front fastening and a relaxed boxy fit. 100% cotton. | assets/cutouts/a-v-vattev/VIPER VEST BLACK.png | ready |
-| a-v-vattev | ALLIANCE COLLAR BELT JACKET | 1724000 | TBD | jacket | new-in | S, M, L, XL | Oversized bomber jacket with a signature leather collar belt, zip fastening with concealed snaps, chest belt loops, welt pockets, elasticated cuffs and hem. | assets/cutouts/a-v-vattev/ALLIANCE COLLAR BELT JACKET.png | ready |
-| a-v-vattev | STUDDED STRAIGHT SHORTS | 700000 | TBD | pants | new-in | S, M, L, XL | Straight-fit cotton drill shorts with raw edges, silver studded ornaments along the side seams, side pockets and double belt loops. | assets/cutouts/a-v-vattev/STUDDED STRAIGHT SHORTS_바지/STUDDED STRAIGHT SHORTS_front.png | ready |
-| a-v-vattev | VIPER CARDIGAN EMERALD GREEN | 499000 | TBD | top | new-in | XS, S, M, L, XL | Emerald green cotton cardigan with lace-up front fastening and a slightly relaxed boxy fit. | assets/cutouts/a-v-vattev/VIPER CARDIGAN EMERALD GREEN.png | ready |
+| gimaguas | Luis Ls Polo Grey Silueta | 290000 | unisex | shirt | new-in | XS, S, M, L, XL | Dark grey and navy long-sleeve polo with a faux layered effect — lightweight cotton jersey with a faux blue shirt layer underneath and an oversized silhouette. | assets/cutouts/gimaguas/luis-ls-polo_grey_silueta.jpg.png | ready |
+| gimaguas | Daniel Jacket Grey Silueta | 621000 | unisex | jacket | new-in | XS, S, M, L, XL | Grey pinstripe jacket with a mandarin collar, button closure, four button-flap pockets, elasticated hem and contrasting ribbed cuffs; straight fit. | assets/cutouts/gimaguas/daniel-jacket_grey_silueta.png | ready |
+| gabriela-coll-garments | No.297 Leather Small Crossed Bag, Black | 1070000 | unisex | bag | new-in | ONE SIZE | Compact crossbody bag in vegetable-tanned lambskin with zip closure, interior pocket and RIRI metal hardware; unlined, with natural leather markings left visible. | assets/cutouts/gabriela-coll-garments/No.297 Leather Small Crossed Bag, Black.png | ready |
+| gabriela-coll-garments | No.216 Ripstop Hooded Zipper Jacket, Off Black | 1480000 | unisex | jacket | new-in | 0, 1, 2, 3, 4, 5 | Off-black ripstop hooded jacket with an oversized fit, two-way RIRI metal zip closure, side-seam pockets and gathered cuffs and hem. | assets/cutouts/gabriela-coll-garments/No.216 Ripstop Hooded Zipper Jacket, Off Black.png | ready |
+| gabriela-coll-garments | No.317 Organic Cotton Fleece Top, Black | 545000 | unisex | top | new-in | 0, 1, 2, 3, 4, 5 | Relaxed-fit top in heavy 100% organic cotton fleece with a crew neck and exposed raw-edge finish at collar, cuffs and hem; individually dyed so colour nuances occur. | assets/cutouts/gabriela-coll-garments/No.317 Organic Cotton Fleece Top, Black.png | ready |
+| gabriela-coll-garments | No.304 Linen Wrap Skirt, Black | 845000 | women | skirt | new-in, women | 0, 1, 2, 3, 4 | Narrow-fitting 100% linen wrap skirt with a self-tie fastening strap, button adjustment, raw-edge finish and natural corozo buttons. | assets/cutouts/gabriela-coll-garments/No.304 Linen Wrap Skirt, Black.png | ready |
+| umber-postpast | Cotton Organza Layered Midi Dress | 520000 | women | dress | new-in, women | 1, 2, 3 | Sleeveless midi dress in sheer cotton organza with a layered detail, side-seam pockets, concealed back zip and full cupro lining; 100% cotton. | assets/cutouts/umber-postpast/COTTON ORGANZA LAYERED MIDI DRESS.jpg.png | ready |
+| umber-postpast | Natural Dyed Silk Trench Coat | 1550000 | unisex | jacket | new-in | 0, 1, 2 | Double-breasted natural-dyed silk trench coat with horn buttons, a detachable neck latch and waist belt, diagonal flap pockets, epaulettes and a back vent; 100% silk. | assets/cutouts/umber-postpast/NATURAL DYED SILK TRENCH COAT.png | ready |
+| umber-postpast | Wool Gauze Boat-Neck Long Dress | 650000 | women | dress | new-in, women | 0, 1, 2 | Sleeveless boat-neck long dress in wool gauze with side-seam pockets, side vents, concealed back zip and full cupro lining; 100% wool. | assets/cutouts/umber-postpast/WOOL GAUZE BOAT-NECK LONG DRESS.png | ready |
+| ponder-er | DASH Crossbody Denim Bag (Blue) | 530000 | unisex | bag | new-in | ONE SIZE | Denim crossbody bag featuring ponder.er's signature diamond-shaped smocking and cut-out details, made from treated denim with a unique washed shade. | assets/cutouts/ponder-er/_DASH_ Crossbody Denim Bag (Blue)~mv2.jpg.png | ready |
+| ponder-er | VOYA Faux-Shearling Jacket (Black) | 870000 | unisex | jacket | new-in | S, M, L | Faux-shearling jacket with ponder.er's signature smocking, technical-fabric side panels with elasticated hem, zip closure and a relaxed fit. | assets/cutouts/ponder-er/_VOYA_ Faux-Shearling Jacket (Black).png | ready |
+| ponder-er | RAVEL Spiral Smocked Denim Skirt (White) | 570000 | unisex | skirt | new-in | XS, S, M, L | Spiral-panelled denim skirt with button closure, signature diamond smocking and cut-out fraying details creating an elegant mermaid shape. | assets/cutouts/ponder-er/_RAVEL_ Spiral Smocked Denim Skirt (White).png | ready |
+| paloma-wool | Simulet, Brown | 345000 | women | top | new-in, women | XS, S, M, L, XL | Halter top with an eyelet patch detail and adjustable strap, made from soft micromodal. | assets/cutouts/paloma-wool/Simulet, Brown.png | ready |
+| paloma-wool | Lonati, Denim | 469000 | women | pants | new-in, women | 34, 36, 38, 40, 42, 44 | Waistband-free denim trousers with large pockets in classic denim. | assets/cutouts/paloma-wool/Lonati, Denim.png | ready |
+| paloma-wool | Penelope Ii, Black | 249000 | women | accessory | new-in, women | XS/S, M/L | Smooth leather hip belt with a double-buckle system oriented in opposite directions. | assets/cutouts/paloma-wool/Penelope Ii, Black.png | ready |
+| edward-cuming | Thong Sandal Mens | 791000 | men | shoes | new-in, men | 40, 41, 42, 43, 44, 45 | Handmade leather thong sandal with a wide strap and sculpted construction on a low stacked-leather sole; finished by hand with subtle unique idiosyncrasies. | assets/cutouts/edward-cuming/Thong Sandal Mens .jpg.png | ready |
+| edward-cuming | Bottom Heavy Top Heavy Bomber | 1115000 | men | jacket | new-in, men | 46, 48, 50 | Padded technical cotton-blend bomber with a bottom-heavy curved hem, oversized utility flap pockets, a double-ended exposed zip and ribbed cuffs and hem. | assets/cutouts/edward-cuming/Bottom Heavy Top Heavy Bomber .png | ready |
+| edward-cuming | Drop Dart Volume Jean | 776000 | unisex | pants | new-in | 0, 1, 2, 3, 4 | Washed-blue denim jeans with a dropped crotch and darted, panelled construction that drapes volume through the leg and kicks out at the back hem; five-pocket with exposed button fly. | assets/cutouts/edward-cuming/Drop Dart Volume Jean .png | ready |
+| edward-cuming | Encompassing Vortex Skirt | 880000 | women | skirt | new-in, women | 0, 1, 2, 3 | Mid-length seamless skirt using Edward Cuming's signature 'scratch the itch' technique in circular movements; slashed and washed embroidery reveals a contrasting underlayer for a radial vortex effect. | assets/cutouts/edward-cuming/Encompassing Vortex Skirt.png | ready |
+| helmut-lang | FUNNEL NECK PULLOVER | 229000 | men | top | new-in, men | ONE SIZE | Oversized cotton-terry sweatshirt with a funnel neck, utility-parka details and a metal logo zip. | assets/cutouts/helmut-lang/FUNNEL NECK PULLOVER.png | ready |
+| helmut-lang | CHINO PANT | 450000 | men | pants | new-in, men | 28, 29, 30, 31, 32, 33, 34, 36, 38 | Mid-rise straight-leg pants in cotton chino twill with utility-inspired details and classic trouser construction. | assets/cutouts/helmut-lang/CHINO PANT.png | ready |
+| helmut-lang | KNOT SHIRT DRESS | 870000 | women | dress | new-in, women | 2XS, XS, S, M, L, XL | Mini shirt dress in Japanese cotton poplin with side knot detailing at the hip and asymmetric drape, a structured collar and tuxedo cuffs. | assets/cutouts/helmut-lang/KNOT SHIRT DRESS.png | ready |
+| helmut-lang | TWISTED SHIRT DRESS | 850000 | women | dress | new-in, women | 2XS, XS, S, M, L | Viscose-jersey shirt dress with an elongated button placket that twists around the body for a close fit, a pointed collar, button cuffs, a high slit and metal-wrapped logo buttons. | assets/cutouts/helmut-lang/TWISTED SHIRT DRESS.png | ready |
+| kiko-kostadinov | SARGO SHOES UMBER | 1140000 | men | shoes | new-in, men | 39, 40, 41, 42, 43, 44, 45 | Metropolitan casual shoe with a refined everyday profile, braided whipstitch trim outlining the silhouette and a tonal rubber sole engraved with traditional Bulgarian designs. | assets/cutouts/kiko-kostadinov/SARGO SHOES UMBER.png | ready |
+| kiko-kostadinov | OSTRO CANVAS SHOES BEECH ORANGE | 1150000 | men | shoes | new-in, men | 40 | Hybrid-sole shoe with a raw-cut canvas-panelled upper, lace-up closure and branded tongue webbing; 100% bovine leather and cotton. | assets/cutouts/kiko-kostadinov/OSTRO CANVAS SHOES BEECH ORANGE.png | ready |
+| kiko-kostadinov | KIKO KOSTADINOV X DR. MARTENS THE TOE BOX SHOE MOSS GREEN | 479000 | women | shoes | new-in, women | 3, 4, 5, 6, 6.5, 7 | Single-eyelet collaboration shoe in embossed chartreuse suede and two-tone green leather, applying a Mary Jane profile to a classic Oxford with cut-out construction, triple contrast-stitching and a Goodyear-welted air-cushioned sole. | assets/cutouts/kiko-kostadinov/KIKO KOSTADINOV X DR. MARTENS THE TOE BOX SHOE MOSS GREEN.png | ready |
+| kiko-kostadinov | RETICELLA BALLERINA SAPPHIRE | 980000 | women | shoes | new-in, women | 35, 36, 37, 38, 39, 40, 41, 42, 43 | Sapphire Reticella shoe in soft viscose point coupé with brushed-suede contrast, custom laces, brushed-silver eyelets and logo-engraved discs; Italian materials, made in Spain, with leather soles and a rubber injection insert. | assets/cutouts/kiko-kostadinov/RETICELLA BALLERINA SAPPHIRE.png | ready |
+| meta-campania-collective | Lilo Unlined Trucker Denim Jacket | 1200000 | unisex | jacket | new-in | M, L, XL | Unlined denim trucker jacket made in Italy from 100% cotton, cut in the brand's relaxed trucker silhouette. | assets/cutouts/meta-campania-collective/Lilo Unlined Trucker Denim Jacket_Unisex_Outer/Lilo Unlined Trucker Denim Jacket_Unisex_Outer_Front.png | ready |
+| mainline | Ilya | 460000 | men | pants | new-in, men | ONE SIZE | Wool melton trousers with two-pocket styling, a zip-fly, ruching at the front and back and twisted side seams. | assets/cutouts/mainline/ilya.png | ready |
+| commission | Dress | 1250000 | women | dress | new-in, women | 2, 4, 6, 8 | Technical wool shift dress with an upside-down trouser construction at the hem, a boat neckline, scooped back and concealed side zip; fully satin-lined, relaxed fit. | assets/cutouts/commission/dress.png | ready |
+| commission | Curve Flap Jacket, Heather Grey | 1000000 | unisex | jacket | new-in | S, M, L | Coated Italian cow-leather jacket with a spread collar and signature curve-flap closure, side-seam pockets, an inside chest pocket and satin lining. | assets/cutouts/commission/Curve Flap Jacket, Heather Grey.png | ready |
+| johanna-parv | Skirt Capris, Black | 544800 | women | skirt | new-in, women | S, M, L | One-piece skirt-capris in lightweight recycled nylon-lycra with laser-cut raw edges, a concealed left-side zip, a right-thigh phone/key pocket and internal silicone grips. | assets/cutouts/johanna-parv/Skirt Capris, Black.png | ready |
+| johanna-parv | Cover Skirt, Khaki | 748000 | women | skirt | new-in, women | S, M | Waist-banded skirt in a lightweight, stretchy fabric; made in the U.K. | assets/cutouts/johanna-parv/Cover Skirt, Khaki.png | ready |
+| a-v-vattev | O'KEEFFE STUDDED T-SHIRT BLACK | 202000 | men | top | new-in, men | S, M, L, XL | Semi-fitted organic cotton-jersey T-shirt with a rib-knit crewneck and a signature O'Keeffe-inspired silver studded ornament on the front. | assets/cutouts/a-v-vattev/O'KEEFFE STUDDED T-SHIRT BLACK.png.png | ready |
+| a-v-vattev | SCARF SHIRT PATCHWORK BLACK | 620000 | men | shirt | new-in, men | S, M, L, XL | Loose-fit classic button-up shirt with a unique half-mandarin, half-scarf collar, signature chest belt loops, contrast fabric patchwork on the front and sleeves and classic cuffs; 80% cotton, 20% polyester. | assets/cutouts/a-v-vattev/SCARF SHIRT PATCHWORK BLACK.png | ready |
+| super-yaya | SYY X PUMA SPEEDCAT II - BLACK | 155000 | unisex | shoes | new-in | ONE SIZE | Super Yaya x Puma Speedcat II in patent leather with an embossed polka-dot print; unisex sizing, includes alternate white laces. | assets/cutouts/super-yaya/SYY X PUMA SPEEDCAT II - BLACK.png | ready |
+| super-yaya | Winona Knit Polo Tee, Brown Purple | 1100000 | women | top | new-in, women | XS, S, M, L | Short-sleeve knit polo with a contrast V-neck, lace-up detail and two-button closure. | assets/cutouts/super-yaya/Winona Knit Polo Tee, Brown Purple.png | ready |
+| lea-boberg | SC Shirt | 879000 | women | shirt | new-in, women | 2, 3, 4 | Sandwich Collar shirt with deep armholes and generous volume for an elegant drape, cuffless convertible-button sleeves, a 4cm high-stand collar and a flat-yoke back with two reverse side pleats. | assets/cutouts/lea-boberg/sc shirt.jpg.png | ready |
+| a-v-vattev | VIPER SHEER GREY | 482000 | men | top | new-in, men | XS, S, M, L, XL | Classic semi-sheer knit in light organic cotton with lace-up front fastening and a slightly loose boxy fit. 100% cotton. | assets/cutouts/a-v-vattev/VIPER SHEER GREY.png | ready |
+| a-v-vattev | VIPER VEST BLACK | 464000 | men | top | new-in, men | XS, S, M, L, XL | Classic black vest with lace-up front fastening and a relaxed boxy fit. 100% cotton. | assets/cutouts/a-v-vattev/VIPER VEST BLACK.png | ready |
+| a-v-vattev | ALLIANCE COLLAR BELT JACKET | 1724000 | men | jacket | new-in, men | S, M, L, XL | Oversized bomber jacket with a signature leather collar belt, zip fastening with concealed snaps, chest belt loops, welt pockets, elasticated cuffs and hem. | assets/cutouts/a-v-vattev/ALLIANCE COLLAR BELT JACKET.png | ready |
+| a-v-vattev | STUDDED STRAIGHT SHORTS | 700000 | men | pants | new-in, men | S, M, L, XL | Straight-fit cotton drill shorts with raw edges, silver studded ornaments along the side seams, side pockets and double belt loops. | assets/cutouts/a-v-vattev/STUDDED STRAIGHT SHORTS_바지/STUDDED STRAIGHT SHORTS_front.png | ready |
+| a-v-vattev | VIPER CARDIGAN EMERALD GREEN | 499000 | men | top | new-in, men | XS, S, M, L, XL | Emerald green cotton cardigan with lace-up front fastening and a slightly relaxed boxy fit. | assets/cutouts/a-v-vattev/VIPER CARDIGAN EMERALD GREEN.png | ready |
 | camiel-fortgens | CF.21.09.02.01 TRACK JACKET technical nylon petrol | 803000 | unisex | jacket | new-in | S, M, L, XL, 2XL | Track jacket in light technical nylon with a stand-up collar, exposed zip closure, two zip pockets and irregular raw-edge topstitching. | assets/cutouts/Camiel Fortgens/CF.21.09.02.01 TRACK JACKET technical nylon petrol_Unisex_Outer/CF.21.09.02.01 TRACK JACKET technical nylon petrol_Unisex_Outer_Front.png | ready |
 | camiel-fortgens | CF.21.09.01.01 SIMPLE JACKET technical twill sand | 1035000 | unisex | jacket | new-in | M, L, XL, 2XL | Technical twill jacket with asymmetric front seams, angled welt pockets, bottom drawstring, raw-edge hem and concealed zip closure. | assets/cutouts/Camiel Fortgens/CF.21.09.01.01 SIMPLE JACKET technical twill sand_Unisex_Outer/CF.21.09.01.01 SIMPLE JACKET technical twill sand_Unisex_Outer_Front.png | ready |
 | camiel-fortgens | CF.21.15.03.02 WOBBLY JEANS vintage wash denim vintage wash | 874000 | unisex | pants | new-in | XS, S, M, L, XL, 2XL | Baggy wide-leg vintage wash jeans with dropped crotch, twisting side seams, raw details, irregular contrast topstitching and five-pocket construction. | assets/cutouts/Camiel Fortgens/CF.21.15.03.02 WOBBLY JEANS vintage wash denim vintage wash_Unisex_Pants/CF.21.15.03.02 WOBBLY JEANS vintage wash denim vintage wash_Unisex_Pants_Front.png | ready |
@@ -142,13 +144,13 @@ Rules for the menus:
 | gabriela-coll-garments | No.263 Crushed Taffeta Skirt | 720000 | women | skirt | new-in, women | 0, 1, 2 | Crushed cotton-silk taffeta skirt made in Spain with individually dyed finish and subtle color variation. | assets/cutouts/gabriela-coll-garments/No.263 Crushed Taffeta Skirt_Women_Skirt/No.263 Crushed Taffeta Skirt_Women_Skirt_Front.png | ready |
 | gabriela-coll-garments | No.275 Limonta Hooded Zipper Coat | 1470000 | unisex | jacket | new-in | 1, 2, 3 | Hooded zipper coat in Italian Limonta fabric with two-way zip closure and a zipper extending through the hood. | assets/cutouts/gabriela-coll-garments/No.275 Limonta Hooded Zipper Coat_Unisex_Outer/No.275 Limonta Hooded Zipper Coat_Unisex_Outer_Front.png | ready |
 | gabriela-coll-garments | No.287 Corduroy Flap Pocket Trousers | 915000 | unisex | pants | new-in | 0, 1, 2 | Lightweight wide trousers with an adjustable drawstring and elasticated waistband. | assets/cutouts/gabriela-coll-garments/No.287 Corduroy Flap Pocket Trousers_Unisex_Pants/No.287 Corduroy Flap Pocket Trousers_Unisex_Pants_Front.png | ready |
-| gabriela-coll-garments | No.7 Fabric Open Toe Babouche | 675000 | TBD | shoes | new-in | 36, 37, 38, 39, 40, 41, 42, 43 | Handmade open-toe babouche shoes with hand-painted sole and embossed logo. | assets/cutouts/gabriela-coll-garments/No.7 Fabric Open Toe Babouche_Shoes/No.7 Fabric Open Toe Babouche_Shoes_Topview.png | ready |
-| gimaguas | Galan Track Jacket | 276000 | men | jacket | new-in, men | XS, S, M, L, XL | Product details will be updated soon. | assets/cutouts/gimaguas/Galan-Track-Jacket/Galan-Track-Jacket.png | needs-details |
-| gimaguas | Luis Polo | 289000 | men | top | new-in, men | XS, S, M, L, XL | Product details will be updated soon. | assets/cutouts/gimaguas/Luis-Polo/Luis-Polo.png | needs-details |
-| gimaguas | William Jacket | 682000 | men | jacket | new-in, men | XS, S, M, L, XL | Product details will be updated soon. | assets/cutouts/gimaguas/William-Jacket.png | needs-details |
-| gimaguas | Capazo Bag | 404000 | TBD | bag | new-in | OS | Product details will be updated soon. | assets/cutouts/gimaguas/Capazo-Bag/Capazo-Bag.png | needs-details |
-| gimaguas | Shopper Canvas Bag | 554000 | TBD | bag | new-in | OS | Product details will be updated soon. | assets/cutouts/gimaguas/Shopper-Canvas-Bag.png | needs-details |
-| gimaguas | Maria Belt | 310000 | TBD | accessory | new-in | SM, ML | Product details will be updated soon. | assets/cutouts/gimaguas/Maria-Belt.png | needs-details |
+| gabriela-coll-garments | No.7 Fabric Open Toe Babouche | 675000 | unisex | shoes | new-in | 36, 37, 38, 39, 40, 41, 42, 43 | Handmade open-toe babouche shoes with hand-painted sole and embossed logo. | assets/cutouts/gabriela-coll-garments/No.7 Fabric Open Toe Babouche_Shoes/No.7 Fabric Open Toe Babouche_Shoes_Topview.png | ready |
+| gimaguas | Galan Track Jacket | 276000 | men | jacket | new-in, men | XS, S, M, L, XL | Navy zip-up track jacket with white contrast piping, a high neck and two front zip pockets; 100% cotton. | assets/cutouts/gimaguas/Galan-Track-Jacket/Galan-Track-Jacket.png | ready |
+| gimaguas | Luis Polo | 289000 | men | top | new-in, men | XS, S, M, L, XL | White and blue checkered polo with a faux layered effect — lightweight textured fabric with a faux blue shirt layer underneath, a V-neckline and an oversized silhouette; 100% cotton, made in Portugal. | assets/cutouts/gimaguas/Luis-Polo/Luis-Polo.png | ready |
+| gimaguas | William Jacket | 682000 | men | jacket | new-in, men | XS, S, M, L, XL | Black waxed-effect jacket with silver reflective details, an oversized silhouette, two exterior and one interior pocket, a zip front with top-button fastening and buttoned cuffs; 100% cotton, made in Portugal. | assets/cutouts/gimaguas/William-Jacket.png | ready |
+| gimaguas | Capazo Bag | 404000 | women | bag | new-in, women | OS | Butter nappa-leather shopper with silver eyelets, two top handles, zip closure and a canvas lining with one interior leather pocket; made in Spain, 100% leather. | assets/cutouts/gimaguas/Capazo-Bag/Capazo-Bag.png | ready |
+| gimaguas | Shopper Canvas Bag | 554000 | women | bag | new-in, women | OS | Beige canvas shopper with black leather straps and silver-tone studs, a structured silhouette, magnetic closure and an inner black leather pocket; fits a 15" laptop, made in Spain. | assets/cutouts/gimaguas/Shopper-Canvas-Bag.png | ready |
+| gimaguas | Maria Belt | 310000 | women | accessory | new-in, women | SM, ML | Black leather belt with a draped multifunction design — a soft elongated strap with silver eyelets, a large silver buckle and a draped leather panel that can be worn as a mini skirt or a belt. | assets/cutouts/gimaguas/Maria-Belt.png | ready |
 | helmut-lang | Dissected Field Jacket | 1818800 | men | jacket | new-in, men | XS, S, M, L, XL, 2XL | Transformable field jacket with concealed button and zip closure, encased hood, epaulets, waist drawcord and interior volume-control straps. | assets/cutouts/helmut-lang/Dissected Field Jacket_Men_Outer/Dissected Field Jacket_Men_Outer_Front.png | ready |
 | helmut-lang | Track Jacket | 1154300 | men | jacket | new-in, men | XS, S, M, L, XL, 2XL | Track jacket with adjustable bungee hem, two-way zip closure and branded stamp detail. | assets/cutouts/helmut-lang/Track Jacket_Men_Outer/Track Jacket_Men_Outer_Front.png | ready |
 | helmut-lang | SAILOR TOP | 544700 | women | top | new-in, women | XS, S, M, L | Asymmetric sailor top with eyelet and rope detail at the shoulder. Made from recycled and organic cotton. | assets/cutouts/helmut-lang/SAILOR TOP_Women_Outer/SAILOR TOP_Women_Outer_Front.png | ready |
@@ -181,11 +183,11 @@ Rules for the menus:
 | paloma-wool | no 2524 - Long Charco | 372500 | women | skirt | new-in, women | 34, 36, 38, 40, 42, 44 | Dark-grey pinstriped mini skirt with full-length side zippers in wrinkle-resistant wool suiting fabric. | assets/cutouts/paloma-wool/no 2524 _ Long Charco_Women_Skrts/no 2524 - Long Charco_Women_Skrts_Front.png | ready |
 | paloma-wool | no 2797 - Lumieti Skirt | 379000 | women | skirt | new-in, women | XS, S, M, L, XL | Long fitted tricot skirt in opaque merino wool with side button fastening and softly falling extra fabric. | assets/cutouts/paloma-wool/no 2797 _ Lumieti Skirt_Women_Skirts/no 2797 _ Lumieti Skirt_Women_Skirts_Front.png | ready |
 | paloma-wool | no 2892 - Adriana II | 335000 | women | accessory | new-in, women | XS/S, M/L | Sash-style belt with gathered fabric panel and leather double-buckle closure, designed for the hips or as a top. | assets/cutouts/paloma-wool/no 2892 _ Adriana II_Women_Belts/no 2892 - Adriana II_Women_Belts_Front.png | ready |
-| ponder-er | GLIN Smocked Cardigan | 330000 | women | top | new-in, women | XS, S, M, L | Burgundy smocked cardigan with button closure, elasticated body-hugging fit and tencel-wool blend. | assets/cutouts/ponder-er/_GLIN_ Smocked Cardigan_Women_Upper/GLIN_ Smocked Cardigan_Women_Upper_Front.png | ready |
-| ponder-er | SPLASH Washed Vest | 250000 | women | top | new-in, women | XS, S, M, L | Blue washed vest with semi-sheer V-neck insertion, button details and an elasticated body-hugging fit. | assets/cutouts/ponder-er/_SPLASH_ Washed Vest_Women_Upper/SPLASH_ Washed Vest_Women_Upper_Front.png | ready |
-| ponder-er | PINCH Flared Denim Trousers | 250000 | women | pants | new-in, women | 26, 28, 30, 32, 34 | Coated denim flared trousers with rusty washed shade, zip fly, logo hardware and back waistband patch. | assets/cutouts/ponder-er/_PINCH_ Flared Denim Trousers_Women_Pants/PINCH_ Flared Denim Trousers_Women_Pants_Front.png | ready |
-| ponder-er | VOYA Faux-Shearling Jacket | 1140000 | women | jacket | new-in, women | XS, S, M, L | Relaxed faux-shearling jacket with zip closure and cupro-viscose lining. | assets/cutouts/ponder-er/_VOYA_ Faux-Shearling Jacket_Women_Outer/VOYA_ Faux-Shearling Jacket_Women_Outer_Front.png | ready |
-| ponder-er | WIZ Zip-up Dress | 550000 | women | dress | new-in, women | XS, S, M, L | Burgundy smocked zip-up dress with elasticated body-hugging fit and two-way zip closure. | assets/cutouts/ponder-er/_WIZ_ Zip-up Dress_Women_Dress/WIZ_ Zip-up Dress_Women_Dress_Front.png | ready |
+| ponder-er | GLIN Smocked Cardigan | 330000 | unisex | top | new-in | XS, S, M, L | Burgundy smocked cardigan with button closure, elasticated body-hugging fit and tencel-wool blend. | assets/cutouts/ponder-er/_GLIN_ Smocked Cardigan_Women_Upper/GLIN_ Smocked Cardigan_Women_Upper_Front.png | ready |
+| ponder-er | SPLASH Washed Vest | 250000 | unisex | top | new-in | XS, S, M, L | Blue washed vest with semi-sheer V-neck insertion, button details and an elasticated body-hugging fit. | assets/cutouts/ponder-er/_SPLASH_ Washed Vest_Women_Upper/SPLASH_ Washed Vest_Women_Upper_Front.png | ready |
+| ponder-er | PINCH Flared Denim Trousers | 250000 | unisex | pants | new-in | 26, 28, 30, 32, 34 | Coated denim flared trousers with rusty washed shade, zip fly, logo hardware and back waistband patch. | assets/cutouts/ponder-er/_PINCH_ Flared Denim Trousers_Women_Pants/PINCH_ Flared Denim Trousers_Women_Pants_Front.png | ready |
+| ponder-er | VOYA Faux-Shearling Jacket | 1140000 | unisex | jacket | new-in | XS, S, M, L | Relaxed faux-shearling jacket with zip closure and cupro-viscose lining. | assets/cutouts/ponder-er/_VOYA_ Faux-Shearling Jacket_Women_Outer/VOYA_ Faux-Shearling Jacket_Women_Outer_Front.png | ready |
+| ponder-er | WIZ Zip-up Dress | 550000 | unisex | dress | new-in | XS, S, M, L | Burgundy smocked zip-up dress with elasticated body-hugging fit and two-way zip closure. | assets/cutouts/ponder-er/_WIZ_ Zip-up Dress_Women_Dress/WIZ_ Zip-up Dress_Women_Dress_Front.png | ready |
 | super-yaya | Trouser Noucki | 895000 | unisex | pants | new-in | 34, 36 | Coated wide-leg cotton trousers with narrow waistband detail, made in Lebanon. | assets/cutouts/super-yaya/Trouser Noucki_Unisex_Pants/Trouser Noucki_Unisex_Pants_Front.png | ready |
 | super-yaya | Shirt Necklace | 995000 | women | shirt | new-in, women | 34, 36 | Loose-fit long-sleeve cotton shirt with necklace-like collar and horn-button details. | assets/cutouts/super-yaya/Shirt Necklace_Women_Upper/Shirt Necklace_Women_Upper_Front.png | ready |
 | super-yaya | Panarea Trouser | 1895000 | women | pants | new-in, women | 34 | Mid-waist loose cotton trousers with gathering, diagonal front seams, pockets and crystal stud accents. | assets/cutouts/super-yaya/Panarea Trouser_Women_Pants/Panarea Trouser_Women_Pants_Front.png | ready |
@@ -204,56 +206,10 @@ Rules for the menus:
 
 These products still need at least one manually reviewed field.
 
-| Brand Slug | Product Name | Status |
-|---|---|---|
-| abelia-edoward-goucha | Ordinary Shirt Chino | needs-details |
-| abelia-edoward-goucha | Sun Hoodie | needs-details |
-| gimaguas | Bailarina Wedges Black Silueta 01 | needs-details |
-| gimaguas | Ingrid Mini Dress Black Silueta | needs-details |
-| gimaguas | Luis Ls Polo Grey Silueta | needs-details |
-| gimaguas | Daniel Jacket Grey Silueta | needs-details |
-| gabriela-coll-garments | No.297 Leather Small Crossed Bag, Black | needs-details |
-| gabriela-coll-garments | No.216 Ripstop Hooded Zipper Jacket, Off Black | needs-details |
-| gabriela-coll-garments | No.317 Organic Cotton Fleece Top, Black | needs-details |
-| gabriela-coll-garments | No.304 Linen Wrap Skirt, Black | needs-details |
-| umber-postpast | Cotton Organza Layered Midi Dress | needs-details |
-| umber-postpast | Natural Dyed Silk Trench Coat | needs-details |
-| umber-postpast | Wool Gauze Boat-Neck Long Dress | needs-details |
-| ponder-er | DASH Crossbody Denim Bag (Blue) | needs-details |
-| ponder-er | VOYA Faux-Shearling Jacket (Black) | needs-details |
-| ponder-er | RAVEL Spiral Smocked Denim Skirt (White) | needs-details |
-| paloma-wool | Simulet, Brown | needs-details |
-| paloma-wool | Lonati, Denim | needs-details |
-| paloma-wool | Penelope Ii, Black | needs-details |
-| edward-cuming | Thong Sandal Mens | needs-details |
-| edward-cuming | Bottom Heavy Top Heavy Bomber | needs-details |
-| edward-cuming | Drop Dart Volume Jean | needs-details |
-| edward-cuming | Encompassing Vortex Skirt | needs-details |
-| helmut-lang | FUNNEL NECK PULLOVER | needs-details |
-| helmut-lang | CHINO PANT | needs-details |
-| helmut-lang | KNOT SHIRT DRESS | needs-details |
-| helmut-lang | TWISTED SHIRT DRESS | needs-details |
-| kiko-kostadinov | SARGO SHOES UMBER | needs-details |
-| kiko-kostadinov | OSTRO CANVAS SHOES BEECH ORANGE | needs-details |
-| kiko-kostadinov | KIKO KOSTADINOV X DR. MARTENS THE TOE BOX SHOE MOSS GREEN | needs-details |
-| kiko-kostadinov | RETICELLA BALLERINA SAPPHIRE | needs-details |
-| meta-campania-collective | Jacket | needs-details |
-| mainline | Ilya | needs-details |
-| commission | Dress | needs-details |
-| commission | Curve Flap Jacket, Heather Grey | needs-details |
-| johanna-parv | Skirt Capris, Black | needs-details |
-| johanna-parv | Cover Skirt, Khaki | needs-details |
-| a-v-vattev | O'KEEFFE STUDDED T-SHIRT BLACK | needs-details |
-| a-v-vattev | SCARF SHIRT PATCHWORK BLACK | needs-details |
-| super-yaya | SYY X PUMA SPEEDCAT II - BLACK | needs-details |
-| super-yaya | Winona Knit Polo Tee, Brown Purple | needs-details |
-| lea-boberg | SC Shirt | needs-details |
-| gimaguas | Galan Track Jacket | needs-details |
-| gimaguas | Luis Polo | needs-details |
-| gimaguas | William Jacket | needs-details |
-| gimaguas | Capazo Bag | needs-details |
-| gimaguas | Shopper Canvas Bag | needs-details |
-| gimaguas | Maria Belt | needs-details |
+| Brand Slug | Product Name | Status | Outstanding field(s) |
+|---|---|---|---|
+| abelia-edoward-goucha | Ordinary Shirt Chino | needs-details | pending manual review |
+| gimaguas | Bailarina Wedges Black Silueta 01 | needs-details | pending manual review |
 
 ---
 

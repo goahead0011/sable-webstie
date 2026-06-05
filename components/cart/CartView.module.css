@@ -16,6 +16,7 @@
   align-items: start;
   padding-bottom: 18px;
   border-bottom: 1px solid var(--color-line);
+  animation: panelIn var(--motion-medium) ease both;
 }
 
 .line p {
@@ -68,14 +69,15 @@
 }
 
 .summary,
-.mockPanel {
+.resultPanel {
   display: grid;
   gap: 18px;
   align-content: start;
+  animation: panelIn var(--motion-medium) ease both;
 }
 
 .summary p,
-.mockPanel p {
+.resultPanel p {
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -94,6 +96,13 @@
   justify-content: center;
   min-height: 38px;
   border: 1px solid var(--color-text);
+  background: transparent;
+  cursor: pointer;
+}
+
+.checkout:disabled {
+  cursor: default;
+  opacity: 0.45;
 }
 
 .catalogCount {
@@ -101,13 +110,125 @@
   color: var(--color-muted);
 }
 
+.checkoutActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 360px;
+}
+
+.checkoutActions .checkout {
+  min-width: 128px;
+}
+
+.checkoutGrid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: start;
+}
+
+.checkoutForm {
+  display: grid;
+  gap: 28px;
+}
+
+.checkoutSection {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.checkoutSection h2 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.fieldGrid label,
+.paymentOption {
+  display: grid;
+  gap: 8px;
+}
+
+.fieldGrid input {
+  height: 38px;
+  border: 1px solid var(--color-text);
+  border-radius: 0;
+  padding: 0 10px;
+  background: transparent;
+}
+
+.fieldGrid input:read-only {
+  color: var(--color-muted);
+}
+
+.fullField {
+  grid-column: 1 / -1;
+}
+
+.paymentOption {
+  grid-template-columns: 16px 1fr;
+  align-items: center;
+}
+
+.paymentOption input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
+.orderLines {
+  display: grid;
+  gap: 10px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.orderLines p {
+  align-items: start;
+  color: var(--color-text);
+}
+
+.orderLines span {
+  color: var(--color-muted);
+  line-height: 1.45;
+}
+
+.warning {
+  color: var(--color-text);
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 900px) {
-  .layout {
+  .layout,
+  .checkoutGrid {
     grid-template-columns: 1fr;
   }
 
   .line {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .fieldGrid {
+    grid-template-columns: 1fr;
   }
 }

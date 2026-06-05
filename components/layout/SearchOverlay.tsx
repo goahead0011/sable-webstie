@@ -1,7 +1,11 @@
 "use client";
 
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { getBrandById } from "@/data/brands";
+import { formatPrice } from "@/lib/format";
+import { searchProducts } from "@/lib/search";
 import styles from "@/components/layout/SearchOverlay.module.css";
 
 type SearchOverlayProps = {
@@ -15,6 +19,9 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const previouslyFocused = useRef<HTMLElement | null>(null);
+  const trimmedQuery = query.trim();
+  const results = trimmedQuery ? searchProducts(trimmedQuery).slice(0, 6) : [];
+  const showResults = trimmedQuery.length > 0;
 
   useEffect(() => {
     if (open) {
@@ -101,6 +108,47 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
             <line x1="14.5" y1="3.5" x2="3.5" y2="14.5" stroke="currentColor" strokeWidth="1.2" />
           </svg>
         </button>
+        <div className={`${styles.resultsPanel} ${showResults ? styles.resultsPanelOpen : ""}`} aria-live="polite">
+          {showResults ? (
+            <>
+              <div className={styles.resultsHeader}>
+                <span>Live results</span>
+                <Link href={`/search?q=${encodeURIComponent(trimmedQuery)}`} onClick={onClose}>
+                  View all
+                </Link>
+              </div>
+              {results.length > 0 ? (
+                <div className={styles.resultsList}>
+                  {results.map((product) => {
+                    const brand = getBrandById(product.brandId);
+                    return (
+                      <Link
+                        key={product.id}
+                        className={styles.resultItem}
+                        href={`/products/${product.slug}`}
+                        onClick={onClose}
+                      >
+                        <span className={styles.resultThumb}>
+                          {product.image ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img src={product.image} alt="" />
+                          ) : null}
+                        </span>
+                        <span className={styles.resultMeta}>
+                          <span>{brand?.name ?? "sable"}</span>
+                          <strong>{product.name}</strong>
+                        </span>
+                        <span className={styles.resultPrice}>{formatPrice(product.price)}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className={styles.empty}>No matching products.</p>
+              )}
+            </>
+          ) : null}
+        </div>
       </form>
       <button className={styles.backdrop} type="button" onClick={onClose} aria-label="Close search" />
     </div>

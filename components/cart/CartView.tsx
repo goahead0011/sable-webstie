@@ -67,7 +67,7 @@ export default function CartView() {
             <span>Subtotal</span>
             <strong>{formatPrice(total)}</strong>
           </p>
-          <p className={styles.note}>Payment is not implemented in this MVP.</p>
+          <p className={styles.note}>Checkout uses your account points balance.</p>
           <Link className={styles.checkout} href="/checkout">
             Checkout
           </Link>

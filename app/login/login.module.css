@@ -4,12 +4,17 @@
   max-width: 360px;
 }
 
+.wideForm {
+  max-width: 640px;
+}
+
 .form label {
   display: grid;
   gap: 8px;
 }
 
-.form input {
+.form input,
+.form textarea {
   height: 38px;
   border: 1px solid var(--color-text);
   border-radius: 0;
@@ -17,16 +22,247 @@
   background: transparent;
 }
 
-.form button {
+.form button,
+.accountPanel button,
+.secondaryAction {
   height: 38px;
   border: 1px solid var(--color-text);
   background: transparent;
   cursor: pointer;
 }
 
+.form button,
+.accountPanel button,
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+}
+
 .form button:hover,
-.form button:focus-visible {
+.form button:focus-visible,
+.accountPanel button:hover,
+.accountPanel button:focus-visible,
+.secondaryAction:hover,
+.secondaryAction:focus-visible {
   background: var(--color-text);
   color: var(--color-page);
   outline: none;
+}
+
+.form button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.fullField {
+  grid-column: 1 / -1;
+}
+
+.sectionBlock {
+  display: grid;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-line);
+}
+
+.sectionTitle,
+.pointNote,
+.message,
+.switchText {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sectionTitle {
+  font-weight: 700;
+}
+
+.pointNote,
+.message,
+.switchText {
+  color: var(--color-muted);
+}
+
+.inlineSearch {
+  display: grid;
+  grid-template-columns: 1fr 118px;
+  gap: 10px;
+}
+
+.results {
+  display: grid;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  animation: panelIn var(--motion-medium) ease both;
+}
+
+.results button {
+  display: grid;
+  width: 100%;
+  height: auto;
+  min-height: 54px;
+  align-items: center;
+  justify-content: stretch;
+  justify-items: start;
+  border: 0;
+  border-bottom: 1px solid var(--color-line);
+  padding: 12px 0;
+  background: transparent;
+  color: var(--color-text);
+  text-align: left;
+}
+
+.results button:last-child {
+  border-bottom: 0;
+}
+
+.results small {
+  margin-top: 3px;
+  color: var(--color-muted);
+}
+
+.results button:hover,
+.results button:focus-visible {
+  background: transparent;
+  color: var(--color-text);
+  font-weight: 700;
+  outline: none;
+}
+
+.accountPanel {
+  display: grid;
+  gap: 20px;
+  max-width: 520px;
+}
+
+.accountList {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.accountList div {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.accountList dt,
+.accountList dd {
+  margin: 0;
+}
+
+.accountList dt {
+  color: var(--color-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.historySection {
+  display: grid;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-line);
+}
+
+.historySection h2 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.historyList {
+  display: grid;
+  gap: 16px;
+}
+
+.historyItem {
+  display: grid;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-line);
+  animation: panelIn var(--motion-medium) ease both;
+}
+
+.historyTop {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.historyTop p,
+.paymentList p {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+}
+
+.historyTop span,
+.paymentList span,
+.historyProducts {
+  color: var(--color-muted);
+}
+
+.historyProducts {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.5;
+}
+
+.paymentList {
+  display: grid;
+  gap: 12px;
+}
+
+.paymentList p {
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-line);
+  animation: panelIn var(--motion-medium) ease both;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .fieldGrid,
+  .inlineSearch {
+    grid-template-columns: 1fr;
+  }
+
+  .accountList div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .historyTop,
+  .paymentList p {
+    grid-template-columns: 1fr;
+  }
 }

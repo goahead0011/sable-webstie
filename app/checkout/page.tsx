@@ -1,5 +1,5 @@
-import CheckoutMock from "@/components/cart/CheckoutMock";
+import CheckoutView from "@/components/cart/CheckoutView";
 
 export default function CheckoutPage() {
-  return <CheckoutMock />;
+  return <CheckoutView />;
 }
