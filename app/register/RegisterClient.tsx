@@ -125,6 +125,12 @@ export default function RegisterClient() {
           <input
             value={addressQuery}
             onChange={(event) => setAddressQuery(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                void handleAddressSearch();
+              }
+            }}
             placeholder="Road name, building, or place"
           />
           <button type="button" onClick={handleAddressSearch} disabled={searching}>
@@ -136,9 +142,16 @@ export default function RegisterClient() {
             {addressResults.map((result) => (
               <button key={result.id} type="button" onClick={() => selectAddress(result)}>
                 <span>{result.title}</span>
-                {result.title !== (result.roadAddress || result.jibunAddress) ? (
-                  <small>{result.roadAddress || result.jibunAddress}</small>
-                ) : null}
+                {(() => {
+                  const detail =
+                    result.jibunAddress && result.jibunAddress !== result.title
+                      ? result.jibunAddress
+                      : result.roadAddress && result.roadAddress !== result.title
+                        ? result.roadAddress
+                        : "";
+                  const secondary = [result.postalCode ? `우 ${result.postalCode}` : "", detail].filter(Boolean).join(" · ");
+                  return secondary ? <small>{secondary}</small> : null;
+                })()}
               </button>
             ))}
           </div>
