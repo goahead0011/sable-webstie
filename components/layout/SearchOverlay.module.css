@@ -83,9 +83,10 @@
 
 .resultsPanel {
   position: absolute;
-  left: 70px;
-  right: 70px;
+  left: 0;
+  right: 0;
   top: 86px;
+  padding: 0 70px;
   display: grid;
   max-height: min(440px, calc(100vh - 120px));
   overflow: auto;
@@ -219,8 +220,9 @@
   }
 
   .resultsPanel {
-    left: 20px;
-    right: 20px;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
   }
 
   .resultItem {
