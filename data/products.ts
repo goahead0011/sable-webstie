@@ -183,7 +183,7 @@ const baseCatalogProducts = [
     audience: "women",
     productType: "top",
     categories: NEW_IN_WOMEN,
-    sizes: ["xs", "s", "m", "l", "xl"],
+    sizes: ["XS", "S", "M", "L", "XL"],
     description: "Black asymmetrical t-shirt with ruched shoulder and draped hem.",
     sourceImage: "assets/cutouts/gimaguas/daria-top_black_silueta.jpg.png",
     status: "ready"
@@ -221,7 +221,7 @@ const baseCatalogProducts = [
     audience: "unisex",
     productType: "bag",
     categories: NEW_IN,
-    sizes: ["ONE SIZE"],
+    sizes: ["OS"],
     description:
       "Compact crossbody bag in vegetable-tanned lambskin with zip closure, interior pocket and RIRI metal hardware; unlined, with natural leather markings left visible.",
     sourceImage: "assets/cutouts/gabriela-coll-garments/No.297 Leather Small Crossed Bag, Black.png",
@@ -312,7 +312,7 @@ const baseCatalogProducts = [
     audience: "unisex",
     productType: "bag",
     categories: NEW_IN,
-    sizes: ["ONE SIZE"],
+    sizes: ["OS"],
     description:
       "Denim crossbody bag featuring ponder.er's signature diamond-shaped smocking and cut-out details, made from treated denim with a unique washed shade.",
     sourceImage: "assets/cutouts/ponder-er/_DASH_ Crossbody Denim Bag (Blue)~mv2.jpg.png",
@@ -335,9 +335,9 @@ const baseCatalogProducts = [
     name: "RAVEL Spiral Smocked Denim Skirt (White)",
     brandSlug: "ponder-er",
     price: 570000,
-    audience: "unisex",
+    audience: "women",
     productType: "skirt",
-    categories: NEW_IN,
+    categories: NEW_IN_WOMEN,
     sizes: ["XS", "S", "M", "L"],
     description:
       "Spiral-panelled denim skirt with button closure, signature diamond smocking and cut-out fraying details creating an elegant mermaid shape.",
@@ -439,7 +439,7 @@ const baseCatalogProducts = [
     audience: "men",
     productType: "top",
     categories: NEW_IN_MEN,
-    sizes: ["ONE SIZE"],
+    sizes: ["OS"],
     description: "Oversized cotton-terry sweatshirt with a funnel neck, utility-parka details and a metal logo zip.",
     sourceImage: "assets/cutouts/helmut-lang/FUNNEL NECK PULLOVER.png",
     status: "ready"
@@ -555,7 +555,7 @@ const baseCatalogProducts = [
     audience: "men",
     productType: "pants",
     categories: NEW_IN_MEN,
-    sizes: ["ONE SIZE"],
+    sizes: ["OS"],
     description: "Wool melton trousers with two-pocket styling, a zip-fly, ruching at the front and back and twisted side seams.",
     sourceImage: "assets/cutouts/mainline/ilya.png",
     status: "ready"
@@ -644,7 +644,7 @@ const baseCatalogProducts = [
     audience: "unisex",
     productType: "shoes",
     categories: NEW_IN,
-    sizes: ["ONE SIZE"],
+    sizes: ["OS"],
     description:
       "Super Yaya x Puma Speedcat II in patent leather with an embossed polka-dot print; unisex sizing, includes alternate white laces.",
     sourceImage: "assets/cutouts/super-yaya/SYY X PUMA SPEEDCAT II - BLACK.png",
