@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import { useAccount } from "@/components/account/AccountProvider";
+import AddressSearch from "@/components/account/AddressSearch";
 import { useCart } from "@/components/cart/CartProvider";
 import { getBrandById } from "@/data/brands";
 import { getProductById } from "@/data/products";
 import { EMPTY_ADDRESS, type ShippingAddress } from "@/lib/account";
-import { formatPrice } from "@/lib/format";
+import { formatPhone, formatPrice } from "@/lib/format";
 import styles from "@/components/cart/CartView.module.css";
 
 export default function CheckoutView() {
@@ -135,6 +136,14 @@ export default function CheckoutView() {
         <div className={styles.checkoutForm}>
           <section className={styles.checkoutSection}>
             <h2>Shipping</h2>
+            <AddressSearch
+              onSelect={(result) =>
+                updateAddress({
+                  postalCode: result.postalCode,
+                  addressLine1: result.roadAddress || result.jibunAddress
+                })
+              }
+            />
             <div className={styles.fieldGrid}>
               <label>
                 Name
@@ -142,7 +151,7 @@ export default function CheckoutView() {
               </label>
               <label>
                 Phone
-                <input value={profile.phone} readOnly />
+                <input value={formatPhone(profile.phone)} readOnly />
               </label>
               <label>
                 Postal code

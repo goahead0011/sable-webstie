@@ -1,0 +1,110 @@
+/* Selectors are scoped under .wrap so this component keeps its own input/button
+   styling even when rendered inside parent forms that use broad descendant
+   selectors like `.form button` or `.accountPanel button`. */
+.wrap {
+  display: grid;
+  gap: 12px;
+}
+
+.inlineSearch {
+  display: grid;
+  grid-template-columns: 1fr 118px;
+  gap: 10px;
+}
+
+.wrap .inlineSearch input {
+  height: 38px;
+  border: 1px solid var(--color-text);
+  border-radius: 0;
+  padding: 0 10px;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.wrap .inlineSearch button {
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: 1px solid var(--color-text);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.wrap .inlineSearch button:hover,
+.wrap .inlineSearch button:focus-visible {
+  background: var(--color-text);
+  color: var(--color-page);
+  outline: none;
+}
+
+.wrap .inlineSearch button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.results {
+  display: grid;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  animation: addressPanelIn var(--motion-medium) ease both;
+}
+
+.wrap .results button {
+  display: grid;
+  width: 100%;
+  height: auto;
+  min-height: 54px;
+  align-items: center;
+  justify-items: start;
+  border: 0;
+  border-bottom: 1px solid var(--color-line);
+  padding: 12px 0;
+  background: transparent;
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.wrap .results button:last-child {
+  border-bottom: 0;
+}
+
+.wrap .results button:hover,
+.wrap .results button:focus-visible {
+  background: transparent;
+  color: var(--color-text);
+  font-weight: 700;
+  outline: none;
+}
+
+.wrap .results small {
+  margin-top: 3px;
+  color: var(--color-muted);
+}
+
+.message {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+@keyframes addressPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .inlineSearch {
+    grid-template-columns: 1fr;
+  }
+}

@@ -4,18 +4,38 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { useAccount } from "@/components/account/AccountProvider";
+import AddressSearch from "@/components/account/AddressSearch";
 import { getProductById } from "@/data/products";
-import { formatDate, formatPrice } from "@/lib/format";
+import { EMPTY_ADDRESS, type AddressSearchResult, type ShippingAddress } from "@/lib/account";
+import { formatDate, formatPhone, formatPrice } from "@/lib/format";
 import styles from "@/app/login/login.module.css";
 
 export default function LoginClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { ready, profile, orders, signIn, signOut } = useAccount();
+  const { ready, profile, orders, signIn, signOut, updateProfile } = useAccount();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
+
+  // Editable account details (seeded once per signed-in account).
+  const [seededEmail, setSeededEmail] = useState<string | null>(null);
+  const [editName, setEditName] = useState("");
+  const [editPhone, setEditPhone] = useState("");
+  const [editAddress, setEditAddress] = useState<ShippingAddress>(EMPTY_ADDRESS);
+  const [profileMessage, setProfileMessage] = useState("");
+  const [savingProfile, setSavingProfile] = useState(false);
+
+  // Seed the editable fields once per signed-in account. Adjusting state while
+  // rendering (guarded by a changed key) is React's recommended alternative to a
+  // setState-in-effect when deriving state from a changing prop.
+  if (profile && profile.email !== seededEmail) {
+    setSeededEmail(profile.email);
+    setEditName(profile.name);
+    setEditPhone(formatPhone(profile.phone));
+    setEditAddress(profile.address);
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -37,6 +57,54 @@ export default function LoginClient() {
     setMessage("Signed out.");
   }
 
+  function updateEditAddress(nextAddress: Partial<ShippingAddress>) {
+    setEditAddress((current) => ({ ...current, ...nextAddress }));
+  }
+
+  function selectAddress(result: AddressSearchResult) {
+    updateEditAddress({
+      postalCode: result.postalCode,
+      addressLine1: result.roadAddress || result.jibunAddress,
+      label: "home"
+    });
+  }
+
+  async function handleProfileSave(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!profile) {
+      return;
+    }
+
+    if (!editName.trim() || !editPhone.trim() || !editAddress.addressLine1.trim()) {
+      setProfileMessage("Enter your name, phone, and shipping address.");
+      return;
+    }
+
+    setProfileMessage("");
+    setSavingProfile(true);
+
+    try {
+      await updateProfile({
+        ...profile,
+        name: editName.trim(),
+        phone: editPhone.trim(),
+        address: {
+          ...editAddress,
+          postalCode: editAddress.postalCode.trim(),
+          addressLine1: editAddress.addressLine1.trim(),
+          addressLine2: editAddress.addressLine2.trim(),
+          label: editAddress.label.trim() || "home"
+        }
+      });
+      setProfileMessage("Account details saved.");
+    } catch (error) {
+      setProfileMessage(error instanceof Error ? error.message : "Could not save your changes.");
+    } finally {
+      setSavingProfile(false);
+    }
+  }
+
   if (!ready) {
     return <p className="utility-copy">Loading account information.</p>;
   }
@@ -50,27 +118,66 @@ export default function LoginClient() {
             <dd>{profile.email}</dd>
           </div>
           <div>
-            <dt>Name</dt>
-            <dd>{profile.name || "-"}</dd>
-          </div>
-          <div>
             <dt>Points</dt>
             <dd>{formatPrice(profile.points)}</dd>
           </div>
-          <div>
-            <dt>Shipping</dt>
-            <dd>
-              {profile.address.addressLine1 ? (
-                <>
-                  {profile.address.addressLine1}
-                  {profile.address.addressLine2 ? `, ${profile.address.addressLine2}` : ""}
-                </>
-              ) : (
-                "-"
-              )}
-            </dd>
-          </div>
         </dl>
+
+        <form className={styles.editForm} onSubmit={handleProfileSave}>
+          <p className={styles.sectionTitle}>Account details</p>
+          <div className={styles.fieldGrid}>
+            <label>
+              Name
+              <input value={editName} onChange={(event) => setEditName(event.target.value)} required />
+            </label>
+            <label>
+              Phone
+              <input
+                value={editPhone}
+                onChange={(event) => setEditPhone(formatPhone(event.target.value))}
+                inputMode="numeric"
+                placeholder="010-0000-0000"
+                required
+              />
+            </label>
+          </div>
+
+          <div className={styles.sectionBlock}>
+            <p className={styles.sectionTitle}>Shipping address</p>
+            <AddressSearch onSelect={selectAddress} />
+            <div className={styles.fieldGrid}>
+              <label>
+                Postal code
+                <input
+                  value={editAddress.postalCode}
+                  onChange={(event) => updateEditAddress({ postalCode: event.target.value })}
+                />
+              </label>
+              <label>
+                Address
+                <input
+                  value={editAddress.addressLine1}
+                  onChange={(event) => updateEditAddress({ addressLine1: event.target.value })}
+                  required
+                />
+              </label>
+              <label className={styles.fullField}>
+                Detail
+                <input
+                  value={editAddress.addressLine2}
+                  onChange={(event) => updateEditAddress({ addressLine2: event.target.value })}
+                  placeholder="Apartment, suite, floor, etc."
+                />
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" disabled={savingProfile}>
+            {savingProfile ? "Saving" : "Save changes"}
+          </button>
+          {profileMessage ? <p className={styles.message}>{profileMessage}</p> : null}
+        </form>
+
         <div className={styles.actions}>
           <Link className={styles.secondaryAction} href="/cart">
             Cart

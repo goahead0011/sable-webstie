@@ -4,14 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { useAccount } from "@/components/account/AccountProvider";
+import AddressSearch from "@/components/account/AddressSearch";
 import { EMPTY_ADDRESS, INITIAL_SIGNUP_POINTS, type AddressSearchResult, type ShippingAddress } from "@/lib/account";
-import { formatPrice } from "@/lib/format";
+import { formatPhone, formatPrice } from "@/lib/format";
 import styles from "@/app/login/login.module.css";
-
-type AddressSearchResponse = {
-  results: AddressSearchResult[];
-  message?: string;
-};
 
 export default function RegisterClient() {
   const router = useRouter();
@@ -21,37 +17,11 @@ export default function RegisterClient() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState<ShippingAddress>(EMPTY_ADDRESS);
-  const [addressQuery, setAddressQuery] = useState("");
-  const [addressResults, setAddressResults] = useState<AddressSearchResult[]>([]);
   const [message, setMessage] = useState("");
-  const [addressMessage, setAddressMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [searching, setSearching] = useState(false);
 
   function updateAddress(nextAddress: Partial<ShippingAddress>) {
     setAddress((current) => ({ ...current, ...nextAddress }));
-  }
-
-  async function handleAddressSearch() {
-    if (addressQuery.trim().length < 2) {
-      setAddressMessage("Enter at least two characters.");
-      return;
-    }
-
-    setSearching(true);
-    setAddressMessage("");
-
-    try {
-      const response = await fetch(`/api/address-search?query=${encodeURIComponent(addressQuery.trim())}`);
-      const data = (await response.json()) as AddressSearchResponse;
-      setAddressResults(data.results);
-      setAddressMessage(data.message ?? (data.results.length === 0 ? "No results found. You can enter the address manually." : ""));
-    } catch {
-      setAddressResults([]);
-      setAddressMessage("Address search failed. You can enter the address manually.");
-    } finally {
-      setSearching(false);
-    }
   }
 
   function selectAddress(result: AddressSearchResult) {
@@ -60,8 +30,6 @@ export default function RegisterClient() {
       addressLine1: result.roadAddress || result.jibunAddress,
       label: "home"
     });
-    setAddressResults([]);
-    setAddressQuery(result.roadAddress || result.jibunAddress);
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -115,48 +83,19 @@ export default function RegisterClient() {
         </label>
         <label>
           Phone
-          <input value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="010-0000-0000" required />
+          <input
+            value={phone}
+            onChange={(event) => setPhone(formatPhone(event.target.value))}
+            inputMode="numeric"
+            placeholder="010-0000-0000"
+            required
+          />
         </label>
       </div>
 
       <div className={styles.sectionBlock}>
         <p className={styles.sectionTitle}>Shipping address</p>
-        <div className={styles.inlineSearch}>
-          <input
-            value={addressQuery}
-            onChange={(event) => setAddressQuery(event.target.value)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter") {
-                event.preventDefault();
-                void handleAddressSearch();
-              }
-            }}
-            placeholder="Road name, building, or place"
-          />
-          <button type="button" onClick={handleAddressSearch} disabled={searching}>
-            {searching ? "Searching" : "Search"}
-          </button>
-        </div>
-        {addressResults.length > 0 ? (
-          <div className={styles.results}>
-            {addressResults.map((result) => (
-              <button key={result.id} type="button" onClick={() => selectAddress(result)}>
-                <span>{result.title}</span>
-                {(() => {
-                  const detail =
-                    result.jibunAddress && result.jibunAddress !== result.title
-                      ? result.jibunAddress
-                      : result.roadAddress && result.roadAddress !== result.title
-                        ? result.roadAddress
-                        : "";
-                  const secondary = [result.postalCode ? `우 ${result.postalCode}` : "", detail].filter(Boolean).join(" · ");
-                  return secondary ? <small>{secondary}</small> : null;
-                })()}
-              </button>
-            ))}
-          </div>
-        ) : null}
-        {addressMessage ? <p className={styles.message}>{addressMessage}</p> : null}
+        <AddressSearch onSelect={selectAddress} />
         <div className={styles.fieldGrid}>
           <label>
             Postal code
