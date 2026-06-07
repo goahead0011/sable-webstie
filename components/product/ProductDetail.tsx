@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartProvider";
+import Lightbox from "@/components/ui/Lightbox";
 import PlaceholderImage from "@/components/ui/PlaceholderImage";
 import { formatPrice } from "@/lib/format";
 import type { Brand, Product } from "@/types/domain";
@@ -17,6 +18,7 @@ export default function ProductDetail({ product, brand }: ProductDetailProps) {
   const [selectedSize, setSelectedSize] = useState(product.sizes[0] ?? "One size");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [added, setAdded] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const { addItem } = useCart();
   const galleryImages = product.images ?? (product.image ? [product.image] : []);
   const hasMultipleImages = galleryImages.length > 1;
@@ -67,12 +69,23 @@ export default function ProductDetail({ product, brand }: ProductDetailProps) {
             <div className={styles.track} style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}>
               {galleryImages.map((image, index) => (
                 <div className={styles.slide} key={`${image}-${index}`} aria-hidden={currentImageIndex !== index}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className={styles.image}
-                    src={image}
-                    alt={currentImageIndex === index ? `${product.name} image ${index + 1}` : ""}
-                  />
+                  <button
+                    type="button"
+                    className={styles.zoomTrigger}
+                    onClick={() => {
+                      setCurrentImageIndex(index);
+                      setIsLightboxOpen(true);
+                    }}
+                    aria-label={`Enlarge ${product.name} image ${index + 1}`}
+                    tabIndex={currentImageIndex === index ? 0 : -1}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      className={styles.image}
+                      src={image}
+                      alt={currentImageIndex === index ? `${product.name} image ${index + 1}` : ""}
+                    />
+                  </button>
                 </div>
               ))}
             </div>
@@ -137,6 +150,17 @@ export default function ProductDetail({ product, brand }: ProductDetailProps) {
               />
             ))}
           </div>
+        ) : null}
+        {isLightboxOpen ? (
+          <Lightbox
+            items={galleryImages.map((image, index) => ({
+              src: image,
+              alt: `${product.name} image ${index + 1}`,
+            }))}
+            index={currentImageIndex}
+            onIndexChange={setCurrentImageIndex}
+            onClose={() => setIsLightboxOpen(false)}
+          />
         ) : null}
       </div>
       <div className={styles.info}>

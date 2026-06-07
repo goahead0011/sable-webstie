@@ -1,0 +1,144 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 6vh 7vw;
+  background: color-mix(in srgb, var(--color-text) 90%, #000);
+  animation: lightbox-fade var(--motion-fast) ease;
+}
+
+@keyframes lightbox-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+}
+
+.image {
+  display: block;
+  max-width: min(92vw, 1100px);
+  max-height: 86vh;
+  object-fit: contain;
+}
+
+.placeholderFrame {
+  display: block;
+  width: min(86vw, 620px);
+  max-height: 86vh;
+  aspect-ratio: 4 / 5;
+}
+
+.closeButton {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-page);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--motion-fast) ease;
+}
+
+.navButton {
+  position: fixed;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-page);
+  cursor: pointer;
+  transform: translateY(-50%);
+  opacity: 0.7;
+  transition: opacity var(--motion-fast) ease, transform var(--motion-fast) ease;
+}
+
+.previousButton {
+  left: 8px;
+}
+
+.nextButton {
+  right: 8px;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible,
+.navButton:hover,
+.navButton:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+.previousButton:hover,
+.previousButton:focus-visible {
+  transform: translateY(-50%) translateX(-2px);
+}
+
+.nextButton:hover,
+.nextButton:focus-visible {
+  transform: translateY(-50%) translateX(2px);
+}
+
+.indicators {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.indicator {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 1px solid var(--color-page);
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity var(--motion-fast) ease, background var(--motion-fast) ease;
+}
+
+.indicator:hover,
+.indicator:focus-visible {
+  opacity: 0.85;
+  outline: none;
+}
+
+.indicatorActive {
+  background: var(--color-page);
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .overlay {
+    padding: 0;
+  }
+
+  .navButton {
+    width: 40px;
+    height: 40px;
+  }
+}

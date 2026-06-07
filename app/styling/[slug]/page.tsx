@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import PlaceholderImage from "@/components/ui/PlaceholderImage";
+import ZoomableHero from "@/components/ui/ZoomableHero";
 import ProductGrid from "@/components/product/ProductGrid";
 import { products } from "@/data/products";
 import { stylingStories, getStylingStoryBySlug } from "@/data/styling";
@@ -26,7 +26,7 @@ export default async function StylingDetailPage({ params }: StylingDetailPagePro
 
   return (
     <article className={styles.detail}>
-      <PlaceholderImage tone={story.placeholderTone} label={story.title} className={styles.hero} />
+      <ZoomableHero tone={story.placeholderTone} alt={story.title} className={styles.hero} />
       <div className={styles.copy}>
         <p>{story.season}</p>
         <h1>{story.title}</h1>
