@@ -78,8 +78,8 @@ export type StylingStory = {
   id: string;
   slug: string;
   title: string;
-  excerpt: string;
   season: string;
+  image?: string;
   relatedProductIds: string[];
   placeholderTone?: "light" | "medium";
 };

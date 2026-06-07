@@ -16,7 +16,12 @@ export default function LookbookGrid({ stories }: LookbookGridProps) {
       <div className={styles.grid}>
         {stories.map((story) => (
           <Link key={story.id} href={`/styling/${story.slug}`} className={styles.card}>
-            <PlaceholderImage tone={story.placeholderTone} label={story.title} className={styles.image} />
+            {story.image ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className={styles.image} src={story.image} alt={story.title} loading="lazy" />
+            ) : (
+              <PlaceholderImage tone={story.placeholderTone} label={story.title} className={styles.image} />
+            )}
             <span className={styles.meta}>
               <strong>{story.title}</strong>
               <span>{story.season}</span>

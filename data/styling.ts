@@ -3,38 +3,56 @@ import type { StylingStory } from "@/types/domain";
 export const stylingStories: StylingStory[] = [
   {
     id: "s-001",
-    slug: "grey-morning-edit",
-    title: "Grey morning edit",
-    excerpt: "Soft outerwear, low contrast layers, and compact daily bags.",
-    season: "Spring edit",
-    relatedProductIds: ["p-001", "p-002", "p-005"],
+    slug: "styling-01",
+    title: "Styling 01",
+    season: "Styling edit",
+    image: "/styling/1.png",
+    relatedProductIds: ["p-083", "p-040", "p-085"],
     placeholderTone: "light"
   },
   {
     id: "s-002",
-    slug: "room-and-street",
-    title: "Room and street",
-    excerpt: "Home textures moved into the city with easy linen and quiet technical layers.",
-    season: "Life edit",
-    relatedProductIds: ["p-006", "p-008", "p-012"],
+    slug: "styling-02",
+    title: "Styling 02",
+    season: "Styling edit",
+    image: "/styling/2.png",
+    relatedProductIds: ["p-016", "p-017", "p-068"],
     placeholderTone: "medium"
   },
   {
     id: "s-003",
-    slug: "black-line-study",
-    title: "Black line study",
-    excerpt: "A restrained study in flat shoes, narrow accessories, and clean tailoring.",
-    season: "Evening edit",
-    relatedProductIds: ["p-007", "p-010", "p-011"],
+    slug: "styling-03",
+    title: "Styling 03",
+    season: "Styling edit",
+    image: "/styling/3.png",
+    relatedProductIds: ["p-119", "p-115", "p-006"],
     placeholderTone: "light"
   },
   {
     id: "s-004",
-    slug: "washed-weekend",
-    title: "Washed weekend",
-    excerpt: "Faded cotton, relaxed trousers, and softened proportion.",
-    season: "Weekend edit",
-    relatedProductIds: ["p-002", "p-003", "p-009"],
+    slug: "styling-04",
+    title: "Styling 04",
+    season: "Styling edit",
+    image: "/styling/4.png",
+    relatedProductIds: ["p-057", "p-026", "p-024"],
+    placeholderTone: "medium"
+  },
+  {
+    id: "s-005",
+    slug: "styling-05",
+    title: "Styling 05",
+    season: "Styling edit",
+    image: "/styling/5.png",
+    relatedProductIds: ["p-056", "p-032"],
+    placeholderTone: "light"
+  },
+  {
+    id: "s-006",
+    slug: "styling-06",
+    title: "Styling 06",
+    season: "Styling edit",
+    image: "/styling/6.png",
+    relatedProductIds: ["p-012", "p-058"],
     placeholderTone: "medium"
   }
 ];

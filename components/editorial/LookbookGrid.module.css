@@ -20,8 +20,10 @@
 }
 
 .image {
+  display: block;
   width: 320px;
   height: 400px;
+  object-fit: cover;
 }
 
 .meta {
