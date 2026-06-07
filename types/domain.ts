@@ -51,6 +51,8 @@ export type Product = {
   image?: string;
   /** Optional alternate storefront image shown when a product card is hovered. */
   hoverImage?: string;
+  /** Product detail gallery images in display order. */
+  images?: string[];
 };
 
 export type Brand = {

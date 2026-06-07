@@ -94,6 +94,14 @@ function getProductImage(entry: CatalogProductInput) {
   return imageByKey.get(imageKey(entry.brandSlug, getImageLookupSlug(entry)));
 }
 
+function getProductImagePaths(image: (typeof productImages)[number] | undefined) {
+  if (!image) {
+    return [];
+  }
+
+  return [image.imagePath, image.hoverImagePath].filter((imagePath): imagePath is string => Boolean(imagePath));
+}
+
 const baseCatalogProducts = [
   {
     name: "Ordinary Shirt Chino",
@@ -693,6 +701,7 @@ export const products: Product[] = catalogProducts.flatMap((entry, index) => {
 
   const brand = getBrandBySlug(entry.brandSlug);
   const image = getProductImage(entry);
+  const images = getProductImagePaths(image);
 
   if (!brand) {
     throw new Error(`Unknown brand slug in product catalog: ${entry.brandSlug}`);
@@ -715,7 +724,8 @@ export const products: Product[] = catalogProducts.flatMap((entry, index) => {
     sourceImage: entry.sourceImage,
     status: entry.status,
     ...(image ? { image: image.imagePath } : {}),
-    ...(image?.hoverImagePath ? { hoverImage: image.hoverImagePath } : {})
+    ...(image?.hoverImagePath ? { hoverImage: image.hoverImagePath } : {}),
+    ...(images.length > 0 ? { images } : {})
   }];
 });
 
