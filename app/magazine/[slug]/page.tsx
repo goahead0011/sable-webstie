@@ -26,7 +26,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <p className="utility-copy">{article.category} / {formatDate(article.date)}</p>
       <h1 className="utility-title">{article.title}</h1>
       <p className="utility-copy">{article.excerpt}</p>
-      <p className="utility-copy">This editorial note will be expanded with the full story.</p>
+      {article.body.map((paragraph, index) => (
+        <p key={`${article.slug}-${index}`} className="utility-copy">
+          {paragraph}
+        </p>
+      ))}
       <Link href="/magazine">Back to magazine</Link>
     </article>
   );

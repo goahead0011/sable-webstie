@@ -70,6 +70,7 @@ export type Article = {
   slug: string;
   title: string;
   excerpt: string;
+  body: string[];
   date: string;
   category: "interview" | "essay" | "editorial";
 };
