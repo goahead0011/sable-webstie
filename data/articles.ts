@@ -6,6 +6,7 @@ export const articles: Article[] = [
     slug: "commission-memory-tailoring",
     title: "Commission, 오래된 기억으로 쓰는 새로운 테일러링",
     brand: "Commission",
+    brandId: "commission",
     excerpt: "가족 앨범과 동아시아 이민자 가정의 기억을 현대적인 옷으로 다시 써 내려가는 Commission.",
     body: [
       "“새로운 것을 만들기 위해 가장 오래된 기억을 들여다본다”는 말은 독창적인 것은 미래의 전유물이 아닌, 과거와 공존하는 것이라는 의미를 함의한 말이다. 뉴욕 기반 브랜드 Commission은 이 문장을 가장 설득력 있게 증명하는 레이블이다.",
@@ -29,6 +30,7 @@ export const articles: Article[] = [
     slug: "gabriela-coll-garments-seasonless-wardrobe",
     title: "Gabriela Coll Garments, 시즌을 지운 옷장",
     brand: "Gabriela Coll Garments",
+    brandId: "gabriela-coll-garments",
     excerpt: "트렌드보다 의복의 본질을 바라보며 시간이 축적되는 워드로브를 제안하는 브랜드.",
     body: [
       "패션 산업은 속된 말로 ‘공장형’이라고 할 만큼 반기에, 혹은 분기에 한 번씩 새로운 시즌을 요구한다. 소비자들을 매 시즌 새로운 옷을 구매하도록 유도하며, 브랜드는 트렌드의 속도를 따라가기 위해 쉼 없이 움직인다. 그러나 스페인 바르셀로나에서 시작된 Gabriela Coll Garments는 이러한 관행에 정면으로 질문을 던진다.",
@@ -51,6 +53,7 @@ export const articles: Article[] = [
     slug: "gimaguas-barcelona-vacation",
     title: "Gimaguas, 바르셀로나의 긴 휴가",
     brand: "Gimaguas",
+    brandId: "gimaguas",
     excerpt: "SNS 바이럴을 넘어 자유롭고 즉흥적인 라이프스타일을 판매하는 바르셀로나 브랜드.",
     body: [
       "2020년대 중반 패션계에서 가장 흥미로운 현상 중 하나를 꼽으라면 단연 Gimaguas의 부상을 들 수 있다. 몇 년 전까지만 해도 일부 패션 애호가들 사이에서만 알려졌던 이 스페인 브랜드는 이제 전 세계 Z세대와 밀레니얼 세대가 가장 주목하는 이름 중 하나가 됐다. 뉴욕, 런던, 로스앤젤레스, 서울에 이르기까지 SNS를 조금만 둘러봐도 Gimaguas의 니트 드레스, 스터드 백, 비키니, 액세서리를 쉽게 발견할 수 있다. 최근에는 Charli XCX, Dua Lipa, Kylie Jenner, Addison Rae 등 수많은 셀러브리티가 착용하며 글로벌 인지도를 더욱 높였다. 하지만 Gimaguas의 성공을 단순히 ‘SNS 바이럴’로 설명하기는 어렵다. 이 브랜드의 진짜 매력은 옷 그 자체보다 하나의 라이프스타일을 판매한다는 데 있다.",
@@ -74,6 +77,7 @@ export const articles: Article[] = [
     slug: "mainline-frcade-body-language",
     title: "Mainline/Fr.CA/DE, 신체를 다시 읽는 방식",
     brand: "Mainline/Fr.CA/DE",
+    brandId: "mainline",
     excerpt: "정체성과 젠더, 신체의 유동성을 옷의 구조로 질문하는 런던 기반 브랜드.",
     body: [
       "런던의 독립 패션 신(Scene)은 오랫동안 정체성과 신체에 관한 급진적인 질문을 던져왔다. 이러한 흐름 속에서 Mainline/Fr.CA/DE는 단순한 신진 브랜드를 넘어, 현대 패션이 육체성을 어떻게 이해하는지에 대한 새로운 관점을 제시한다.",
@@ -98,6 +102,7 @@ export const articles: Article[] = [
     slug: "super-yaya-africosmic-future",
     title: "Super Yaya, 100% Africosmic의 미래",
     brand: "Super Yaya",
+    brandId: "super-yaya",
     excerpt: "아프리카를 과거의 유산이 아닌 미래를 생산하는 장으로 바라보는 아프로퓨처리즘의 언어.",
     body: [
       "아프리카는 오랫동안 전통, 민속, 이국성이라는 단어로 설명되어 왔다. 그러나 코트디부아르 기반 브랜드 Super Yaya는 이러한 규범을 정면으로 전복시킨다. 브랜드를 이끄는 디자이너 림 베이둔(Rym Beydoun)은 아프리카를 과거의 유산이 아니라 미래를 생산하는 하나의 장으로 바라본다. 그리고 그 비전을 설명하는 가장 강력한 문장이 바로 브랜드의 대표 슬로건, ‘100% Africosmic’이다.",
@@ -121,6 +126,7 @@ export const articles: Article[] = [
     slug: "meta-campania-collective-artists-uniform",
     title: "Meta Campania Collective, 예술가의 유니폼",
     brand: "Meta Campania Collective",
+    brandId: "meta-campania-collective",
     excerpt: "삶을 압도하지 않고 오래 곁에 남는 옷을 통해 럭셔리의 감각을 다시 정의한다.",
     body: [
       "럭셔리 패션은 두 개의 극단 사이를 오간다. 한쪽에는 강렬한 로고와 과시적 소비가 있고, 다른 한쪽에는 ‘조용한 럭셔리’라는 이름의 절제된 아름다움이 존재한다. 파리 기반의 Meta Campania Collective는 이 두 범주 모두에 완전히 속하지 않는다. 이들이 만드는 옷은 부를 드러내기 위한 도구도, 미니멀리즘의 교과서도 아니다. 오히려 창작자가 살아가는 방식, 그리고 예술가의 태도에 대한 탐구에 가깝다.",

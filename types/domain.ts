@@ -71,6 +71,8 @@ export type Article = {
   title: string;
   /** Brand name shown as the magazine heading (the full `title` stays for alt text / SEO). */
   brand: string;
+  /** Brand id (matches `Brand.id`) used to surface that brand's products on the article. */
+  brandId: string;
   excerpt: string;
   body: string[];
   date: string;

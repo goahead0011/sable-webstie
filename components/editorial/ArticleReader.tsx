@@ -1,5 +1,7 @@
 import Link from "next/link";
 import ZoomableHero from "@/components/ui/ZoomableHero";
+import ProductGrid from "@/components/product/ProductGrid";
+import { getProductsByBrandId } from "@/data/products";
 import { formatDate } from "@/lib/format";
 import type { Article } from "@/types/domain";
 import styles from "@/components/editorial/ArticleReader.module.css";
@@ -33,6 +35,9 @@ export default function ArticleReader({ article }: ArticleReaderProps) {
   // One chunk per portrait + a final closing chunk of flowing text.
   const chunks = chunkParagraphs(article.body, portraits.length + 1);
   const closing = chunks[chunks.length - 1] ?? [];
+  // The brand's catalog items, shown beneath the article once the copy ends.
+  const relatedProducts = getProductsByBrandId(article.brandId);
+  const relatedTitleId = `related-${article.id}`;
 
   return (
     <article className={styles.article}>
@@ -87,6 +92,15 @@ export default function ArticleReader({ article }: ArticleReaderProps) {
           </div>
         ) : null}
       </div>
+
+      {relatedProducts.length > 0 ? (
+        <section className={styles.related} aria-labelledby={relatedTitleId}>
+          <h2 id={relatedTitleId} className={styles.relatedTitle}>
+            Related products
+          </h2>
+          <ProductGrid products={relatedProducts} />
+        </section>
+      ) : null}
 
       <Link href="/magazine" className={styles.back}>
         Back to magazine

@@ -747,3 +747,7 @@ export function getProductBySlug(slug: string) {
 export function getProductById(id: string) {
   return products.find((product) => product.id === id);
 }
+
+export function getProductsByBrandId(brandId: string) {
+  return products.filter((product) => product.brandId === brandId);
+}

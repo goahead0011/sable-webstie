@@ -107,6 +107,17 @@
   outline: none;
 }
 
+/* The brand's products, surfaced after the article copy. */
+.related {
+  margin-top: 96px;
+}
+
+.relatedTitle {
+  margin: 0 0 24px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 @media (max-width: 860px) {
   .hero {
     margin-bottom: 28px;

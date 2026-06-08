@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ArticleReader from "@/components/editorial/ArticleReader";
+import ProductGrid from "@/components/product/ProductGrid";
 import ZoomableHero from "@/components/ui/ZoomableHero";
 import { articles, getArticleBySlug } from "@/data/articles";
+import { getProductsByBrandId } from "@/data/products";
 import { formatDate } from "@/lib/format";
 
 type ArticlePageProps = {
@@ -27,6 +29,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     return <ArticleReader article={article} />;
   }
 
+  const relatedProducts = getProductsByBrandId(article.brandId);
+
   return (
     <article className="utility-page">
       <ZoomableHero tone="light" alt={article.title} className="article-hero" />
@@ -38,6 +42,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           {paragraph}
         </p>
       ))}
+      {relatedProducts.length > 0 ? (
+        <section aria-labelledby={`related-${article.id}`}>
+          <h2 id={`related-${article.id}`} className="utility-title">
+            Related products
+          </h2>
+          <ProductGrid products={relatedProducts} />
+        </section>
+      ) : null}
       <Link href="/magazine">Back to magazine</Link>
     </article>
   );
