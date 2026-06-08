@@ -43,7 +43,7 @@ function CollectionMenus({ womenCategories, menCategories }: HeaderProps) {
         categories={womenCategories}
         isActiveCollection={pathname === "/women"}
         activeCategory={category}
-        triggerClassName={styles.navLink}
+        triggerClassName={`${styles.navLink} ${isActivePath(pathname, "/women") ? styles.navItemActive : ""}`}
       />
       <CollectionMegaMenu
         label="men"
@@ -51,13 +51,18 @@ function CollectionMenus({ womenCategories, menCategories }: HeaderProps) {
         categories={menCategories}
         isActiveCollection={pathname === "/men"}
         activeCategory={category}
-        triggerClassName={styles.navLink}
+        triggerClassName={`${styles.navLink} ${isActivePath(pathname, "/men") ? styles.navItemActive : ""}`}
       />
     </>
   );
 }
 
+function isActivePath(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export default function Header({ womenCategories, menCategories }: HeaderProps) {
+  const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -98,7 +103,9 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
               panel's <nav aria-label="Brands"> is the header's only nav landmark
               and the absolute panel stays anchored to .header (mainNav is static). */}
           <div className={styles.mainNav}>
-            <BrandMegaMenu triggerClassName={styles.navButton} />
+            <BrandMegaMenu
+              triggerClassName={`${styles.navButton} ${isActivePath(pathname, "/brands") ? styles.navItemActive : ""}`}
+            />
             {navItems.map((item) => {
               // The women slot renders both Women and Men hover menus; the men
               // slot is skipped so order stays new in › women › men › life …
@@ -112,10 +119,20 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
                     key="collection-menus"
                     fallback={
                       <>
-                        <Link href="/women" className={styles.navLink} data-label="women">
+                        <Link
+                          href="/women"
+                          className={`${styles.navLink} ${isActivePath(pathname, "/women") ? styles.navItemActive : ""}`}
+                          data-label="women"
+                          aria-current={isActivePath(pathname, "/women") ? "page" : undefined}
+                        >
                           women
                         </Link>
-                        <Link href="/men" className={styles.navLink} data-label="men">
+                        <Link
+                          href="/men"
+                          className={`${styles.navLink} ${isActivePath(pathname, "/men") ? styles.navItemActive : ""}`}
+                          data-label="men"
+                          aria-current={isActivePath(pathname, "/men") ? "page" : undefined}
+                        >
                           men
                         </Link>
                       </>
@@ -127,7 +144,13 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
               }
 
               return (
-                <Link key={item.key} href={item.href} className={styles.navLink} data-label={item.label}>
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className={`${styles.navLink} ${isActivePath(pathname, item.href) ? styles.navItemActive : ""}`}
+                  data-label={item.label}
+                  aria-current={isActivePath(pathname, item.href) ? "page" : undefined}
+                >
                   {item.label}
                 </Link>
               );
@@ -136,13 +159,28 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
 
           {/* utility nav (right group) — pushed to the content edge via margin-left:auto */}
           <div className={styles.utilityNav}>
-            <button className={styles.navButton} type="button" data-label="search" onClick={() => setSearchOpen(true)}>
+            <button
+              className={`${styles.navButton} ${isActivePath(pathname, "/search") ? styles.navItemActive : ""}`}
+              type="button"
+              data-label="search"
+              onClick={() => setSearchOpen(true)}
+            >
               search
             </button>
-            <Link className={styles.navLink} href="/login" data-label={accountLabel}>
+            <Link
+              className={`${styles.navLink} ${isActivePath(pathname, "/login") ? styles.navItemActive : ""}`}
+              href="/login"
+              data-label={accountLabel}
+              aria-current={isActivePath(pathname, "/login") ? "page" : undefined}
+            >
               {accountLabel}
             </Link>
-            <Link className={styles.navLink} href="/cart" data-label={`cart${cartCount > 0 ? ` ${cartCount}` : ""}`}>
+            <Link
+              className={`${styles.navLink} ${isActivePath(pathname, "/cart") ? styles.navItemActive : ""}`}
+              href="/cart"
+              data-label={`cart${cartCount > 0 ? ` ${cartCount}` : ""}`}
+              aria-current={isActivePath(pathname, "/cart") ? "page" : undefined}
+            >
               cart{cartCount > 0 ? ` ${cartCount}` : ""}
             </Link>
           </div>
@@ -177,11 +215,16 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
           </button>
         </div>
         <nav className={styles.drawerNav} aria-label="Mobile primary">
-          <Link href="/" onClick={() => setDrawerOpen(false)}>
+          <Link
+            href="/"
+            className={pathname === "/" ? styles.drawerLinkActive : undefined}
+            aria-current={pathname === "/" ? "page" : undefined}
+            onClick={() => setDrawerOpen(false)}
+          >
             home
           </Link>
           <button
-            className={styles.drawerAccordion}
+            className={`${styles.drawerAccordion} ${isActivePath(pathname, "/brands") ? styles.drawerLinkActive : ""}`}
             type="button"
             aria-expanded={mobileBrandsOpen}
             onClick={() => setMobileBrandsOpen((open) => !open)}
@@ -189,7 +232,12 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
             brands
           </button>
           <div className={`${styles.drawerBrands} ${mobileBrandsOpen ? styles.drawerBrandsOpen : ""}`}>
-            <Link href="/brands" onClick={() => setDrawerOpen(false)}>
+            <Link
+              href="/brands"
+              className={pathname === "/brands" ? styles.drawerLinkActive : undefined}
+              aria-current={pathname === "/brands" ? "page" : undefined}
+              onClick={() => setDrawerOpen(false)}
+            >
               all brands
             </Link>
             {brandMenuOrder.map((id) => {
@@ -198,7 +246,13 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
                 return null;
               }
               return (
-                <Link key={brand.id} href={`/brands/${brand.slug}`} onClick={() => setDrawerOpen(false)}>
+                <Link
+                  key={brand.id}
+                  href={`/brands/${brand.slug}`}
+                  className={isActivePath(pathname, `/brands/${brand.slug}`) ? styles.drawerLinkActive : undefined}
+                  aria-current={isActivePath(pathname, `/brands/${brand.slug}`) ? "page" : undefined}
+                  onClick={() => setDrawerOpen(false)}
+                >
                   {brand.name}
                 </Link>
               );
@@ -209,7 +263,12 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
               const categories = item.key === "women" ? womenCategories : menCategories;
               return (
                 <div key={item.key} className={styles.drawerGroup}>
-                  <Link href={item.href} onClick={() => setDrawerOpen(false)}>
+                  <Link
+                    href={item.href}
+                    className={isActivePath(pathname, item.href) ? styles.drawerLinkActive : undefined}
+                    aria-current={isActivePath(pathname, item.href) ? "page" : undefined}
+                    onClick={() => setDrawerOpen(false)}
+                  >
                     {item.label}
                   </Link>
                   <div className={styles.drawerCategories}>
@@ -226,15 +285,31 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
             }
 
             return (
-              <Link key={item.key} href={item.href} onClick={() => setDrawerOpen(false)}>
+              <Link
+                key={item.key}
+                href={item.href}
+                className={isActivePath(pathname, item.href) ? styles.drawerLinkActive : undefined}
+                aria-current={isActivePath(pathname, item.href) ? "page" : undefined}
+                onClick={() => setDrawerOpen(false)}
+              >
                 {item.label}
               </Link>
             );
           })}
-          <Link href="/login" onClick={() => setDrawerOpen(false)}>
+          <Link
+            href="/login"
+            className={isActivePath(pathname, "/login") ? styles.drawerLinkActive : undefined}
+            aria-current={isActivePath(pathname, "/login") ? "page" : undefined}
+            onClick={() => setDrawerOpen(false)}
+          >
             {accountLabel}
           </Link>
-          <Link href="/cart" onClick={() => setDrawerOpen(false)}>
+          <Link
+            href="/cart"
+            className={isActivePath(pathname, "/cart") ? styles.drawerLinkActive : undefined}
+            aria-current={isActivePath(pathname, "/cart") ? "page" : undefined}
+            onClick={() => setDrawerOpen(false)}
+          >
             cart{cartCount > 0 ? ` ${cartCount}` : ""}
           </Link>
         </nav>

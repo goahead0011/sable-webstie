@@ -1,0 +1,148 @@
+/* TOC layout: sticky nav beside the active panel. */
+.layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.nav {
+  position: sticky;
+  top: calc(var(--header-height) + 24px);
+}
+
+.navInner {
+  display: grid;
+  gap: 10px;
+}
+
+.navItem {
+  width: fit-content;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 14px;
+  text-align: left;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: color var(--motion-fast) ease;
+}
+
+.navItem:hover {
+  color: var(--color-text);
+}
+
+.navItem:focus-visible {
+  outline: 1px solid var(--color-text);
+  outline-offset: 3px;
+}
+
+.navItemActive {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.content {
+  min-width: 0;
+}
+
+/* Replayed on every tab switch via a changing React key on the panel. */
+.panel {
+  animation: panelIn var(--motion-medium) ease both;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stack {
+  display: grid;
+  /* Cap the column at the container so fixed-width children can't force the
+     track (and every section) wider than the viewport on mobile. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 56px;
+}
+
+.section {
+  display: grid;
+  gap: 14px;
+  max-width: 680px;
+}
+
+.sectionTitle {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.subTitle {
+  margin: 16px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.list {
+  display: grid;
+  gap: 8px;
+  max-width: 620px;
+  margin: 0 0 6px;
+  padding-left: 18px;
+  line-height: 1.65;
+}
+
+.termGrid {
+  display: grid;
+  gap: 18px;
+}
+
+.term {
+  display: grid;
+  gap: 8px;
+}
+
+.term p,
+.address {
+  max-width: 620px;
+  margin: 0;
+  line-height: 1.65;
+  font-style: normal;
+}
+
+.languageDivider {
+  width: 100%;
+  max-width: 620px;
+  height: 1px;
+  margin: 8px 0 0;
+  background: var(--color-line);
+}
+
+@media (max-width: 767px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  /* All four items fit on screen as a 2x2 grid above the content — no scrolling. */
+  .nav {
+    position: static;
+    top: auto;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .navInner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 16px;
+  }
+
+  .navItem {
+    white-space: normal;
+  }
+}

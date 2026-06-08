@@ -17,9 +17,14 @@ export default function ArticleGrid({ articles }: ArticleGridProps) {
       <div className={styles.grid}>
         {articles.map((article) => (
           <Link key={article.id} href={`/magazine/${article.slug}`} className={styles.card}>
-            <PlaceholderImage tone="light" label={article.title} className={styles.image} />
+            {article.hero ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className={styles.image} src={article.hero} alt={article.brand} loading="lazy" />
+            ) : (
+              <PlaceholderImage tone="light" label={article.brand} className={styles.image} />
+            )}
             <span className={styles.meta}>
-              <strong>{article.title}</strong>
+              <strong>{article.brand}</strong>
               <span>{article.category} / {formatDate(article.date)}</span>
             </span>
           </Link>

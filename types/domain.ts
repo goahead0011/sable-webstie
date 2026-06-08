@@ -69,10 +69,16 @@ export type Article = {
   id: string;
   slug: string;
   title: string;
+  /** Brand name shown as the magazine heading (the full `title` stays for alt text / SEO). */
+  brand: string;
   excerpt: string;
   body: string[];
   date: string;
   category: "interview" | "essay" | "editorial";
+  /** 16:9 hero image (public path). When present, the article renders the rich editorial layout. */
+  hero?: string;
+  /** 9:16 portrait images (public paths) woven through the body in display order. */
+  images?: string[];
 };
 
 export type StylingStory = {

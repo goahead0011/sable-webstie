@@ -90,6 +90,7 @@
 .navLink:focus-visible,
 .navButton:hover,
 .navButton:focus-visible,
+.navItemActive,
 .mobileTextButton:hover,
 .mobileTextButton:focus-visible {
   font-weight: 700;
@@ -166,6 +167,10 @@
 .closeButton:focus-visible {
   font-weight: 700;
   outline: none;
+}
+
+.drawerLinkActive {
+  font-weight: 700;
 }
 
 .drawerBrands {

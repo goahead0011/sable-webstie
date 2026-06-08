@@ -1,0 +1,141 @@
+.article {
+  width: var(--layout-width);
+  margin: 0 auto;
+  padding: var(--utility-page-top) 0 var(--utility-page-bottom);
+}
+
+/* 16:9 hero spanning the full content width. */
+.hero {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  margin-bottom: 40px;
+  overflow: hidden;
+  background: var(--color-placeholder);
+}
+
+.header {
+  max-width: 760px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
+.meta {
+  margin: 0 0 16px;
+  color: var(--color-muted);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.title {
+  margin: 0 0 20px;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.lead {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+}
+
+/* Two-column feature: a 9:16 portrait anchored beside its block of copy. */
+.feature {
+  display: grid;
+  grid-template-columns: minmax(300px, 360px) 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.featureReverse {
+  grid-template-columns: 1fr minmax(300px, 360px);
+}
+
+.featureReverse .portrait {
+  order: 2;
+}
+
+.featureReverse .featureText {
+  order: 1;
+}
+
+.portrait {
+  aspect-ratio: 9 / 16;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-placeholder);
+}
+
+.featureText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Closing paragraphs flow in a single centered reading column. */
+.closing {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.copy {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 72px;
+  font-size: 13px;
+}
+
+.back:hover,
+.back:focus-visible {
+  font-weight: 700;
+  outline: none;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    margin-bottom: 28px;
+  }
+
+  .header {
+    margin-bottom: 44px;
+    text-align: left;
+  }
+
+  .body {
+    gap: 48px;
+  }
+
+  .feature,
+  .featureReverse {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Stack image above text on small screens regardless of side. */
+  .featureReverse .portrait,
+  .featureReverse .featureText {
+    order: 0;
+  }
+
+  /* Cap the portrait so a 9:16 image never towers over a phone screen. */
+  .portrait {
+    width: min(320px, 78%);
+    margin: 0 auto;
+  }
+}

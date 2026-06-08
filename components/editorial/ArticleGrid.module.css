@@ -1,6 +1,6 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 320px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -14,8 +14,11 @@
 }
 
 .image {
-  width: 320px;
-  height: 240px;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--color-placeholder);
 }
 
 .meta {
@@ -41,12 +44,6 @@
 @media (max-width: 1179px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .image {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;
   }
 }
 

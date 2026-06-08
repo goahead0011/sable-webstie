@@ -5,6 +5,7 @@ export const articles: Article[] = [
     id: "a-001",
     slug: "commission-memory-tailoring",
     title: "Commission, 오래된 기억으로 쓰는 새로운 테일러링",
+    brand: "Commission",
     excerpt: "가족 앨범과 동아시아 이민자 가정의 기억을 현대적인 옷으로 다시 써 내려가는 Commission.",
     body: [
       "“새로운 것을 만들기 위해 가장 오래된 기억을 들여다본다”는 말은 독창적인 것은 미래의 전유물이 아닌, 과거와 공존하는 것이라는 의미를 함의한 말이다. 뉴욕 기반 브랜드 Commission은 이 문장을 가장 설득력 있게 증명하는 레이블이다.",
@@ -15,12 +16,19 @@ export const articles: Article[] = [
       "Commission은 과거를 복제하지 않는다. 대신 가족사진 속에 남겨진 기억, 부모 세대의 노동과 삶, 그리고 이민자의 경험을 현대적인 옷으로 다시 써 내려간다. 컬렉션은 단순한 의복이 아니라 하나의 문화적 기록물처럼 읽힌다. 뉴욕이라는 글로벌 도시에서 출발했지만, 그 안에는 서울과 호치민, 그리고 수많은 아시아 가정의 이야기가 담겨 있는 Commission의 SS26 컬렉션을 sable에서 지금 바로 만나 보자."
     ],
     date: "2026-06-08",
-    category: "essay"
+    category: "essay",
+    hero: "/magazine/commission/commission_hero.png",
+    images: [
+      "/magazine/commission/commission_1.png",
+      "/magazine/commission/commission_2.png",
+      "/magazine/commission/commission_3.png"
+    ]
   },
   {
     id: "a-002",
     slug: "gabriela-coll-garments-seasonless-wardrobe",
     title: "Gabriela Coll Garments, 시즌을 지운 옷장",
+    brand: "Gabriela Coll Garments",
     excerpt: "트렌드보다 의복의 본질을 바라보며 시간이 축적되는 워드로브를 제안하는 브랜드.",
     body: [
       "패션 산업은 속된 말로 ‘공장형’이라고 할 만큼 반기에, 혹은 분기에 한 번씩 새로운 시즌을 요구한다. 소비자들을 매 시즌 새로운 옷을 구매하도록 유도하며, 브랜드는 트렌드의 속도를 따라가기 위해 쉼 없이 움직인다. 그러나 스페인 바르셀로나에서 시작된 Gabriela Coll Garments는 이러한 관행에 정면으로 질문을 던진다.",
@@ -31,12 +39,18 @@ export const articles: Article[] = [
       "최근 전 세계 패션 소비자들은 빠른 트렌드에 피로감을 느끼고 있다. Reddit의 패션 커뮤니티와 글로벌 편집숍에서도 Gabriela Coll Garments는 “의도적으로 소비하는 사람들을 위한 브랜드”, “오랫동안 입을 수 있는 진짜 워드로브 브랜드”로 자주 언급된다. 이 브랜드는 유행을 약속하지 않는다. 대신 5년 뒤에도, 10년 뒤에도 옷장 속에 남아 있을 옷을 제작한다. 빠르게 소비되는 패션 산업 속에서, 천천히 오래 입는 의복을 제안하는 Gabriela Coll Garments를 sable에서 만나 보자."
     ],
     date: "2026-06-07",
-    category: "essay"
+    category: "essay",
+    hero: "/magazine/gabriela-coll-garments/gabriela-coll-garments_hero.png",
+    images: [
+      "/magazine/gabriela-coll-garments/gabriela-coll-garments_1.png",
+      "/magazine/gabriela-coll-garments/gabriela-coll-garments_2.png"
+    ]
   },
   {
     id: "a-003",
     slug: "gimaguas-barcelona-vacation",
     title: "Gimaguas, 바르셀로나의 긴 휴가",
+    brand: "Gimaguas",
     excerpt: "SNS 바이럴을 넘어 자유롭고 즉흥적인 라이프스타일을 판매하는 바르셀로나 브랜드.",
     body: [
       "2020년대 중반 패션계에서 가장 흥미로운 현상 중 하나를 꼽으라면 단연 Gimaguas의 부상을 들 수 있다. 몇 년 전까지만 해도 일부 패션 애호가들 사이에서만 알려졌던 이 스페인 브랜드는 이제 전 세계 Z세대와 밀레니얼 세대가 가장 주목하는 이름 중 하나가 됐다. 뉴욕, 런던, 로스앤젤레스, 서울에 이르기까지 SNS를 조금만 둘러봐도 Gimaguas의 니트 드레스, 스터드 백, 비키니, 액세서리를 쉽게 발견할 수 있다. 최근에는 Charli XCX, Dua Lipa, Kylie Jenner, Addison Rae 등 수많은 셀러브리티가 착용하며 글로벌 인지도를 더욱 높였다. 하지만 Gimaguas의 성공을 단순히 ‘SNS 바이럴’로 설명하기는 어렵다. 이 브랜드의 진짜 매력은 옷 그 자체보다 하나의 라이프스타일을 판매한다는 데 있다.",
@@ -47,12 +61,19 @@ export const articles: Article[] = [
       "오늘날 수많은 브랜드가 조용한 럭셔리와 미니멀리즘을 이야기하지만, Gimaguas는 그 반대편에서 더 대담하고 더 즐거운 방식으로 사람들을 끌어당긴다. 자유롭고, 즉흥적이며, 낙관적인 삶의 태도. 그것이 바로 브랜드의 핵심이다. 바르셀로나의 태양 아래에서 시작된 Gimaguas를 지금 sable에서 만나 보자."
     ],
     date: "2026-06-06",
-    category: "editorial"
+    category: "editorial",
+    hero: "/magazine/gimaguas/gimaguas_hero.png",
+    images: [
+      "/magazine/gimaguas/gimaguas_1.png",
+      "/magazine/gimaguas/gimaguas_2.png",
+      "/magazine/gimaguas/gimaguas_3.png"
+    ]
   },
   {
     id: "a-004",
     slug: "mainline-frcade-body-language",
     title: "Mainline/Fr.CA/DE, 신체를 다시 읽는 방식",
+    brand: "Mainline/Fr.CA/DE",
     excerpt: "정체성과 젠더, 신체의 유동성을 옷의 구조로 질문하는 런던 기반 브랜드.",
     body: [
       "런던의 독립 패션 신(Scene)은 오랫동안 정체성과 신체에 관한 급진적인 질문을 던져왔다. 이러한 흐름 속에서 Mainline/Fr.CA/DE는 단순한 신진 브랜드를 넘어, 현대 패션이 육체성을 어떻게 이해하는지에 대한 새로운 관점을 제시한다.",
@@ -64,12 +85,19 @@ export const articles: Article[] = [
       "오늘날 패션은 더 이상 단순히 무엇을 입는가의 문제가 아니다. 우리는 옷을 통해 누구인지 말하고, 어떤 몸을 상상하는지 드러내는 하나의 표현 방식이 되었다. Mainline/Fr.CA/DE는 바로 그 지점에서 가장 흥미로운 질문을 던지는 브랜드 중 하나다. 이들의 작업은 신체의 새로운 가능성이다. 남성과 여성, 정상과 비정상, 중심과 주변이라는 규범을 새롭게 재정의하는 Mainline/Fr.CA/DE의 새로운 컬렉션을 sable에서 만나 보자."
     ],
     date: "2026-06-05",
-    category: "essay"
+    category: "essay",
+    hero: "/magazine/mainline/mainline_hero.png",
+    images: [
+      "/magazine/mainline/mainline_1.png",
+      "/magazine/mainline/mainline_2.png",
+      "/magazine/mainline/mainline_3.png"
+    ]
   },
   {
     id: "a-005",
     slug: "super-yaya-africosmic-future",
     title: "Super Yaya, 100% Africosmic의 미래",
+    brand: "Super Yaya",
     excerpt: "아프리카를 과거의 유산이 아닌 미래를 생산하는 장으로 바라보는 아프로퓨처리즘의 언어.",
     body: [
       "아프리카는 오랫동안 전통, 민속, 이국성이라는 단어로 설명되어 왔다. 그러나 코트디부아르 기반 브랜드 Super Yaya는 이러한 규범을 정면으로 전복시킨다. 브랜드를 이끄는 디자이너 림 베이둔(Rym Beydoun)은 아프리카를 과거의 유산이 아니라 미래를 생산하는 하나의 장으로 바라본다. 그리고 그 비전을 설명하는 가장 강력한 문장이 바로 브랜드의 대표 슬로건, ‘100% Africosmic’이다.",
@@ -81,12 +109,18 @@ export const articles: Article[] = [
       "오늘날 패션은 더 이상 유행만을 생산하지 않는다. 그것은 세계를 바라보는 방식을 생산한다. Super Yaya는 아프로퓨처리즘을 통해 아프리카를 과거의 박물관에서 꺼내 미래의 중심으로 전이시킨다. 그리고 그 과정에서 패션은 가장 강력한 문화적 언어가 된다. 아프리카에서 미래로 건너 오고 있는 Super Yaya의 새로운 컬렉션을 sable에서 만나 보자."
     ],
     date: "2026-06-04",
-    category: "essay"
+    category: "essay",
+    hero: "/magazine/super-yaya/super-yaya_hero.png",
+    images: [
+      "/magazine/super-yaya/super-yaya_1.png",
+      "/magazine/super-yaya/super-yaya_2.png"
+    ]
   },
   {
     id: "a-006",
     slug: "meta-campania-collective-artists-uniform",
     title: "Meta Campania Collective, 예술가의 유니폼",
+    brand: "Meta Campania Collective",
     excerpt: "삶을 압도하지 않고 오래 곁에 남는 옷을 통해 럭셔리의 감각을 다시 정의한다.",
     body: [
       "럭셔리 패션은 두 개의 극단 사이를 오간다. 한쪽에는 강렬한 로고와 과시적 소비가 있고, 다른 한쪽에는 ‘조용한 럭셔리’라는 이름의 절제된 아름다움이 존재한다. 파리 기반의 Meta Campania Collective는 이 두 범주 모두에 완전히 속하지 않는다. 이들이 만드는 옷은 부를 드러내기 위한 도구도, 미니멀리즘의 교과서도 아니다. 오히려 창작자가 살아가는 방식, 그리고 예술가의 태도에 대한 탐구에 가깝다.",
@@ -97,7 +131,13 @@ export const articles: Article[] = [
       "오늘날 많은 브랜드가 정체성과 문화를 이야기한다. 그러나 Meta Campania Collective는 ‘좋은 옷’ ‘옷을 입는 이유’와 같은 근원적인 부분에서 출발하고, 질문을 건넨다. 그리고 그 답은 놀라울 정도로 명료하다. 좋은 옷은 착용자를 압도하지 않으며, 삶 속에서 자연스럽게 존재해야 한다는 것이다. 시간이 지나도 곁에 남는 신뢰를 기반으로 하는 Meta Campania Collective의 새로운 컬렉션을 sable에서 만나 보자."
     ],
     date: "2026-06-03",
-    category: "essay"
+    category: "essay",
+    hero: "/magazine/meta-campania-collective/meta-campania-collective_hero.png",
+    images: [
+      "/magazine/meta-campania-collective/meta-campania-collective_1.png",
+      "/magazine/meta-campania-collective/meta-campania-collective_2.png",
+      "/magazine/meta-campania-collective/meta-campania-collective_3.png"
+    ]
   }
 ];
 
