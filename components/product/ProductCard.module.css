@@ -121,7 +121,7 @@
   }
 
   .card:focus-within .meta,
-  .expanded .meta {
+  .card.expanded .meta {
     max-height: 70px;
     padding-top: 8px;
     opacity: 1;
