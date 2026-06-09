@@ -1,0 +1,133 @@
+/* Scoped under .wrap so the custom select keeps its own control styling even
+   inside forms that use broad descendant selectors (`.checkoutSection select`,
+   `.accountPanel button`). Mirrors the AddressSearch results pattern: square
+   edges, hairline borders, bold-on-hover, panelIn motion. */
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  color: var(--color-text);
+}
+
+.wrap {
+  position: relative;
+}
+
+.wrap .trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--color-text);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.wrap .trigger:focus-visible {
+  outline: none;
+  font-weight: 700;
+}
+
+.placeholder {
+  color: var(--color-muted);
+}
+
+.caret {
+  flex: 0 0 auto;
+  color: var(--color-muted);
+  transition: transform var(--motion-fast) ease, color var(--motion-fast) ease;
+}
+
+.wrap .trigger:hover .caret,
+.wrap .trigger:focus-visible .caret {
+  color: var(--color-text);
+}
+
+.caretOpen {
+  transform: rotate(180deg);
+  color: var(--color-text);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--color-text);
+  background: var(--color-page);
+  transform-origin: top center;
+  animation: couponMenuIn var(--motion-fast) ease both;
+}
+
+.menu li {
+  display: grid;
+}
+
+.menu li + li {
+  border-top: 1px solid var(--color-line);
+}
+
+.wrap .option {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  height: auto;
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.wrap .option:hover,
+.wrap .option:focus-visible {
+  outline: none;
+  font-weight: 700;
+}
+
+.optionSelected {
+  font-weight: 700;
+}
+
+.wrap .option:disabled {
+  color: var(--color-muted);
+  cursor: default;
+}
+
+.wrap .option:disabled:hover {
+  font-weight: 400;
+}
+
+.option small {
+  color: var(--color-muted);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@keyframes couponMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scaleY(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}

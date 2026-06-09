@@ -140,7 +140,7 @@
 .accountPanel {
   display: grid;
   gap: 20px;
-  max-width: 520px;
+  max-width: 760px;
 }
 
 .editForm {
@@ -155,6 +155,15 @@
 
 .accountPanel input {
   width: 100%;
+  height: 38px;
+  border: 1px solid var(--color-text);
+  border-radius: 0;
+  padding: 0 10px;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.accountPanel select {
   height: 38px;
   border: 1px solid var(--color-text);
   border-radius: 0;
@@ -197,6 +206,124 @@
   gap: 14px;
   padding-top: 20px;
   border-top: 1px solid var(--color-line);
+}
+
+.membershipSection {
+  display: grid;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-line);
+}
+
+.membershipSection h2,
+.membershipHeader h2 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.membershipHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.membershipHeader p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.tierProgress {
+  position: relative;
+  height: 2px;
+  background: var(--color-line);
+  overflow: hidden;
+}
+
+.tierProgressFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: block;
+  background: var(--color-text);
+  transform-origin: left center;
+  animation: tierFill var(--motion-medium) ease both;
+}
+
+.membershipSummary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.membershipSummary p,
+.couponList p,
+.tierList p {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.membershipSummary span,
+.couponList span,
+.tierList span {
+  color: var(--color-muted);
+}
+
+.membershipSummary p {
+  gap: 8px;
+}
+
+.membershipSummary span {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.membershipSummary strong {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.couponList p,
+.tierList p {
+  animation: panelIn var(--motion-medium) ease both;
+}
+
+.currentTier span,
+.currentTier strong {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.benefitList {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.benefitList li {
+  animation: panelIn var(--motion-medium) ease both;
+}
+
+.couponList,
+.tierList {
+  display: grid;
+  gap: 12px;
+}
+
+.couponList p,
+.tierList p {
+  grid-template-columns: 1fr auto;
+  align-items: start;
+}
+
+.disabledCoupon {
+  opacity: 0.55;
 }
 
 .historySection h2 {
@@ -270,6 +397,16 @@
   }
 }
 
+@keyframes tierFill {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @media (max-width: 767px) {
   .fieldGrid,
   .inlineSearch {
@@ -282,7 +419,15 @@
   }
 
   .historyTop,
-  .paymentList p {
+  .paymentList p,
+  .membershipSummary,
+  .couponList p,
+  .tierList p {
     grid-template-columns: 1fr;
+  }
+
+  .membershipHeader {
+    display: grid;
+    gap: 6px;
   }
 }

@@ -16,6 +16,7 @@ export default function RegisterClient() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [birthDate, setBirthDate] = useState("");
   const [address, setAddress] = useState<ShippingAddress>(EMPTY_ADDRESS);
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -43,9 +44,10 @@ export default function RegisterClient() {
         password,
         name,
         phone,
+        birthDate,
         address
       });
-      router.push("/login");
+      router.push("/account");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Account creation failed.");
     } finally {
@@ -91,6 +93,15 @@ export default function RegisterClient() {
             required
           />
         </label>
+        <label>
+          Birth date
+          <input
+            type="date"
+            value={birthDate}
+            onChange={(event) => setBirthDate(event.target.value)}
+            required
+          />
+        </label>
       </div>
 
       <div className={styles.sectionBlock}>
@@ -120,7 +131,9 @@ export default function RegisterClient() {
         </div>
       </div>
 
-      <p className={styles.pointNote}>First account balance: {formatPrice(INITIAL_SIGNUP_POINTS)}</p>
+      <p className={styles.pointNote}>
+        First account balance: {formatPrice(INITIAL_SIGNUP_POINTS)} / Welcome coupon 10% / Birthday coupon by tier.
+      </p>
       <button type="submit" disabled={submitting}>
         {submitting ? "Creating account" : "Create account"}
       </button>

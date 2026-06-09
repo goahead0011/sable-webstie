@@ -4,18 +4,21 @@ import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import { useAccount } from "@/components/account/AccountProvider";
 import AddressSearch from "@/components/account/AddressSearch";
+import CouponSelect, { type CouponSelectOption } from "@/components/account/CouponSelect";
 import { useCart } from "@/components/cart/CartProvider";
 import { getBrandById } from "@/data/brands";
 import { getProductById } from "@/data/products";
 import { EMPTY_ADDRESS, type ShippingAddress } from "@/lib/account";
 import { formatPhone, formatPrice } from "@/lib/format";
+import { calculateMembershipOrder, getMembershipCoupons, getMembershipTier, formatMembershipRate } from "@/lib/membership";
 import styles from "@/components/cart/CartView.module.css";
 
 export default function CheckoutView() {
   const { items, clearCart } = useCart();
-  const { ready, profile, placeOrder } = useAccount();
+  const { ready, profile, orders, placeOrder } = useAccount();
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>(EMPTY_ADDRESS);
   const [addressEdited, setAddressEdited] = useState(false);
+  const [selectedCouponId, setSelectedCouponId] = useState("");
   const [message, setMessage] = useState("");
   const [orderId, setOrderId] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -32,9 +35,34 @@ export default function CheckoutView() {
     [items]
   );
 
-  const total = lines.reduce((sum, line) => sum + line.product.price * line.item.quantity, 0);
-  const remainingPoints = profile ? profile.points - total : 0;
-  const canSubmit = Boolean(profile && lines.length > 0 && total > 0 && remainingPoints >= 0 && !submitting);
+  const coupons = profile ? getMembershipCoupons(profile, orders) : [];
+  const effectiveCouponId = coupons.some((coupon) => coupon.id === selectedCouponId && coupon.available)
+    ? selectedCouponId
+    : "";
+  const couponOptions: CouponSelectOption[] = [
+    { value: "", label: "No coupon" },
+    ...coupons.map((coupon) => ({
+      value: coupon.id,
+      label: coupon.label,
+      disabled: !coupon.available,
+      hint: coupon.available ? undefined : coupon.reason ?? "Unavailable"
+    }))
+  ];
+  const breakdown = profile
+    ? calculateMembershipOrder(
+        profile,
+        orders,
+        lines.map(({ item, product }) => ({
+          price: product.price,
+          quantity: item.quantity,
+          isSale: product.isSale
+        })),
+        effectiveCouponId
+      )
+    : null;
+  const total = breakdown?.total ?? 0;
+  const remainingPoints = profile && breakdown ? profile.points - breakdown.total + breakdown.earnedPoints : 0;
+  const canSubmit = Boolean(profile && breakdown && lines.length > 0 && breakdown.total > 0 && profile.points >= breakdown.total && !submitting);
   const currentShippingAddress = addressEdited ? shippingAddress : profile?.address ?? EMPTY_ADDRESS;
 
   function updateAddress(nextAddress: Partial<ShippingAddress>) {
@@ -58,7 +86,8 @@ export default function CheckoutView() {
       const result = await placeOrder({
         items,
         total,
-        shippingAddress: currentShippingAddress
+        shippingAddress: currentShippingAddress,
+        couponId: effectiveCouponId || undefined
       });
       clearCart();
       setOrderId(result.orderId);
@@ -97,6 +126,8 @@ export default function CheckoutView() {
   }
 
   if (orderId) {
+    const tierLabel = getMembershipTier(profile.totalPurchased).label;
+
     return (
       <section className="utility-page">
         <h1 className="utility-title">Checkout</h1>
@@ -109,6 +140,12 @@ export default function CheckoutView() {
             <span>Remaining points</span>
             <strong>{formatPrice(profile.points)}</strong>
           </p>
+          {tierLabel ? (
+            <p>
+              <span>Membership</span>
+              <strong>{tierLabel}</strong>
+            </p>
+          ) : null}
           <Link className={styles.checkout} href="/new-in">
             Continue browsing
           </Link>
@@ -185,6 +222,38 @@ export default function CheckoutView() {
               Points
             </label>
           </section>
+
+          {breakdown ? (
+            <section className={styles.checkoutSection}>
+              <h2>Membership</h2>
+              <div className={styles.membershipPanel}>
+                <p>
+                  <span>Tier</span>
+                  <strong>{breakdown.tier.label}</strong>
+                </p>
+                <p>
+                  <span>Earn rate</span>
+                  <strong>{formatMembershipRate(breakdown.tier.pointRate)}</strong>
+                </p>
+                <p>
+                  <span>Regular item discount</span>
+                  <strong>{formatMembershipRate(breakdown.tier.regularDiscountRate)}</strong>
+                </p>
+              </div>
+              <div className={styles.fullField}>
+                <CouponSelect
+                  label="Coupon"
+                  options={couponOptions}
+                  value={effectiveCouponId}
+                  onChange={setSelectedCouponId}
+                />
+              </div>
+              <p className={styles.note}>
+                생일 쿠폰은 등록된 생년월일 기준 생일 월에 표시됩니다. 무료 배송 혜택은 배송비 항목이 추가되면 자동
+                적용됩니다.
+              </p>
+            </section>
+          ) : null}
         </div>
 
         <aside className={styles.summary}>
@@ -199,18 +268,40 @@ export default function CheckoutView() {
             ))}
           </div>
           <p>
+            <span>Subtotal</span>
+            <strong>{formatPrice(breakdown?.subtotal ?? total)}</strong>
+          </p>
+          {breakdown && breakdown.regularDiscount > 0 ? (
+            <p>
+              <span>Member discount</span>
+              <strong>-{formatPrice(breakdown.regularDiscount)}</strong>
+            </p>
+          ) : null}
+          {breakdown && breakdown.couponDiscount > 0 ? (
+            <p>
+              <span>Coupon</span>
+              <strong>-{formatPrice(breakdown.couponDiscount)}</strong>
+            </p>
+          ) : null}
+          <p className={styles.summaryTotal}>
             <span>Total</span>
-            <strong>{formatPrice(total)}</strong>
+            <strong>{formatPrice(breakdown?.total ?? total)}</strong>
           </p>
           <p>
             <span>Available points</span>
             <strong>{formatPrice(profile.points)}</strong>
           </p>
-          <p className={remainingPoints < 0 ? styles.warning : undefined}>
+          {breakdown ? (
+            <p>
+              <span>Earned points</span>
+              <strong>+{formatPrice(breakdown.earnedPoints)}</strong>
+            </p>
+          ) : null}
+          <p className={profile.points < total ? styles.warning : undefined}>
             <span>After order</span>
             <strong>{formatPrice(Math.max(0, remainingPoints))}</strong>
           </p>
-          {remainingPoints < 0 ? <p className={styles.note}>You do not have enough points.</p> : null}
+          {profile.points < total ? <p className={styles.note}>You do not have enough points.</p> : null}
           {message ? <p className={styles.note}>{message}</p> : null}
           <button className={styles.checkout} type="submit" disabled={!canSubmit}>
             {submitting ? "Processing" : "Place order"}

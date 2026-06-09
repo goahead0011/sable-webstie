@@ -163,6 +163,7 @@
   border-radius: 0;
   padding: 0 10px;
   background: transparent;
+  color: var(--color-text);
 }
 
 .fieldGrid input:read-only {
@@ -184,6 +185,34 @@
   margin: 0;
 }
 
+.membershipPanel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 16px 18px;
+  border: 1px solid var(--color-line);
+  animation: panelIn var(--motion-medium) ease both;
+}
+
+.membershipPanel p {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.membershipPanel span {
+  color: var(--color-muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.membershipPanel strong {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
 .orderLines {
   display: grid;
   gap: 10px;
@@ -199,6 +228,17 @@
 .orderLines span {
   color: var(--color-muted);
   line-height: 1.45;
+}
+
+.summaryTotal {
+  padding-top: 14px;
+  border-top: 1px solid var(--color-line);
+}
+
+.summaryTotal strong {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .warning {
@@ -229,6 +269,10 @@
   }
 
   .fieldGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .membershipPanel {
     grid-template-columns: 1fr;
   }
 }

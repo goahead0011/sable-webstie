@@ -70,6 +70,7 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
   const { items } = useCart();
   const cartCount = items.reduce((total, item) => total + item.quantity, 0);
   const accountLabel = profile ? "account" : "login";
+  const accountHref = profile ? "/account" : "/login";
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -168,10 +169,10 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
               search
             </button>
             <Link
-              className={`${styles.navLink} ${isActivePath(pathname, "/login") ? styles.navItemActive : ""}`}
-              href="/login"
+              className={`${styles.navLink} ${isActivePath(pathname, accountHref) ? styles.navItemActive : ""}`}
+              href={accountHref}
               data-label={accountLabel}
-              aria-current={isActivePath(pathname, "/login") ? "page" : undefined}
+              aria-current={isActivePath(pathname, accountHref) ? "page" : undefined}
             >
               {accountLabel}
             </Link>
@@ -297,9 +298,9 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
             );
           })}
           <Link
-            href="/login"
-            className={isActivePath(pathname, "/login") ? styles.drawerLinkActive : undefined}
-            aria-current={isActivePath(pathname, "/login") ? "page" : undefined}
+            href={accountHref}
+            className={isActivePath(pathname, accountHref) ? styles.drawerLinkActive : undefined}
+            aria-current={isActivePath(pathname, accountHref) ? "page" : undefined}
             onClick={() => setDrawerOpen(false)}
           >
             {accountLabel}

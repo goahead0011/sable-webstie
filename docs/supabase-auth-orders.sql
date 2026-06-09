@@ -9,24 +9,40 @@ create table if not exists public.profiles (
   email text not null,
   name text not null default '',
   phone text not null default '',
+  birth_date date,
   postal_code text not null default '',
   address_line1 text not null default '',
   address_line2 text not null default '',
   address_label text not null default 'home',
   points integer not null default 3000000 check (points >= 0),
+  total_purchased integer not null default 0 check (total_purchased >= 0),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
+alter table if exists public.profiles
+  add column if not exists birth_date date,
+  add column if not exists total_purchased integer not null default 0 check (total_purchased >= 0);
+
 create table if not exists public.orders (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
+  subtotal integer not null default 0 check (subtotal >= 0),
   total integer not null check (total >= 0),
+  discount_total integer not null default 0 check (discount_total >= 0),
+  earned_points integer not null default 0 check (earned_points >= 0),
+  coupon jsonb,
   items jsonb not null,
   shipping_address jsonb not null,
   payment_method text not null default 'points',
   created_at timestamptz not null default now()
 );
+
+alter table if exists public.orders
+  add column if not exists subtotal integer not null default 0 check (subtotal >= 0),
+  add column if not exists discount_total integer not null default 0 check (discount_total >= 0),
+  add column if not exists earned_points integer not null default 0 check (earned_points >= 0),
+  add column if not exists coupon jsonb;
 
 create or replace function public.set_updated_at()
 returns trigger

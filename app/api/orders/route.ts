@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getProductById } from "@/data/products";
 import {
+  hydrateProfilePurchases,
   normalizePoints,
   type AccountOrder,
   type AccountProfile,
@@ -9,6 +10,7 @@ import {
   type ShippingAddress
 } from "@/lib/account";
 import { normalizeCartItems } from "@/lib/cart";
+import { calculateMembershipOrder, type MembershipOrderLine, type MembershipCouponKind } from "@/lib/membership";
 import type { CartItem } from "@/types/domain";
 
 type SupabaseUserResponse = {
@@ -21,16 +23,22 @@ type SupabaseProfileRow = {
   email: string;
   name: string | null;
   phone: string | null;
+  birth_date?: string | null;
   postal_code: string | null;
   address_line1: string | null;
   address_line2: string | null;
   address_label: string | null;
   points: number | null;
+  total_purchased?: number | null;
 };
 
 type SupabaseOrderRow = {
   id: string;
+  subtotal?: number | null;
   total: number;
+  discount_total?: number | null;
+  earned_points?: number | null;
+  coupon?: unknown;
   items: unknown;
   shipping_address: unknown;
   payment_method: string | null;
@@ -50,6 +58,10 @@ function serviceHeaders(serviceRoleKey: string) {
     Authorization: `Bearer ${serviceRoleKey}`,
     "Content-Type": "application/json"
   };
+}
+
+function isMissingColumnError(error: unknown) {
+  return error instanceof Error && error.message.includes("schema cache") && error.message.includes("column");
 }
 
 async function parseJsonResponse<T>(response: Response): Promise<T> {
@@ -75,13 +87,15 @@ function profileFromRow(row: SupabaseProfileRow): AccountProfile {
     email: row.email,
     name: row.name ?? "",
     phone: row.phone ?? "",
+    birthDate: row.birth_date ?? "",
     address: {
       postalCode: row.postal_code ?? "",
       addressLine1: row.address_line1 ?? "",
       addressLine2: row.address_line2 ?? "",
       label: row.address_label ?? "home"
     },
-    points: normalizePoints(row.points)
+    points: normalizePoints(row.points),
+    totalPurchased: normalizePoints(row.total_purchased)
   };
 }
 
@@ -108,6 +122,21 @@ function isShippingAddress(value: unknown): value is ShippingAddress {
   );
 }
 
+function isOrderCoupon(value: unknown): value is NonNullable<AccountOrder["coupon"]> {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+
+  const coupon = value as Partial<NonNullable<AccountOrder["coupon"]>>;
+  return (
+    typeof coupon.id === "string" &&
+    (coupon.kind === "welcome" || coupon.kind === "birthday") &&
+    typeof coupon.label === "string" &&
+    typeof coupon.discountRate === "number" &&
+    typeof coupon.discountAmount === "number"
+  );
+}
+
 function parsePayload(value: unknown): CheckoutOrderPayload {
   if (!value || typeof value !== "object") {
     throw new Error("Invalid order payload.");
@@ -126,7 +155,8 @@ function parsePayload(value: unknown): CheckoutOrderPayload {
   return {
     items: normalizeCartItems(payload.items),
     total: typeof payload.total === "number" ? payload.total : 0,
-    shippingAddress: payload.shippingAddress
+    shippingAddress: payload.shippingAddress,
+    couponId: typeof payload.couponId === "string" ? payload.couponId : undefined
   };
 }
 
@@ -134,7 +164,11 @@ function orderFromRow(row: SupabaseOrderRow): AccountOrder {
   return {
     id: row.id,
     createdAt: row.created_at,
+    subtotal: normalizePoints(row.subtotal),
     total: row.total,
+    discountTotal: normalizePoints(row.discount_total),
+    earnedPoints: normalizePoints(row.earned_points),
+    coupon: isOrderCoupon(row.coupon) ? row.coupon : undefined,
     items: Array.isArray(row.items) && row.items.every(isCartItem) ? normalizeCartItems(row.items) : [],
     shippingAddress: isShippingAddress(row.shipping_address)
       ? row.shipping_address
@@ -148,11 +182,68 @@ function orderFromRow(row: SupabaseOrderRow): AccountOrder {
   };
 }
 
-function calculateTotal(items: CartItem[]) {
-  return items.reduce((sum, item) => {
-    const product = getProductById(item.productId);
-    return sum + (product?.price ?? 0) * item.quantity;
-  }, 0);
+function getOrderLines(items: CartItem[]): MembershipOrderLine[] {
+  return items
+    .map<MembershipOrderLine | null>((item) => {
+      const product = getProductById(item.productId);
+
+      return product
+        ? {
+            price: product.price,
+            quantity: item.quantity,
+            isSale: product.isSale
+          }
+        : null;
+    })
+    .filter((line): line is MembershipOrderLine => Boolean(line));
+}
+
+function couponFromBreakdown(
+  selectedCoupon: ReturnType<typeof calculateMembershipOrder>["selectedCoupon"],
+  discountAmount: number
+) {
+  return selectedCoupon
+    ? {
+        id: selectedCoupon.id,
+        kind: selectedCoupon.kind as MembershipCouponKind,
+        label: selectedCoupon.label,
+        discountRate: selectedCoupon.discountRate,
+        discountAmount
+      }
+    : undefined;
+}
+
+async function insertOrder(
+  supabaseUrl: string,
+  serviceRoleKey: string,
+  body: Record<string, unknown>
+): Promise<SupabaseOrderRow[]> {
+  const response = await fetch(`${supabaseUrl}/rest/v1/orders`, {
+    method: "POST",
+    headers: {
+      ...serviceHeaders(serviceRoleKey),
+      Prefer: "return=representation"
+    },
+    body: JSON.stringify(body)
+  });
+  return parseJsonResponse<SupabaseOrderRow[]>(response);
+}
+
+async function updateProfileRow(
+  supabaseUrl: string,
+  serviceRoleKey: string,
+  userId: string,
+  body: Record<string, unknown>
+): Promise<SupabaseProfileRow[]> {
+  const response = await fetch(`${supabaseUrl}/rest/v1/profiles?id=eq.${encodeURIComponent(userId)}`, {
+    method: "PATCH",
+    headers: {
+      ...serviceHeaders(serviceRoleKey),
+      Prefer: "return=representation"
+    },
+    body: JSON.stringify(body)
+  });
+  return parseJsonResponse<SupabaseProfileRow[]>(response);
 }
 
 export async function POST(request: Request) {
@@ -171,9 +262,9 @@ export async function POST(request: Request) {
 
   try {
     const payload = parsePayload(await request.json());
-    const total = calculateTotal(payload.items);
+    const orderLines = getOrderLines(payload.items);
 
-    if (payload.items.length === 0 || total <= 0) {
+    if (payload.items.length === 0 || orderLines.length === 0) {
       return NextResponse.json({ message: "Your cart is empty." }, { status: 400 });
     }
 
@@ -196,51 +287,104 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Account information could not be found." }, { status: 404 });
     }
 
-    const profile = profileFromRow(profileRow);
+    const ordersResponse = await fetch(
+      `${supabaseUrl}/rest/v1/orders?user_id=eq.${encodeURIComponent(user.id)}&select=*&order=created_at.desc`,
+      { headers: serviceHeaders(serviceRoleKey) }
+    );
+    const previousOrders = (await parseJsonResponse<SupabaseOrderRow[]>(ordersResponse)).map(orderFromRow);
+    const profile = hydrateProfilePurchases(profileFromRow(profileRow), previousOrders);
+    const breakdown = calculateMembershipOrder(profile, previousOrders, orderLines, payload.couponId);
 
-    if (profile.points < total) {
+    if (breakdown.total <= 0) {
+      return NextResponse.json({ message: "Your cart is empty." }, { status: 400 });
+    }
+
+    if (profile.points < breakdown.total) {
       return NextResponse.json({ message: "You do not have enough points." }, { status: 400 });
     }
 
-    const nextPoints = profile.points - total;
-    const orderResponse = await fetch(`${supabaseUrl}/rest/v1/orders`, {
-      method: "POST",
-      headers: {
-        ...serviceHeaders(serviceRoleKey),
-        Prefer: "return=representation"
-      },
-      body: JSON.stringify({
-        user_id: user.id,
-        total,
-        items: payload.items,
-        shipping_address: payload.shippingAddress,
-        payment_method: "points"
-      })
-    });
-    const orderRows = await parseJsonResponse<SupabaseOrderRow[]>(orderResponse);
+    const nextPoints = profile.points - breakdown.total + breakdown.earnedPoints;
+    const orderCoupon = couponFromBreakdown(breakdown.selectedCoupon, breakdown.couponDiscount);
+    const extendedOrderBody = {
+      user_id: user.id,
+      subtotal: breakdown.subtotal,
+      total: breakdown.total,
+      discount_total: breakdown.discountTotal,
+      earned_points: breakdown.earnedPoints,
+      coupon: orderCoupon ?? null,
+      items: payload.items,
+      shipping_address: payload.shippingAddress,
+      payment_method: "points"
+    };
+    const baseOrderBody = {
+      user_id: user.id,
+      total: breakdown.total,
+      items: payload.items,
+      shipping_address: payload.shippingAddress,
+      payment_method: "points"
+    };
+    let orderRows: SupabaseOrderRow[];
 
-    const updateResponse = await fetch(`${supabaseUrl}/rest/v1/profiles?id=eq.${encodeURIComponent(user.id)}`, {
-      method: "PATCH",
-      headers: {
-        ...serviceHeaders(serviceRoleKey),
-        Prefer: "return=representation"
-      },
-      body: JSON.stringify({
-        points: nextPoints,
-        postal_code: payload.shippingAddress.postalCode,
-        address_line1: payload.shippingAddress.addressLine1,
-        address_line2: payload.shippingAddress.addressLine2,
-        address_label: payload.shippingAddress.label
-      })
-    });
-    const updatedRows = await parseJsonResponse<SupabaseProfileRow[]>(updateResponse);
-    const updatedProfile = profileFromRow(updatedRows[0] ?? { ...profileRow, points: nextPoints });
+    try {
+      orderRows = await insertOrder(supabaseUrl, serviceRoleKey, extendedOrderBody);
+    } catch (error) {
+      if (!isMissingColumnError(error)) {
+        throw error;
+      }
+
+      orderRows = await insertOrder(supabaseUrl, serviceRoleKey, baseOrderBody);
+    }
+
+    const extendedProfileBody = {
+      points: nextPoints,
+      total_purchased: breakdown.totalPurchasedAfterOrder,
+      postal_code: payload.shippingAddress.postalCode,
+      address_line1: payload.shippingAddress.addressLine1,
+      address_line2: payload.shippingAddress.addressLine2,
+      address_label: payload.shippingAddress.label
+    };
+    const baseProfileBody = {
+      points: nextPoints,
+      postal_code: payload.shippingAddress.postalCode,
+      address_line1: payload.shippingAddress.addressLine1,
+      address_line2: payload.shippingAddress.addressLine2,
+      address_label: payload.shippingAddress.label
+    };
+    let updatedRows: SupabaseProfileRow[];
+
+    try {
+      updatedRows = await updateProfileRow(supabaseUrl, serviceRoleKey, user.id, extendedProfileBody);
+    } catch (error) {
+      if (!isMissingColumnError(error)) {
+        throw error;
+      }
+
+      updatedRows = await updateProfileRow(supabaseUrl, serviceRoleKey, user.id, baseProfileBody);
+    }
+
+    const updatedProfile = {
+      ...profileFromRow(
+        updatedRows[0] ?? { ...profileRow, points: nextPoints, total_purchased: breakdown.totalPurchasedAfterOrder }
+      ),
+      totalPurchased: breakdown.totalPurchasedAfterOrder
+    };
     const order = orderRows[0]
-      ? orderFromRow(orderRows[0])
+      ? {
+          ...orderFromRow(orderRows[0]),
+          subtotal: breakdown.subtotal,
+          total: breakdown.total,
+          discountTotal: breakdown.discountTotal,
+          earnedPoints: breakdown.earnedPoints,
+          coupon: orderCoupon
+        }
       : {
           id: "",
           createdAt: new Date().toISOString(),
-          total,
+          subtotal: breakdown.subtotal,
+          total: breakdown.total,
+          discountTotal: breakdown.discountTotal,
+          earnedPoints: breakdown.earnedPoints,
+          coupon: orderCoupon,
           items: payload.items,
           shippingAddress: payload.shippingAddress,
           paymentMethod: "points" as const
