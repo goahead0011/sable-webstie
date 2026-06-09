@@ -205,17 +205,17 @@ const sableManifesto = [
   "Before deciding what to wear, what to consume, or who to surround ourselves with, we instinctively categorize and define.",
   "To live in a time where everything is easily labeled and sorted is also to feel the desire to move beyond those predefined boundaries.",
   "Taste is always given a name. This is one style, that is another. Yet our identities do not exist to be explained by someone else's standards or confined within the labels of a particular group.",
-  "Sable curates a selection of fashion and lifestyle objects through the lens of individual taste. Rather than following trends or standardized ideals, we seek to highlight the unique sensibilities and perspectives that belong to each person.",
+  "sable curates a selection of fashion and lifestyle objects through the lens of individual taste. Rather than following trends or standardized ideals, we seek to highlight the unique sensibilities and perspectives that belong to each person.",
   "You are not a substitute for someone else, nor simply another individual within a category.",
   "You exist as yourself.",
-  "Sable believes in the countless nuances that shape personal taste, and explores ways for those nuances to become deeper, clearer, and more distinctly your own."
+  "sable believes in the countless nuances that shape personal taste, and explores ways for those nuances to become deeper, clearer, and more distinctly your own."
 ];
 
 const koreanSableManifesto = [
   "우리는 무엇을 입을지, 무엇을 소비할지, 누구를 만날지 결정하기 전에 먼저 분류하고 판단합니다. 무엇이든 쉽게 정의되고 구분되는 시대에 산다는 것은, 동시에 그 정형화된 기준으로부터 벗어나고자 하는 욕망을 불러일으키기도 합니다.",
   "취향에는 언제나 이름이 붙습니다. 이것은 이런 스타일, 저것은 저런 취향이라고 말입니다. 우리의 정체성은 누군가의 기준이나 집단의 이름으로 설명되기 위해 존재하는 것이 아닙니다.",
-  "Sable은 의류를 비롯한 라이프스타일 전반에 걸쳐 취향을 큐레이션합니다. 우리는 유행이나 획일화된 기준이 아닌, 개인이 가진 고유한 취향과 감각이 더욱 선명해질 수 있도록 제안합니다.",
-  "당신은 누구의 대체재도, 어떤 범주에 속해 있는 한 명도 아닙니다. 당신은 오직 당신으로 존재합니다. Sable은 개개인이 가진 무수한 취향의 결을 믿으며, 그 결이 더욱 깊고 분명해질 수 있는 방향을 함께 모색합니다."
+  "sable은 의류를 비롯한 라이프스타일 전반에 걸쳐 취향을 큐레이션합니다. 우리는 유행이나 획일화된 기준이 아닌, 개인이 가진 고유한 취향과 감각이 더욱 선명해질 수 있도록 제안합니다.",
+  "당신은 누구의 대체재도, 어떤 범주에 속해 있는 한 명도 아닙니다. 당신은 오직 당신으로 존재합니다. sable은 개개인이 가진 무수한 취향의 결을 믿으며, 그 결이 더욱 깊고 분명해질 수 있는 방향을 함께 모색합니다."
 ];
 
 function LanguageDivider() {
