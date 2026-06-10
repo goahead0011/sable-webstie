@@ -224,6 +224,22 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
           >
             home
           </Link>
+          <Link
+            href={accountHref}
+            className={isActivePath(pathname, accountHref) ? styles.drawerLinkActive : undefined}
+            aria-current={isActivePath(pathname, accountHref) ? "page" : undefined}
+            onClick={() => setDrawerOpen(false)}
+          >
+            {accountLabel}
+          </Link>
+          <Link
+            href="/cart"
+            className={isActivePath(pathname, "/cart") ? styles.drawerLinkActive : undefined}
+            aria-current={isActivePath(pathname, "/cart") ? "page" : undefined}
+            onClick={() => setDrawerOpen(false)}
+          >
+            cart{cartCount > 0 ? ` ${cartCount}` : ""}
+          </Link>
           <button
             className={`${styles.drawerAccordion} ${isActivePath(pathname, "/brands") ? styles.drawerLinkActive : ""}`}
             type="button"
@@ -297,22 +313,6 @@ export default function Header({ womenCategories, menCategories }: HeaderProps) 
               </Link>
             );
           })}
-          <Link
-            href={accountHref}
-            className={isActivePath(pathname, accountHref) ? styles.drawerLinkActive : undefined}
-            aria-current={isActivePath(pathname, accountHref) ? "page" : undefined}
-            onClick={() => setDrawerOpen(false)}
-          >
-            {accountLabel}
-          </Link>
-          <Link
-            href="/cart"
-            className={isActivePath(pathname, "/cart") ? styles.drawerLinkActive : undefined}
-            aria-current={isActivePath(pathname, "/cart") ? "page" : undefined}
-            onClick={() => setDrawerOpen(false)}
-          >
-            cart{cartCount > 0 ? ` ${cartCount}` : ""}
-          </Link>
         </nav>
       </aside>
 
