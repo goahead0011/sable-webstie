@@ -127,6 +127,16 @@
     opacity: 1;
   }
 
+  /* First tap on mobile mirrors the desktop hover: swap to the back image
+     when one exists. Single-image cards keep their primary image. */
+  .card.hasHover.expanded .primaryImage {
+    opacity: 0;
+  }
+
+  .card.hasHover.expanded .hoverImage {
+    opacity: 1;
+  }
+
   .price {
     text-align: left;
   }
