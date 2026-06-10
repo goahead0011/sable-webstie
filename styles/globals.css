@@ -48,6 +48,9 @@ html {
      margin:0 auto) never shifts horizontally between scrolling pages (catalog,
      home) and short pages (login, information, cart, checkout). */
   scrollbar-gutter: stable;
+  /* Disable double-tap-to-zoom on touch devices; pinch zoom and panning stay
+     available. Focus auto-zoom on iOS is handled in app/layout.tsx. */
+  touch-action: manipulation;
 }
 
 body {
