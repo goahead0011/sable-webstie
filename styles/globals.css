@@ -73,6 +73,18 @@ textarea {
   font: inherit;
 }
 
+/* iOS Safari auto-zooms when focusing a text control whose font-size is under
+   16px, and ignores viewport maximum-scale hints on recent versions. Keeping
+   mobile inputs at 16px is the only reliable way to suppress that zoom while
+   leaving user pinch zoom untouched. */
+@media (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
 button {
   color: inherit;
 }
