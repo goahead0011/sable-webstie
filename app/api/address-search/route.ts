@@ -55,6 +55,12 @@ function normalizeQuery(query: string) {
   return query.replace(/\s+/g, " ").trim();
 }
 
+// Local search road addresses often append a parenthetical jibun address
+// (e.g. "예술대학로 171 서울예술대학 (고잔동 640)") that breaks geocoding.
+function stripParenthetical(value: string) {
+  return value.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
+}
+
 function getLocalQueryVariants(query: string) {
   const normalized = normalizeQuery(query);
   const variants = [normalized, normalized.replace(/\s*-\s*/g, "-")];
@@ -190,6 +196,50 @@ async function fetchLocalPlaces(query: string): Promise<SourceResult> {
   return { results };
 }
 
+async function lookupPostalCode(address: string): Promise<string> {
+  if (!address) {
+    return "";
+  }
+
+  try {
+    const { results } = await geocodeAddress(address);
+    return results.find((result) => result.postalCode)?.postalCode ?? "";
+  } catch {
+    return "";
+  }
+}
+
+// Local search items never include postal codes, so geocode each item's
+// address to fill them in. Falls back to the bare road-number address
+// (e.g. "예술대학로 171") when the full string fails to geocode.
+async function fillPostalCodes(results: AddressSearchResult[]): Promise<AddressSearchResult[]> {
+  return Promise.all(
+    results.map(async (result) => {
+      if (result.postalCode) {
+        return result;
+      }
+
+      const roadAddress = stripParenthetical(result.roadAddress);
+      const jibunAddress = stripParenthetical(result.jibunAddress);
+
+      let postalCode = await lookupPostalCode(roadAddress);
+
+      if (!postalCode && roadAddress) {
+        const bareRoad = roadAddress.match(/^(.*?(?:로|길)\s*[\d-]+)/)?.[1] ?? "";
+        if (bareRoad && bareRoad !== roadAddress) {
+          postalCode = await lookupPostalCode(bareRoad);
+        }
+      }
+
+      if (!postalCode) {
+        postalCode = await lookupPostalCode(jibunAddress);
+      }
+
+      return { ...result, roadAddress, jibunAddress, postalCode };
+    })
+  );
+}
+
 async function searchLocalPlaces(query: string): Promise<SourceResult> {
   let lastMessage: string | undefined;
   let lastStatus: number | undefined;
@@ -202,7 +252,7 @@ async function searchLocalPlaces(query: string): Promise<SourceResult> {
     }
 
     if (result.results.length > 0) {
-      return { results: result.results };
+      return { results: await fillPostalCodes(result.results) };
     }
 
     lastMessage = result.message;
